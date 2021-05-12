@@ -1,24 +1,27 @@
 package helixsystemupgrade.model;
 
-public class Account {
-    private String name;
-    private int accountID;
+import java.util.List;
+import java.util.ArrayList;
 
-    public Account(String name, int accountID) {
-        this.name = name;
+public class Account {
+    private String accountName;
+    private int accountID;
+    private List<Product> productHistoryList = new ArrayList<>();
+
+    public Account(String accountName, int accountID) {
+        this.accountName = accountName;
         this.accountID = accountID;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountName() {
+        return accountName;
     }
 
     public int getAccountID() {
         return accountID;
     }
 
-//    @Override
-//    public String toString() {
-//        return "\"Account [Name "+ name + ", Account_ID = " + accountID + "]";
-//    }
+    public List<Product> getProductHistoryList() {
+        return productHistoryList;
+    }
 }

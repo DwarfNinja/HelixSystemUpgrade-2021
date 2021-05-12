@@ -16,7 +16,7 @@ public class HelixSystem {
     }
 
     private HelixSystem() {
-        accountList.add(new Account("John Doe", 1234));
+        addDummyData();
     }
 
     public List<Account> getAccountList() {
@@ -30,6 +30,19 @@ public class HelixSystem {
             }
         }
         return null;
+    }
+
+    private void addDummyData() {
+        accountList.add(new Account("John Doe", 1));
+        accountList.add(new Account("Ponnappa Priya", 2));
+        accountList.add(new Account("Hayman Andrews", 3));
+        accountList.add(new Account("Verona Blair", 4));
+        accountList.add(new Account("Jane Meldrum", 5));
+        accountList.add(new Account("Peter Stanbridge", 6));
+        accountList.add(new Account("Mia Wong", 7));
+        accountList.add(new Account("Maureen M. Smith", 8));
+        accountList.add(new Account("Tarryn Campbell-Gillies", 9));
+        accountList.add(new Account("Daly Harry", 10));
     }
 
 }
