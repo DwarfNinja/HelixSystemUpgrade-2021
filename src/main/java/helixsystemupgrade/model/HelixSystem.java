@@ -1,8 +1,9 @@
 package helixsystemupgrade.model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import helixsystemupgrade.utils.JsonUtils;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,13 +56,13 @@ public class HelixSystem {
         for (Account account : accountList) {
             try {
                 //"C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/json/all-products.json"
-                String filepath = "C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/json/all-products.json";
-                Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray(filepath), Product.class);
-                account.addToProductHistoryList(value);
-            } catch (JsonProcessingException e) {
+                try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("json/all-products.json")) {
+                    Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray(inputStream), Product.class);
+                    account.addToProductHistoryList(value);
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
 }
