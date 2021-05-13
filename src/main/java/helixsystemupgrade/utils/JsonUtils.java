@@ -35,14 +35,10 @@ public class JsonUtils {
         return jsonArray.toString();
     }
 
-    public static String getRandomObjectFromArray() {
-        JSONParser jsonParser = new JSONParser();
-
+    public static String getRandomObjectFromArray(String filepath) {
         try {
-            FileReader fileReader = new FileReader("C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/all-products.json");
-//            JSONArray jsonArray = (JSONArray) jsonParser.parse(fileReader);
-//            int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
-//            return jsonArray.get(randomIndex);
+//            String allProductFilePath = JsonUtils.class.getResource(filepath).getPath();
+            FileReader fileReader = new FileReader(filepath);
 
             JsonReader jsonReader = Json.createReader(fileReader);
             JsonStructure jsonValue = jsonReader.read();
@@ -53,11 +49,14 @@ public class JsonUtils {
                 JsonObject jsonObject = (JsonObject) jsonArray.getJsonObject(randomIndex);
                 return  jsonObject.toString();
             }
-            return "SHEESH";
+            return "ERROR";
 
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR [FileNotFoundException]: File not found!";
+            //JSONArray jsonArray = (JSONArray) jsonParser.parse(fileReader);
+            //int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
+            //return jsonArray.get(randomIndex);
         }
     }
 }

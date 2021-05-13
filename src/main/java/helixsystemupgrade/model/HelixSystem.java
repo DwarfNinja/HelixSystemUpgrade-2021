@@ -18,6 +18,7 @@ public class HelixSystem {
         theHelixSystem = helixSystem;
     }
 
+
     private HelixSystem() {
         addDummyAccounts();
         generateRandomProductHistory();
@@ -53,7 +54,9 @@ public class HelixSystem {
         ObjectMapper mapper = new ObjectMapper();
         for (Account account : accountList) {
             try {
-                Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray() , Product.class);
+                //"C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/json/all-products.json"
+                String filepath = "C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/json/all-products.json";
+                Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray(filepath), Product.class);
                 account.addToProductHistoryList(value);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
