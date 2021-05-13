@@ -14,11 +14,11 @@ public class JsonUtils {
         try {
             // Converting the Java object into a JSON string
             String jsonStringOfObject = objMapper.writeValueAsString(object);
-            // Displaying Java object into a JSON string
             return jsonStringOfObject;
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            return "ERROR [JsonProcessingException]: Error parsing Json!";
+            return e.getMessage();
         }
     }
 
@@ -32,25 +32,23 @@ public class JsonUtils {
         return jsonArray.toString();
     }
 
-    public static String getRandomObjectFromArray(InputStream inputStream) {
+    public static String getRandomObjectFromArray(String filepath) {
         try {
+            InputStream inputStream = JsonUtils.class.getClassLoader().getResourceAsStream(filepath);
             JsonReader jsonReader = Json.createReader(inputStream);
             JsonStructure jsonValue = jsonReader.read();
 
             if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
                 JsonArray jsonArray = (JsonArray) jsonValue;
                 int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
-                JsonObject jsonObject = (JsonObject) jsonArray.getJsonObject(randomIndex);
+                JsonObject jsonObject = jsonArray.getJsonObject(randomIndex);
                 return  jsonObject.toString();
             }
-            return "ERROR";
+            throw new Exception("ERROR: Parsed JSONValue was not a JSONArray!");
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "ERROR [FileNotFoundException]: File not found!";
-            //JSONArray jsonArray = (JSONArray) jsonParser.parse(fileReader);
-            //int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
-            //return jsonArray.get(randomIndex);
+            return e.getMessage();
         }
     }
 }
