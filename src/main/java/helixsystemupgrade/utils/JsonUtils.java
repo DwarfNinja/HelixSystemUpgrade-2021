@@ -3,11 +3,8 @@ package helixsystemupgrade.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-
 import javax.json.*;
-import java.io.FileReader;
+import java.io.InputStream;
 import java.util.List;
 
 public class JsonUtils {
@@ -35,12 +32,9 @@ public class JsonUtils {
         return jsonArray.toString();
     }
 
-    public static String getRandomObjectFromArray(String filepath) {
+    public static String getRandomObjectFromArray(InputStream inputStream) {
         try {
-//            String allProductFilePath = JsonUtils.class.getResource(filepath).getPath();
-            FileReader fileReader = new FileReader(filepath);
-
-            JsonReader jsonReader = Json.createReader(fileReader);
+            JsonReader jsonReader = Json.createReader(inputStream);
             JsonStructure jsonValue = jsonReader.read();
 
             if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
