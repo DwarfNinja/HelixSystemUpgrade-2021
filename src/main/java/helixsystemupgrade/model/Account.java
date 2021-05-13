@@ -24,4 +24,13 @@ public class Account {
     public List<Product> getProductHistoryList() {
         return productHistoryList;
     }
+
+    public void addToProductHistoryList(Product product) {
+        productHistoryList.add(product);
+    }
+
+    private void addDummyProducts() {
+        List<Product> allProductsList = new ArrayList<>();
+    }
+
 }

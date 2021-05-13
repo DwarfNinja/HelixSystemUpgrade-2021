@@ -1,5 +1,8 @@
 package helixsystemupgrade.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import helixsystemupgrade.utils.JsonUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +19,8 @@ public class HelixSystem {
     }
 
     private HelixSystem() {
-        addDummyData();
+        addDummyAccounts();
+        generateRandomProductHistory();
     }
 
     public List<Account> getAccountList() {
@@ -32,7 +36,7 @@ public class HelixSystem {
         return null;
     }
 
-    private void addDummyData() {
+    private void addDummyAccounts() {
         accountList.add(new Account("John Doe", 1));
         accountList.add(new Account("Ponnappa Priya", 2));
         accountList.add(new Account("Hayman Andrews", 3));
@@ -43,6 +47,18 @@ public class HelixSystem {
         accountList.add(new Account("Maureen M. Smith", 8));
         accountList.add(new Account("Tarryn Campbell-Gillies", 9));
         accountList.add(new Account("Daly Harry", 10));
+    }
+
+    private void generateRandomProductHistory() {
+        ObjectMapper mapper = new ObjectMapper();
+        for (Account account : accountList) {
+            try {
+                Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray() , Product.class);
+                account.addToProductHistoryList(value);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
