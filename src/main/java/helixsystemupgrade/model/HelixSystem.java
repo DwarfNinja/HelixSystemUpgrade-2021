@@ -1,32 +1,36 @@
 package helixsystemupgrade.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import helixsystemupgrade.utils.JsonUtils;
-import java.io.IOException;
-import java.io.InputStream;
+import helixsystemupgrade.utils.NumberUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelixSystem {
+    private String name;
+
     private List<Account> accountList = new ArrayList<>();
 
-    private static HelixSystem theHelixSystem = new HelixSystem();
+    private List<Product> inventoryList = new ArrayList<>();
 
-    public static HelixSystem getHelixSystem() {
-        return theHelixSystem;
-    }
-    public static void setHelixSystem(HelixSystem helixSystem) {
-        theHelixSystem = helixSystem;
-    }
-
-
-    private HelixSystem() {
+    public HelixSystem(String name) {
+        this.name = name;
         addDummyAccounts();
         generateRandomProductHistory();
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<Account> getAccountList() {
         return accountList;
+    }
+
+    public List<Product> getInventoryList() {
+        return inventoryList;
     }
 
     public Account getAccountbyID(int id) {
@@ -38,30 +42,41 @@ public class HelixSystem {
         return null;
     }
 
+    public Product getProductbyID(int id) {
+        for (Product product : inventoryList) {
+            if (product.getProductID()== id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
     private void addDummyAccounts() {
-        accountList.add(new Account("John Doe", 1));
-        accountList.add(new Account("Ponnappa Priya", 2));
-        accountList.add(new Account("Hayman Andrews", 3));
-        accountList.add(new Account("Verona Blair", 4));
-        accountList.add(new Account("Jane Meldrum", 5));
-        accountList.add(new Account("Peter Stanbridge", 6));
-        accountList.add(new Account("Mia Wong", 7));
-        accountList.add(new Account("Maureen M. Smith", 8));
-        accountList.add(new Account("Tarryn Campbell-Gillies", 9));
-        accountList.add(new Account("Daly Harry", 10));
+        ObjectMapper mapper = new ObjectMapper();
+        int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
+        for (int i = 0; i < randomAmountOfProducts; i++) {
+            try {
+                Account account = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-accounts.json"), Account.class);
+                accountList.add(account);
+
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void generateRandomProductHistory() {
         ObjectMapper mapper = new ObjectMapper();
         for (Account account : accountList) {
-            try {
-                //"C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/resources/json/all-products.json"
-                try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("json/all-products.json")) {
-                    Product value = mapper.readValue(JsonUtils.getRandomObjectFromArray(inputStream), Product.class);
-                    account.addToProductHistoryList(value);
+            int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
+            for (int i = 0; i < randomAmountOfProducts; i++) {
+                try {
+                    Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
+                    account.addToProductHistoryList(product);
+
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
