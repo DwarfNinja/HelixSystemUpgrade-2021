@@ -1,15 +1,13 @@
 package helixsystemupgrade.webservices;
 
 import helixsystemupgrade.model.HelixSystem;
-import helixsystemupgrade.model.Product;
+import helixsystemupgrade.model.InventoryItem;
 import helixsystemupgrade.model.System;
 import helixsystemupgrade.utils.JsonUtils;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import java.util.HashMap;
 
 @Path("/inventory")
 public class InventoryResource {
@@ -33,7 +31,7 @@ public class InventoryResource {
             if(helixSystem.getinventoryItembyID(Integer.parseInt(id)) == null) {
                 throw new Exception("ERROR: Product " + id + " does not exist!");
             }
-            HashMap<String, Object> inventoryItemOfID = helixSystem.getinventoryItembyID(Integer.parseInt(id));
+            InventoryItem inventoryItemOfID = helixSystem.getinventoryItembyID(Integer.parseInt(id));
             String JsonStringOfProduct = JsonUtils.convertObjectToJson(inventoryItemOfID);
             return JsonStringOfProduct;
         }

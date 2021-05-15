@@ -4,9 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import helixsystemupgrade.utils.JsonUtils;
 import helixsystemupgrade.utils.NumberUtils;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class HelixSystem {
@@ -14,7 +12,7 @@ public class HelixSystem {
 
     private List<Account> accountList = new ArrayList<>();
 
-    private List<HashMap<String, Object>> inventoryList = new ArrayList<>();
+    private List<InventoryItem> inventoryList = new ArrayList<>();
 
     public HelixSystem(String name) {
         this.name = name;
@@ -30,7 +28,7 @@ public class HelixSystem {
         return accountList;
     }
 
-    public List<HashMap<String, Object>> getInventoryList() {
+    public List<InventoryItem> getInventoryList() {
         return inventoryList;
     }
 
@@ -43,10 +41,9 @@ public class HelixSystem {
         return null;
     }
 
-    public HashMap<String, Object> getinventoryItembyID(int id) {
-        for (HashMap<String, Object> inventoryItem : inventoryList) {
-            Product product = (Product) inventoryItem.get("product");
-            if (product.getProductID()== id) {
+    public InventoryItem getinventoryItembyID(int id) {
+        for (InventoryItem inventoryItem : inventoryList) {
+            if (inventoryItem.getAmount() == id) {
                 return inventoryItem;
             }
         }
@@ -74,9 +71,7 @@ public class HelixSystem {
             try {
                 int randomAmount = NumberUtils.getRandomNumberInRange(1, 6);
                 Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
-                HashMap<String, Object> inventoryItem = new HashMap<>();
-                inventoryItem.put("amount", Integer.toString(randomAmount));
-                inventoryItem.put("product", product);
+                InventoryItem inventoryItem = new InventoryItem(randomAmount, product);
                 inventoryList.add(inventoryItem);
 
             } catch (JsonProcessingException e) {
