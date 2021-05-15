@@ -3,14 +3,17 @@ package helixsystemupgrade.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+
 import javax.json.*;
 import java.io.InputStream;
 import java.util.List;
+
 
 public class JsonUtils {
 
     public static String convertObjectToJson(Object object) {
         ObjectMapper objMapper = new ObjectMapper();
+
         try {
             // Converting the Java object into a JSON string
             String jsonStringOfObject = objMapper.writeValueAsString(object);

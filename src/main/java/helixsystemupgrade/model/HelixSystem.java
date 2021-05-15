@@ -17,8 +17,7 @@ public class HelixSystem {
 
     public HelixSystem(String name) {
         this.name = name;
-        addDummyAccounts();
-        generateRandomProductHistory();
+        generateRandomAccountList();
     }
 
     public String getName() {
@@ -51,7 +50,7 @@ public class HelixSystem {
         return null;
     }
 
-    private void addDummyAccounts() {
+    private void generateRandomAccountList() {
         ObjectMapper mapper = new ObjectMapper();
         int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
         for (int i = 0; i < randomAmountOfProducts; i++) {
@@ -61,22 +60,6 @@ public class HelixSystem {
 
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
-            }
-        }
-    }
-
-    private void generateRandomProductHistory() {
-        ObjectMapper mapper = new ObjectMapper();
-        for (Account account : accountList) {
-            int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
-            for (int i = 0; i < randomAmountOfProducts; i++) {
-                try {
-                    Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
-                    account.addToProductHistoryList(product);
-
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

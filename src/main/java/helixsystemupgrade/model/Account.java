@@ -1,6 +1,12 @@
 package helixsystemupgrade.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import helixsystemupgrade.utils.JsonUtils;
+import helixsystemupgrade.utils.NumberUtils;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -11,12 +17,12 @@ public class Account {
     private int accountID;
     private List<Product> productHistoryList = new ArrayList<>();
 
-    public Account(){
-    }
-    
-    public Account(String accountName, int accountID) {
+
+    @JsonCreator
+    public Account(@JsonProperty("name") String accountName, @JsonProperty("accountID") int accountID) {
         this.accountName = accountName;
         this.accountID = accountID;
+        generateRandomProductHistory();
     }
 
     public String getAccountName() {
@@ -31,12 +37,21 @@ public class Account {
         return productHistoryList;
     }
 
-    public void addToProductHistoryList(Product product) {
+    public void addProduct(Product product) {
         productHistoryList.add(product);
     }
 
-    private void addDummyProducts() {
-        List<Product> allProductsList = new ArrayList<>();
-    }
+    private void generateRandomProductHistory() {
+        ObjectMapper mapper = new ObjectMapper();
+        int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
+        for (int i = 0; i < randomAmountOfProducts; i++) {
+            try {
+                Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
+                addProduct(product);
 
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

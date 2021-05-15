@@ -1,5 +1,7 @@
 package helixsystemupgrade.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(as = Product.class)
@@ -9,10 +11,9 @@ public class Product {
     private double productPrice;
     private String imgSource;
 
-    public Product() {
-    }
-
-    public Product(String productName, int productID, double productPrice, String imgSource) {
+    @JsonCreator
+    public Product(@JsonProperty("productName") String productName, @JsonProperty("productID") int productID,
+                   @JsonProperty("productPrice") double productPrice, @JsonProperty("imgSource") String imgSource) {
         this.productName = productName;
         this.productID = productID;
         this.productPrice = productPrice;
@@ -34,5 +35,4 @@ public class Product {
     public String getImgSource() {
         return imgSource;
     }
-
 }
