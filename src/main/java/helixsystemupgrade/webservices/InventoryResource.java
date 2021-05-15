@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import java.util.HashMap;
 
 @Path("/inventory")
 public class InventoryResource {
@@ -29,11 +30,11 @@ public class InventoryResource {
     public String getProductByID(@PathParam("hospital") String hospital, @PathParam("id") String id) {
         HelixSystem helixSystem = System.getTheSystem().getHelixSystem(hospital);
         try {
-            if(helixSystem.getProductbyID(Integer.parseInt(id)) == null) {
+            if(helixSystem.getinventoryItembyID(Integer.parseInt(id)) == null) {
                 throw new Exception("ERROR: Product " + id + " does not exist!");
             }
-            Product productOfID = helixSystem.getProductbyID(Integer.parseInt(id));
-            String JsonStringOfProduct = JsonUtils.convertObjectToJson(productOfID);
+            HashMap<String, Object> inventoryItemOfID = helixSystem.getinventoryItembyID(Integer.parseInt(id));
+            String JsonStringOfProduct = JsonUtils.convertObjectToJson(inventoryItemOfID);
             return JsonStringOfProduct;
         }
         catch (Exception e) {

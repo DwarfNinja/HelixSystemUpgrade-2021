@@ -13,13 +13,12 @@ import java.util.ArrayList;
 
 @JsonDeserialize(as = Account.class)
 public class Account {
-    private String accountName;
-    private int accountID;
-    private List<Product> productHistoryList = new ArrayList<>();
-
+    private final String accountName;
+    private final int accountID;
+    private final List<Product> productHistoryList = new ArrayList<>();
 
     @JsonCreator
-    public Account(@JsonProperty("name") String accountName, @JsonProperty("accountID") int accountID) {
+    public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID) {
         this.accountName = accountName;
         this.accountID = accountID;
         generateRandomProductHistory();
