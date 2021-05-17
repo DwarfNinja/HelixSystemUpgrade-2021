@@ -35,4 +35,12 @@ public class Product {
     public String getImgSource() {
         return imgSource;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product object) {
+            return object.getProductID() == getProductID();
+        }
+        return false;
+    }
 }

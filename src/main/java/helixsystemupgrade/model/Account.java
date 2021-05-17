@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Account {
     private final String accountName;
     private final int accountID;
+    private final List<String> helixAccessList = new ArrayList<>();
     private final List<Product> productHistoryList = new ArrayList<>();
 
     @JsonCreator
@@ -34,12 +35,21 @@ public class Account {
         return accountID;
     }
 
+    public List<String> getHelixAccessList() {
+        return helixAccessList;
+    }
+
     public List<Product> getProductHistoryList() {
         return productHistoryList;
     }
 
+
     public void addProduct(Product product) {
         productHistoryList.add(product);
+    }
+
+    public void addHelixAccess(HelixSystem helixSystem) {
+        helixAccessList.add(helixSystem.getName());
     }
 
     private void generateRandomProductHistory() {
@@ -57,5 +67,13 @@ public class Account {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Account object) {
+            return object.getAccountID() == getAccountID();
+        }
+        return false;
     }
 }
