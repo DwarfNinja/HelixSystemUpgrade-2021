@@ -1,9 +1,10 @@
 package helixsystemupgrade.webservices;
 
 import helixsystemupgrade.model.HelixSystem;
-import helixsystemupgrade.model.InventoryItem;
+import helixsystemupgrade.model.InventoryEntry;
 import helixsystemupgrade.model.System;
 import helixsystemupgrade.utils.JsonUtils;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -18,7 +19,7 @@ public class InventoryResource {
     public String getInventory(@PathParam("hospital") String hospital) {
         HelixSystem helixSystem = System.getTheSystem().getHelixSystem(hospital);
 
-        String jsonArray = JsonUtils.createJsonArray(helixSystem.getInventoryList());
+        String jsonArray = JsonUtils.convertToJsonArray(helixSystem.getInventoryList());
         return jsonArray;
     }
 
@@ -28,11 +29,11 @@ public class InventoryResource {
     public String getProductByID(@PathParam("hospital") String hospital, @PathParam("id") String id) {
         HelixSystem helixSystem = System.getTheSystem().getHelixSystem(hospital);
         try {
-            if(helixSystem.getinventoryItembyID(Integer.parseInt(id)) == null) {
+            if(helixSystem.getinventoryEntrybyID(Integer.parseInt(id)) == null) {
                 throw new Exception("ERROR: Product " + id + " does not exist!");
             }
-            InventoryItem inventoryItemOfID = helixSystem.getinventoryItembyID(Integer.parseInt(id));
-            String JsonStringOfProduct = JsonUtils.convertObjectToJson(inventoryItemOfID);
+            InventoryEntry inventoryEntryOfID = helixSystem.getinventoryEntrybyID(Integer.parseInt(id));
+            String JsonStringOfProduct = JsonUtils.convertObjectToJson(inventoryEntryOfID);
             return JsonStringOfProduct;
         }
         catch (Exception e) {

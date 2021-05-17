@@ -1,10 +1,10 @@
 package helixsystemupgrade.model;
 
-public class InventoryItem {
+public class InventoryEntry {
     private final int amount;
     private final Product product;
 
-    public InventoryItem(int amount, Product product) {
+    public InventoryEntry(int amount, Product product) {
         this.amount = amount;
         this.product = product;
     }

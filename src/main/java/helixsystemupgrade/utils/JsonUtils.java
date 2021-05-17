@@ -25,7 +25,7 @@ public class JsonUtils {
         }
     }
 
-    public static String createJsonArray(List<?> array) {
+    public static String convertToJsonArray(List<?> array) {
         ObjectMapper objMapper = new ObjectMapper();
         ArrayNode jsonArray = objMapper.createArrayNode();
 
@@ -35,23 +35,50 @@ public class JsonUtils {
         return jsonArray.toString();
     }
 
-    public static String getRandomObjectFromArray(String filepath) {
-        try {
-            InputStream inputStream = JsonUtils.class.getClassLoader().getResourceAsStream(filepath);
-            JsonReader jsonReader = Json.createReader(inputStream);
-            JsonStructure jsonValue = jsonReader.read();
+//    public static String getRandomObjectFromArray(String filepath) {
+//        try {
+//            InputStream inputStream = JsonUtils.class.getClassLoader().getResourceAsStream(filepath);
+//            JsonReader jsonReader = Json.createReader(inputStream);
+//            JsonStructure jsonValue = jsonReader.read();
+//
+//            if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
+//                JsonArray jsonArray = (JsonArray) jsonValue;
+//                int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
+//                JsonObject jsonObject = jsonArray.getJsonObject(randomIndex);
+//                return  jsonObject.toString();
+//            }
+//            throw new IllegalArgumentException("ERROR: Argument jsonValue " + jsonValue.getValueType() + " was not of type: JSONArray!");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return e.getMessage();
+//        }
+//    }
 
+    public static String getRandomObjectFromJsonArray(JsonArray jsonArray) {
+        int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
+        JsonObject jsonObject = jsonArray.getJsonObject(randomIndex);
+        return  jsonObject.toString();
+    }
+
+    public static JsonArray getJsonArray(JsonStructure jsonValue) {
+        try {
             if (jsonValue.getValueType() == JsonValue.ValueType.ARRAY) {
                 JsonArray jsonArray = (JsonArray) jsonValue;
-                int randomIndex = NumberUtils.getRandomNumberInRange(0, jsonArray.size());
-                JsonObject jsonObject = jsonArray.getJsonObject(randomIndex);
-                return  jsonObject.toString();
+                return jsonArray;
             }
-            throw new Exception("ERROR: Parsed JSONValue was not a JSONArray!");
+            throw new IllegalArgumentException("ERROR: Argument jsonValue " + jsonValue.getValueType() + " was not of type: JSONArray!");
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            return e.getMessage();
+            return null;
         }
+    }
+
+    public static JsonStructure readJsonValueFromFile(String filepath) {
+        InputStream inputStream = JsonUtils.class.getClassLoader().getResourceAsStream(filepath);
+        JsonReader jsonReader = Json.createReader(inputStream);
+        JsonStructure jsonValue = jsonReader.read();
+        return jsonValue;
     }
 }

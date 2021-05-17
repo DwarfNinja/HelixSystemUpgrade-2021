@@ -2,8 +2,11 @@ package helixsystemupgrade.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import helixsystemupgrade.utils.JsonUtils;
 import helixsystemupgrade.utils.NumberUtils;
+
+import javax.json.JsonArray;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +15,7 @@ public class HelixSystem {
 
     private List<Account> accountList = new ArrayList<>();
 
-    private List<InventoryItem> inventoryList = new ArrayList<>();
+    private List<InventoryEntry> inventoryList = new ArrayList<>();
 
     public HelixSystem(String name) {
         this.name = name;
@@ -28,7 +31,7 @@ public class HelixSystem {
         return accountList;
     }
 
-    public List<InventoryItem> getInventoryList() {
+    public List<InventoryEntry> getInventoryList() {
         return inventoryList;
     }
 
@@ -41,10 +44,10 @@ public class HelixSystem {
         return null;
     }
 
-    public InventoryItem getinventoryItembyID(int id) {
-        for (InventoryItem inventoryItem : inventoryList) {
-            if (inventoryItem.getAmount() == id) {
-                return inventoryItem;
+    public InventoryEntry getinventoryEntrybyID(int id) {
+        for (InventoryEntry inventoryEntry : inventoryList) {
+            if (inventoryEntry.getAmount() == id) {
+                return inventoryEntry;
             }
         }
         return null;
@@ -53,10 +56,14 @@ public class HelixSystem {
     private void generateRandomAccountList() {
         ObjectMapper mapper = new ObjectMapper();
         int randomAmountOfAccounts = NumberUtils.getRandomNumberInRange(1, 8);
+        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-accounts.json"));
+        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
+
         for (int i = 0; i < randomAmountOfAccounts; i++) {
             try {
-                Account account = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-accounts.json"), Account.class);
+                Account account = mapper.readValue(JsonUtils.getRandomObjectFromJsonArray(jsonArray), Account.class);
                 accountList.add(account);
+                jsonArray.remove(account);
 
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
@@ -67,12 +74,15 @@ public class HelixSystem {
     private void generateRandomInventory() {
         ObjectMapper mapper = new ObjectMapper();
         int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(10, 30);
+        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
+        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
+
         for (int i = 0; i < randomAmountOfProducts; i++) {
             try {
                 int randomAmount = NumberUtils.getRandomNumberInRange(1, 6);
-                Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
-                InventoryItem inventoryItem = new InventoryItem(randomAmount, product);
-                inventoryList.add(inventoryItem);
+                Product product = mapper.readValue(JsonUtils.getRandomObjectFromJsonArray(jsonArray), Product.class);
+                InventoryEntry inventoryEntry = new InventoryEntry(randomAmount, product);
+                inventoryList.add(inventoryEntry);
 
             } catch (JsonProcessingException e) {
                 e.printStackTrace();

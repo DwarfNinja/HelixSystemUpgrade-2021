@@ -20,7 +20,7 @@ public class AccountResource {
         System theSystem = System.getTheSystem();
         HelixSystem helixSystem = theSystem.getHelixSystem(hospital);
 
-        String jsonArray = JsonUtils.createJsonArray(helixSystem.getAccountList());
+        String jsonArray = JsonUtils.convertToJsonArray(helixSystem.getAccountList());
         return jsonArray;
     }
 
