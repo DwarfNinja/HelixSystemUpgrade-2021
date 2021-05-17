@@ -27,6 +27,7 @@ Korte beschrijving wat het systeem geacht wordt te doen. Eventueel indeling in s
 met een korte beschrijving van een subsysteem.
 
 ##Use cases
+![Use Case Diagram](resources/Use Case Diagram.png)\
 Use case diagram met een korte toelichting. Zie bij de cursus modelling hoe je dit model maakt.
 
 ##Actoren
@@ -41,6 +42,7 @@ bij Modelling.
 De wireframes bij de use cases.
 
 ##Domeinmodel
+![Use Case Diagram](resources/Domain Model.png)\
 De meeste entiteiten uit het conceptueel datamodel hebben een tegenhanger in de vorm van 
 een JAVA domeinklasse. Van de student wordt verwacht dat er een UML klassen diagram wordt 
 opgeleverd voor de domeinklassen. Zorg dat je UML klassendiagram volledig is.  
