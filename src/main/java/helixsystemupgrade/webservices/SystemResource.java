@@ -1,0 +1,59 @@
+package helixsystemupgrade.webservices;
+
+import helixsystemupgrade.model.Account;
+import helixsystemupgrade.model.HelixSystem;
+import helixsystemupgrade.model.System;
+import helixsystemupgrade.utils.JsonUtils;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import java.util.List;
+
+//ADMINISTRATOR FUNCTIONS, ACCESS TO ALL HELIXSYSTEMS, ACCOUNTS AND DATA
+@Path("system")
+public class SystemResource {
+
+    @GET
+    @Path("helixsystems")
+    @Produces("application/json")
+    public String getAllHelixSystems() {
+        List <HelixSystem> helixSystemList = System.getTheSystem().getHelixSystemList();
+
+        String helixSystemListJsonArray = JsonUtils.convertListToJsonArray(helixSystemList);
+        return helixSystemListJsonArray;
+    }
+
+    @GET
+    @Path("accounts")
+    @Produces("application/json")
+    public String getAllAccounts() {
+        List <Account> accountList = System.getTheSystem().getAccountList();
+
+        String accountListJsonArray = JsonUtils.convertListToJsonArray(accountList);
+        return accountListJsonArray;
+    }
+
+    @GET
+    @Path("accounts/{id}")
+    @Produces("application/json")
+    public String getAllAccountByID(@PathParam("id") String id) {
+        Account account = System.getTheSystem().getAccountByID(Integer.parseInt(id));
+
+        String accountJsonObject = JsonUtils.convertObjectToJson(account);
+        return accountJsonObject;
+    }
+
+    @GET
+    @Path("helixsystems/{helixname}")
+    @Produces("application/json")
+    public String getHelixSystemByName(@PathParam("helixname") String helixname) {
+        HelixSystem helixSystem = System.getTheSystem().getHelixSystem(helixname);
+
+        String helixSystemJsonObject= JsonUtils.convertObjectToJson(helixSystem);
+        return helixSystemJsonObject;
+    }
+
+}
+

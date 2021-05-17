@@ -1,18 +1,19 @@
 package helixsystemupgrade.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(as = Product.class)
 public class Product {
-    private String productName;
-    private int productID;
-    private double productPrice;
-    private String imgSource;
+    private final String productName;
+    private final int productID;
+    private final double productPrice;
+    private final String imgSource;
 
-    public Product() {
-    }
-
-    public Product(String productName, int productID, double productPrice, String imgSource) {
+    @JsonCreator
+    public Product(@JsonProperty("productName") String productName, @JsonProperty("productID") int productID,
+                   @JsonProperty("productPrice") double productPrice, @JsonProperty("imgSource") String imgSource) {
         this.productName = productName;
         this.productID = productID;
         this.productPrice = productPrice;
@@ -35,4 +36,11 @@ public class Product {
         return imgSource;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product object) {
+            return object.getProductID() == getProductID();
+        }
+        return false;
+    }
 }

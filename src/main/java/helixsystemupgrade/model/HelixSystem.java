@@ -2,82 +2,70 @@ package helixsystemupgrade.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import helixsystemupgrade.utils.JsonUtils;
 import helixsystemupgrade.utils.NumberUtils;
 
+import javax.json.JsonArray;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelixSystem {
-    private String name;
+    private final String name;
 
-    private List<Account> accountList = new ArrayList<>();
-
-    private List<Product> inventoryList = new ArrayList<>();
+    private List<InventoryEntry> inventoryList = new ArrayList<>();
 
     public HelixSystem(String name) {
         this.name = name;
-        addDummyAccounts();
-        generateRandomProductHistory();
+        generateRandomInventory();
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public List<Product> getInventoryList() {
+    public List<InventoryEntry> getInventoryList() {
         return inventoryList;
     }
 
-    public Account getAccountbyID(int id) {
-        for (Account account : accountList) {
-            if (account.getAccountID()== id) {
-                return account;
+
+    public InventoryEntry getinventoryEntrybyID(int id) {
+        for (InventoryEntry inventoryEntry : inventoryList) {
+            if (inventoryEntry.getProduct().getProductID() == id) {
+                return inventoryEntry;
             }
         }
         return null;
     }
 
-    public Product getProductbyID(int id) {
-        for (Product product : inventoryList) {
-            if (product.getProductID()== id) {
-                return product;
-            }
-        }
-        return null;
-    }
-
-    private void addDummyAccounts() {
+    //TODO: UNIQUE INVENTORY GENERATION COULD BE DONE BETTER
+    private void generateRandomInventory() {
         ObjectMapper mapper = new ObjectMapper();
-        int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
-        for (int i = 0; i < randomAmountOfProducts; i++) {
-            try {
-                Account account = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-accounts.json"), Account.class);
-                accountList.add(account);
+        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
+        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
+        int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(5, Math.min(jsonArray.size(), 30));
+        ArrayList<InventoryEntry> randomInventoryEntryList = new ArrayList<>();
 
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
+        try {
+            for (int i = 0; i < jsonArray.size(); i++ ) {
+                Product product = mapper.readValue(JsonUtils.getObjectFromJsonArray(jsonArray, jsonArray.get(i)), Product.class);
+                InventoryEntry inventoryEntry = createRandomInventoryEntry(product);
+                randomInventoryEntryList.add(inventoryEntry);
             }
-        }
-    }
-
-    private void generateRandomProductHistory() {
-        ObjectMapper mapper = new ObjectMapper();
-        for (Account account : accountList) {
-            int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
             for (int i = 0; i < randomAmountOfProducts; i++) {
-                try {
-                    Product product = mapper.readValue(JsonUtils.getRandomObjectFromArray("json/all-products.json"), Product.class);
-                    account.addToProductHistoryList(product);
-
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
+                InventoryEntry randomInventoryEntry = randomInventoryEntryList.get(NumberUtils.getRandomNumberInRange(0, randomInventoryEntryList.size()));
+                inventoryList.add(randomInventoryEntry);
+                randomInventoryEntryList.remove(randomInventoryEntry);
             }
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
+    }
+
+    private InventoryEntry createRandomInventoryEntry(Product product) {
+        int randomAmount = NumberUtils.getRandomNumberInRange(1, 8);
+        InventoryEntry inventoryEntry = new InventoryEntry(randomAmount, product);
+        return inventoryEntry;
     }
 }
