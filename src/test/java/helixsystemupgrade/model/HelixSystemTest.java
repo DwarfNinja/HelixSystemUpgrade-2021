@@ -2,6 +2,8 @@ package helixsystemupgrade.model;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class HelixSystemTest {
 
     private static final HelixSystem testHelixSystem = new HelixSystem("TestHelixSystem");
@@ -15,5 +17,21 @@ class HelixSystemTest {
                 }
             }
         }
+    }
+
+    @Test
+    void testIsGeneratedRandomInventoryOfCorrectSize() {
+        assertTrue(testHelixSystem.getInventoryList().size() >= 5 && testHelixSystem.getInventoryList().size() <= 30);
+    }
+
+    @Test
+    void testGetInventoryEntryByID() {
+        int largestInventoryEntryID = 0;
+        for (InventoryEntry inventoryEntry : testHelixSystem.getInventoryList()) {
+            if (inventoryEntry.getProduct().getProductID() > largestInventoryEntryID) {
+                largestInventoryEntryID = inventoryEntry.getProduct().getProductID();
+            }
+        }
+        assertNull(testHelixSystem.getInventoryEntrybyID(largestInventoryEntryID + 1));
     }
 }

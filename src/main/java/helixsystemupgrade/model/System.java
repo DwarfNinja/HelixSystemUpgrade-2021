@@ -48,6 +48,13 @@ public class System {
         return null;
     }
 
+    public void addAccount(Account account) {
+        if (accountList.contains(account)) {
+            return;
+        }
+        accountList.add(account);
+    }
+
     public Account getAccountByID(int id) {
         for (Account account : accountList) {
             if (account.getAccountID() == id) {

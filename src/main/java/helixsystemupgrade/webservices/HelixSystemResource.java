@@ -33,7 +33,7 @@ public class HelixSystemResource {
     @Produces("application/json")
     public String getProductByID(@PathParam("helixname") String helixname, @PathParam("id") String id) {
         HelixSystem helixSystem = System.getTheSystem().getHelixSystem(helixname);
-        InventoryEntry inventoryEntry = helixSystem.getinventoryEntrybyID(Integer.parseInt(id));
+        InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
         return JsonUtils.convertObjectToJson(inventoryEntry);
     }

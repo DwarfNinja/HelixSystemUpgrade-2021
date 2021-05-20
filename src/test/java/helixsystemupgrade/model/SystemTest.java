@@ -2,6 +2,8 @@ package helixsystemupgrade.model;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class SystemTest {
 
     private static final System testSystem = new System();
@@ -28,5 +30,17 @@ class SystemTest {
                 }
             }
         }
+    }
+
+    @Test
+    void testGetAccountByID() {
+        int largestAccountID = 0;
+        for (Account account : testSystem.getAccountList()) {
+            if (account.getAccountID() > largestAccountID) {
+                largestAccountID = account.getAccountID();
+            }
+        }
+        assertNull(testSystem.getAccountByID(largestAccountID + 1));
+        assertTrue(testSystem.getAccountByID(largestAccountID) instanceof Account);
     }
 }

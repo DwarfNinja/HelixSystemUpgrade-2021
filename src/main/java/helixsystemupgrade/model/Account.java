@@ -17,13 +17,16 @@ import java.util.ArrayList;
 public class Account {
     private final String accountName;
     private final int accountID;
+    private final String password;
     private final List<String> helixAccessList = new ArrayList<>();
     private final List<Product> productHistoryList = new ArrayList<>();
 
     @JsonCreator
-    public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID) {
+    public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
+                   @JsonProperty("password") String password) {
         this.accountName = accountName;
         this.accountID = accountID;
+        this.password = password;
         generateRandomProductHistory();
     }
 
@@ -33,6 +36,10 @@ public class Account {
 
     public int getAccountID() {
         return accountID;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public List<String> getHelixAccessList() {
