@@ -27,7 +27,6 @@ public class HelixSystemResource {
         return helixInventoryJsonArray;
     }
 
-    //TODO: FIX, SHOULD RETURN PRODUCT BY ID
     @GET
     @Path("{helixname}/inventory/{id}")
     @Produces("application/json")
