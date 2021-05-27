@@ -2,7 +2,7 @@ package helixsystemupgrade.webservices;
 
 import helixsystemupgrade.model.Account;
 import helixsystemupgrade.model.HelixSystem;
-import helixsystemupgrade.model.System;
+import helixsystemupgrade.model.SystemApp;
 import helixsystemupgrade.utils.JsonUtils;
 
 import javax.ws.rs.GET;
@@ -19,7 +19,7 @@ public class SystemResource {
     @Path("helixsystems")
     @Produces("application/json")
     public String getAllHelixSystems() {
-        List <HelixSystem> helixSystemList = System.getTheSystem().getHelixSystemList();
+        List <HelixSystem> helixSystemList = SystemApp.getTheSystem().getHelixSystemList();
 
         String helixSystemListJsonArray = JsonUtils.convertListToJsonArray(helixSystemList);
         return helixSystemListJsonArray;
@@ -29,7 +29,7 @@ public class SystemResource {
     @Path("accounts")
     @Produces("application/json")
     public String getAllAccounts() {
-        List <Account> accountList = System.getTheSystem().getAccountList();
+        List <Account> accountList = SystemApp.getTheSystem().getAccountList();
 
         String accountListJsonArray = JsonUtils.convertListToJsonArray(accountList);
         return accountListJsonArray;
@@ -39,7 +39,7 @@ public class SystemResource {
     @Path("accounts/{id}")
     @Produces("application/json")
     public String getAllAccountByID(@PathParam("id") String id) {
-        Account account = System.getTheSystem().getAccountByID(Integer.parseInt(id));
+        Account account = SystemApp.getTheSystem().getAccountByID(Integer.parseInt(id));
 
         String accountJsonObject = JsonUtils.convertObjectToJson(account);
         return accountJsonObject;
@@ -49,7 +49,7 @@ public class SystemResource {
     @Path("helixsystems/{helixname}")
     @Produces("application/json")
     public String getHelixSystemByName(@PathParam("helixname") String helixname) {
-        HelixSystem helixSystem = System.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
 
         String helixSystemJsonObject= JsonUtils.convertObjectToJson(helixSystem);
         return helixSystemJsonObject;

@@ -4,9 +4,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.ws.rs.ApplicationPath;
 
-@ApplicationPath("")
+@ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        packages("webservices");
+        packages("webservices, security");
     }
 }

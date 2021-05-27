@@ -13,7 +13,7 @@ import java.util.List;
 public class HelixSystem {
     private final String name;
 
-    private List<InventoryEntry> inventoryList = new ArrayList<>();
+    private final List<InventoryEntry> inventoryList = new ArrayList<>();
 
     public HelixSystem(String name) {
         this.name = name;
@@ -29,7 +29,7 @@ public class HelixSystem {
     }
 
 
-    public InventoryEntry getinventoryEntrybyID(int id) {
+    public InventoryEntry getInventoryEntrybyID(int id) {
         for (InventoryEntry inventoryEntry : inventoryList) {
             if (inventoryEntry.getProduct().getProductID() == id) {
                 return inventoryEntry;

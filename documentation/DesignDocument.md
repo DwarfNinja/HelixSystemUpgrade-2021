@@ -11,64 +11,86 @@ Auteur : CendurOyib
 
 &nbsp;
 
-###Revisiehistorie
+### Revisiehistorie
 
 | **Datum**  | **Versie** | **Omschrijving** |
 |------------|------------|------------------|
 | 16-05-2021 |    0.2     |                  |
-|            |            |                  |
 
-##Inleiding
-Neem hier op hoe het ontwerp tot stand gekomen is alsmede voor wie het bedoeld is 
-met eventueel een lezersadvies.
+## Introduction
+[ TO BE TRANSLATED TO ENGLISH ]\
+Mijn vader is sales manager bij Promega, een laboratorium apparatuur leverancier voor biochemie en
+microbiologie. Nu beschikt Promega beschikt over een systeem genaamd Helix, hiermee kunnen
+doctoren, laboratorium ingenieurs, laboranten etc. in de life-science online zien wat voor producten op
+voorraad zijn en eventueel als een product niet in het systeem zit, kan deze ge-request worden.
 
-##Overzicht
-Korte beschrijving wat het systeem geacht wordt te doen. Eventueel indeling in subsystemen 
-met een korte beschrijving van een subsysteem.
+Momenteel beschikt het Helix Systeem nog niet over een notificatie systeem die een notificatie stuurt naar de
+gebruiker nadat een product dat hij/zij heeft ge-request in het systeem is en zou Promega daarnaast ook
+nog een “recommendation systeem” willen, dat op basis van het geselecteerd product andere producten
+aanraad die bij dezelfde workflow horen.
 
-##Use cases
-Use case diagram met een korte toelichting. Zie bij de cursus modelling hoe je dit model maakt.
+Om dit te kunnen maken moet er ook een simpele versie van het huidig Helix systeem worden
+nagebouwd, dit houdt in dat de gebruiker kan inloggen op zijn/haar account, kan zien wat hij/zij eerder
+uit het Helix Systeem heeft gehaald, producten die niet in het systeem zitten kan requesten en de
+huidige voorraad van het Helix systeem zien.
+Nu is er al een tijdje gepraat over de implementatie van deze features, maar is Promega er nog niet uit of
+ze dit willen implementeren. Het idee is dat na het developen van dit project mijn vader mijn project zal
+voorleggen (en eventueel mij het laten presenteren/demonstreren) bij de CEO van de Benelux als
+voorbeeld van wat de officiële implementatie zou kunnen zijn.
 
-##Actoren
-Bij een actor hoort ook een beschrijving, de actor description. In een actor template wordt 
-naast de rolnaam een beschrijving van de rol ingevuld en daarmee een role description geschreven.
+##  Overview/Rundown/Summary
 
-##Use Case Templates
-Use case templates, per use case een paragraaf met de template beschrijving e.d. zoals geleerd 
-bij Modelling.
+## Use Cases
+Below you can see the Use Cases of this project, with all the actions and events a user has access to.\
+![Use Case Diagram](resources/UseCaseDiagram.png)
 
-##Wireframes
-De wireframes bij de use cases.
+## Actors
 
-##Domeinmodel
-De meeste entiteiten uit het conceptueel datamodel hebben een tegenhanger in de vorm van 
-een JAVA domeinklasse. Van de student wordt verwacht dat er een UML klassen diagram wordt 
-opgeleverd voor de domeinklassen. Zorg dat je UML klassendiagram volledig is.  
+## Use Case Templates
 
-Aandachtspunten:
--	Neem alle attributen op met bijbehorende types
--	Neem bij elke associatie de multipliciteiten en de rolnamen op.
--	Maak gebruik van de juiste notatie. Zie de cursus OODC
+## Wireframes
 
-Neem het diagram op met daarbij een korte beschrijving van alle entiteiten. 
-Zie bij de cursus modelling hoe je dit model maakt.
+## Domain-model
+![Use Case Diagram](resources/DomainModel.png)
 
-| **Entiteit**  | **Beschrijving** |
-|---------------|------------------|
-|  Hello World  |    Hello World   |
-|  Hello World  |    Hello World   |
+### Entity Description
 
-Daarnaast kent een domein model eventueel extra regels op het domein (business rules) 
-die je niet goed in UML kan vertalen. Deze regels neem je hier puntsgewijs op.
+| **Entity**     | **Discription**                                                     |
+|------------------|---------------------------------------------------------------------|
+|  System          |  The main system, which has all the HelixSystems and Accounts.      |
+|  HelixSystem     |  The HelixSystem class which holds all the data of a HelixSystem.   |
+|  Account         |  The Account class which holds all the data of an account.          |
+|  Product         |  The Product class, that holds all the data of an certain product.  |
+|  InventoryEntry  |  The InventoryItem class, this class represents an InventoryEntry that can be added to a HelixSystem
 
-##Technologieën
-Voor het realiseren van de applicatie wordt gebruik van de volgende methodieken 
-en technieken: UML, Java, SQL, HTML, CSS, J2EE (Servlets), Rest (Jax-RS), Applicatieserver
-& HTTP-protocol en een datastore. Beschrijf ook welke frameworks je gebruikt, 
-hiervan neem je ook de versie en het licentiemodel op.
+### Business Rules:
+#### System:
+- The `helixSystemList` must only contain unique HelixSystems.
+- The `accountList` must only contain unique Accounts.
+- Generated Accounts by `generateAccountList` can not be duplicates of one another.
+- Generated HelixAccessList by `assignRandomHelixAcces` can not contain duplicates of the same HelixSystem.
 
-##Overdracht
-De InstallatieHandleiding is nog niet beschikbaar
+#### HelixSystem:
+- The `name` of the HelixSystem must be unique.
+- The `inventoryList` can only contain unique InventoryEntries.
+- `getInventoryEntryByID` should return an InventoryEntry or null if it does not exist.
+- Each `InventoryEntry` generated by `createRandomInventoryEntry` must contain a Product.
 
-##Referenties
-Geef hier de bronnenlijst. Gebruik de APA stijl om de bronnen te vermelden.
+#### Account:
+- The `accountID` of an Account must be unique.
+- The `helixAccesList` must not contain duplicates.
+- `addHelixAcces` can only add to `helixAccesList` if it does not contain the given HelixSystem.
+
+#### Product:
+- The `productID` of the Product must be unique.
+- The `productPrice` must be a number rounded to two decimal places.
+
+#### InventoryEntry:
+- The product must exist and can not be null.
+- The amount must exist and must be higher than 0.
+
+## Technologies
+
+## Manual/Handbook/Guide
+
+## References

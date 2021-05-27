@@ -10,14 +10,14 @@ import javax.json.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class System {
-    private static System theSystem = new System();
+public class SystemApp {
+    private static SystemApp theSystemApp = new SystemApp();
 
     private List<HelixSystem> helixSystemList = new ArrayList<>();
 
     private List<Account> accountList = new ArrayList<>();
 
-    public System() {
+    public SystemApp() {
         helixSystemList.add(new HelixSystem("LUMC"));
         helixSystemList.add(new HelixSystem("ErasmusMC"));
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
@@ -26,8 +26,8 @@ public class System {
         assignRandomHelixAccess();
     }
 
-    public static System getTheSystem() {
-        return theSystem;
+    public static SystemApp getTheSystem() {
+        return theSystemApp;
     }
 
     public List<HelixSystem> getHelixSystemList() {
@@ -46,6 +46,13 @@ public class System {
             }
         }
         return null;
+    }
+
+    public void addAccount(Account account) {
+        if (accountList.contains(account)) {
+            return;
+        }
+        accountList.add(account);
     }
 
     public Account getAccountByID(int id) {
