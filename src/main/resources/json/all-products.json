@@ -3,48 +3,48 @@
     "productName": "qPCR Probe Kits: GoTaq Probe qPCR and RT-qPCR Systems",
     "productID": 1,
     "productPrice": 102.00,
-    "imgSource": "images/products/gotaq-qpcr-and-rt-qpcr-systems.jpg"
+    "imgSource": "gotaq-qpcr-and-rt-qpcr-systems.jpg"
   },
   {
     "productName": "ReliaPrep Blood gDNA Miniprep System",
     "productID": 2,
     "productPrice": 234.00,
-    "imgSource": "images/products/reliaprep-blood-gdna-miniprep-system.jpg"
+    "imgSource": "reliaprep-blood-gdna-miniprep-system.jpg"
   },
   {
     "productName": "CellTiter-Glo 2.0 Cell Viability Assay",
     "productID": 3,
     "productPrice": 59.00,
-    "imgSource": "images/products/celltiter-glo-2.0-cell-viability-assay.jpg"
+    "imgSource": "celltiter-glo-2.0-cell-viability-assay.jpg"
   },
   {
     "productName": "Trypsin Gold, Mass Spectrometry Grade",
     "productID": 4,
     "productPrice": 113.00,
-    "imgSource": "images/products/trypsin-gold-mass-spectrometry-grade.jpg"
+    "imgSource": "trypsin-gold-mass-spectrometry-grade.jpg"
   },
   {
     "productName": "DNA IQ System",
     "productID": 5,
     "productPrice": 325.00,
-    "imgSource": "images/products/dna-iq-system.jpg"
+    "imgSource": "dna-iq-system.jpg"
   },
   {
     "productName": "Streptavidin MagneSphere Paramagnetic Particles",
     "productID": 6,
     "productPrice": 187.00,
-    "imgSource": "images/products/streptavidin-magnesphere-paramagnetic-particles.jpg"
+    "imgSource": "streptavidin-magnesphere-paramagnetic-particles.jpg"
   },
   {
     "productName": "NanoBRET Proteasomal Recruitment Starter Kit",
     "productID": 7,
     "productPrice": 1836.00,
-    "imgSource": "images/products/nanobret-proteasomal-recruitment-starter-kit.jpg"
+    "imgSource": "nanobret-proteasomal-recruitment-starter-kit.jpg"
   },
   {
     "productName": "Bio-Glo Luciferase Assay System",
     "productID": 8,
     "productPrice": 1108.00,
-    "imgSource": "images/products/bio-glo-luciferase-assay-system.jpg"
+    "imgSource": "bio-glo-luciferase-assay-system.jpg"
   }
 ]

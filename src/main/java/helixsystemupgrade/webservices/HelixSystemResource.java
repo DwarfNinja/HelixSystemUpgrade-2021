@@ -3,7 +3,7 @@ package helixsystemupgrade.webservices;
 import helixsystemupgrade.model.Account;
 import helixsystemupgrade.model.HelixSystem;
 import helixsystemupgrade.model.InventoryEntry;
-import helixsystemupgrade.model.System;
+import helixsystemupgrade.model.SystemApp;
 import helixsystemupgrade.utils.JsonUtils;
 
 import javax.ws.rs.GET;
@@ -21,7 +21,7 @@ public class HelixSystemResource {
     @Path("{helixname}/inventory")
     @Produces("application/json")
     public String getInventoryOfHelix(@PathParam("helixname") String helixname) {
-        HelixSystem helixSystem = System.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
 
         String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
         return helixInventoryJsonArray;
@@ -31,7 +31,7 @@ public class HelixSystemResource {
     @Path("{helixname}/inventory/{id}")
     @Produces("application/json")
     public String getProductByID(@PathParam("helixname") String helixname, @PathParam("id") String id) {
-        HelixSystem helixSystem = System.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
         InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
         return JsonUtils.convertObjectToJson(inventoryEntry);
@@ -41,11 +41,11 @@ public class HelixSystemResource {
     @Path("{helixname}/accounts")
     @Produces("application/json")
     public String getAllTiedAccounts(@PathParam("helixname") String helixname) {
-        System theSystem = System.getTheSystem();
-        HelixSystem helixSystem = theSystem.getHelixSystem(helixname);
+        SystemApp theSystemApp = SystemApp.getTheSystem();
+        HelixSystem helixSystem = theSystemApp.getHelixSystem(helixname);
         List<Account> tiedAccountsList = new ArrayList<>();
 
-        for (Account account : theSystem.getAccountList()) {
+        for (Account account : theSystemApp.getAccountList()) {
             if (account.getHelixAccessList().contains(helixSystem.getName())) {
                 tiedAccountsList.add(account);
             }

@@ -2,7 +2,7 @@ package helixsystemupgrade.webservices;
 
 import helixsystemupgrade.model.Account;
 import helixsystemupgrade.model.HelixSystem;
-import helixsystemupgrade.model.System;
+import helixsystemupgrade.model.SystemApp;
 import helixsystemupgrade.utils.JsonUtils;
 
 import javax.ws.rs.GET;
@@ -19,8 +19,8 @@ public class AccountResource {
     @Path("{id}")
     @Produces("application/json")
     public String getAccount(@PathParam("id") String id) {
-        System theSystem = System.getTheSystem();
-        Account account = theSystem.getAccountByID(Integer.parseInt(id));
+        SystemApp theSystemApp = SystemApp.getTheSystem();
+        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
 
         return JsonUtils.convertObjectToJson(account);
     }
@@ -29,8 +29,8 @@ public class AccountResource {
     @Path("{id}/producthistory")
     @Produces("application/json")
     public String getProductHistoryList(@PathParam("id") String id) {
-        System theSystem = System.getTheSystem();
-        Account account = theSystem.getAccountByID(Integer.parseInt(id));
+        SystemApp theSystemApp = SystemApp.getTheSystem();
+        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
 
         String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
         return productHistoryListJsonArray;
@@ -41,8 +41,8 @@ public class AccountResource {
     @Path("{id}/helixaccess")
     @Produces("application/json")
     public String getHelixAccessList(@PathParam("id") String id) {
-        System theSystem = System.getTheSystem();
-        Account account = theSystem.getAccountByID(Integer.parseInt(id));
+        SystemApp theSystemApp = SystemApp.getTheSystem();
+        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
 
         String helixAccessListJsonArray = JsonUtils.convertListToJsonArray(account.getHelixAccessList());
         return helixAccessListJsonArray;
@@ -53,9 +53,9 @@ public class AccountResource {
     @Path("{id}/{helixname}")
     @Produces("application/json")
     public String getHelixSystemInventory(@PathParam("id") String id, @PathParam("helixname") String helixname) {
-        System theSystem = System.getTheSystem();
-        Account account = theSystem.getAccountByID(Integer.parseInt(id));
-        HelixSystem helixSystem = theSystem.getHelixSystem(helixname);
+        SystemApp theSystemApp = SystemApp.getTheSystem();
+        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
+        HelixSystem helixSystem = theSystemApp.getHelixSystem(helixname);
 
         try {
             if (account.getHelixAccessList().contains(helixSystem.getName())) {

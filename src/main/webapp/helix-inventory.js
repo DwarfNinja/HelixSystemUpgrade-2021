@@ -16,9 +16,11 @@ fetch ("/api/helixsystem/LUMC/inventory")
             divElement.setAttribute("class", "grid-item")
 
             let imgElement = document.createElement("img")
-            imgElement.setAttribute("src", "../resources/" + productImg)
+            console.log("TEST = " + "./images/products/" + productImg)
+            imgElement.setAttribute("src", "./images/products/" + productImg)
             imgElement.setAttribute("alt", "Product Image")
-            // ../resources/images/HelixLogo.png
+            imgElement.setAttribute("width", "300")
+            imgElement.setAttribute("height", "150")
 
             let h3Element = document.createElement("h5")
             h3Element.setAttribute("class", "text-content")
