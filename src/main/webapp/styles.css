@@ -1,0 +1,9 @@
+header {
+    margin-bottom: 1rem;
+}
+
+body {
+    background-color: rgba(216, 140, 40, 255);
+    padding: 1.5rem;
+    font-family: Roboto, sans-serif;
+}

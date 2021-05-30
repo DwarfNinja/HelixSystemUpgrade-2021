@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="product.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+
+        .header-button {
+            float: right;
+            margin-top: 35px;
+            margin-left: 20px;
+            padding: 0.5rem;
+        }
+
+        #product-image-section {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            /*margin-left: 13rem;*/
+        }
+
+        #product-image {
+            width: 390px;
+            height: 195px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        #request-button {
+            /*margin-left: 8rem;*/
+        }
+
+        #product-price {
+            /*margin-left: 8rem;*/
+            margin-top: 2rem;
+            font-size: 18px;
+            color: white;
+        }
+
+        #product-name {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 24px;
+            color: white;
+        }
+
+    </style>
+</head>
+<header>
+    <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <button class="header-button">EXIT</button>
+    <button class="header-button">MESSAGES</button>
+</header>
+<body>
+    <div>
+        <div id="product-image-section">
+            <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
+            <div style="display: grid">
+                <button id="request-button">REQUEST</button>
+                <p id="product-price">Product Price</p>
+            </div>
+        </div>
+        <p id="product-name">Product Name</p>
+    </div>
+</body>
+</html>

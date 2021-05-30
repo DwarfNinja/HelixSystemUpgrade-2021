@@ -1,34 +1,36 @@
-fetch ("/api/helixsystem/LUMC/inventory")
+fetch("/api/helixsystem/LUMC/inventory")
     .then(response => response.json())
     .then(data => {
-        console.log(data)
-        for (i = 0; i < data.length; i++) {
-            let productAmount = data[i].amount
-            let productName = data[i].product.productName
-            let productID = data[i].product.productID
-            let productPrice = data[i].product.productPrice
-            let productImg =  data[i].product.imgSource
-            console.log(productAmount +"\n" + productName + "\n" + productID + "\n" + productPrice + "\n" + productImg )
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            let productAmount = data[i].amount;
+            let productName = data[i].product.productName;
+            let productID = data[i].product.productID;
+            let productPrice = data[i].product.productPrice;
+            let productImg = data[i].product.imgSource;
+            console.log(productAmount + "\n" + productName + "\n" + productID + "\n" + productPrice + "\n" + productImg);
 
-            let gridContainer = document.getElementsByClassName("grid-container")[0]
+            let gridContainer = document.getElementsByClassName("grid-container")[0];
 
-            let divElement = document.createElement("div")
-            divElement.setAttribute("class", "grid-item")
+            let gridItemElement = document.createElement("a");
+            gridItemElement.className = "grid-item";
+            gridItemElement.href = "product.html" + "?product_id=" + productID;
 
-            let imgElement = document.createElement("img")
-            console.log("TEST = " + "./images/products/" + productImg)
-            imgElement.setAttribute("src", "./images/products/" + productImg)
-            imgElement.setAttribute("alt", "Product Image")
-            imgElement.setAttribute("width", "300")
-            imgElement.setAttribute("height", "150")
+            let productImageElement = document.createElement("img");
+            productImageElement.className = "image-content"
+            productImageElement.src = "/images/products/" + productImg;
+            productImageElement.alt = "Product Image";
+            productImageElement.width = 300;
+            productImageElement.height = 150;
 
-            let h3Element = document.createElement("h5")
-            h3Element.setAttribute("class", "text-content")
-            h3Element.textContent = productName
+            let productNameElement = document.createElement("p");
+            productNameElement.className = "text-content";
+            productNameElement.textContent = productName;
 
-            divElement.appendChild(imgElement)
-            divElement.appendChild(h3Element)
+            // Adding and organizing the nodes as children
+            gridItemElement.appendChild(productImageElement);
+            gridItemElement.appendChild(productNameElement);
 
-            gridContainer.appendChild(divElement)
+            gridContainer.appendChild(gridItemElement)
         }
     })
