@@ -1,4 +1,9 @@
-fetch("/api/helixsystem/LUMC/inventory")
+let fetchOptions = { method: "GET",
+    headers : {
+        'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
+    }}
+
+fetch("/api/helixsystem/LUMC/inventory", fetchOptions)
     .then(response => response.json())
     .then(data => {
         console.log(data);

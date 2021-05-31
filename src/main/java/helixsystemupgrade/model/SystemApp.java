@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SystemApp {
+
     private static SystemApp theSystemApp = new SystemApp();
 
     private List<HelixSystem> helixSystemList = new ArrayList<>();
@@ -64,6 +65,15 @@ public class SystemApp {
         return null;
     }
 
+    public Account getAccountByName(String name) {
+        for (Account account : accountList) {
+            if (account.getAccountName().equals(name)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
     private void generateAccountList() {
         ObjectMapper mapper = new ObjectMapper();
         JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-accounts.json"));
@@ -90,5 +100,20 @@ public class SystemApp {
                 helixSystemListCopy.remove(helixSystem);
             }
         }
+    }
+
+    public String validateCredentials(String name, String password){
+        if(name==null || name.isBlank() || password == null || password.isBlank()) {
+            return null;
+        }
+
+        Account myAccount = getAccountByName(name);
+        if (myAccount != null) {
+            if (myAccount.checkPassword(password)) {
+                return myAccount.getAccountRole();
+            }
+        }
+
+        return null;
     }
 }
