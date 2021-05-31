@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import java.util.List;
 
 //ADMINISTRATOR FUNCTIONS, ACCESS TO ALL HELIXSYSTEMS, ACCOUNTS AND DATA
-@Path("system")
-public class SystemResource {
+@Path("systemapp")
+public class SystemAppResource {
 
     @GET
     @Path("helixsystems")

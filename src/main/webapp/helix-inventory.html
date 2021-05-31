@@ -3,61 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Helix Inventory</title>
-<!--    <link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" href="styles.css">
     <script src="helix-inventory.js"></script>
+    <script src="product.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <style>
-        header {
-            margin-bottom: 20px;
-        }
-
-        body {
-            background-color: rgba(216, 140, 40, 1);
-            padding: 30px
-        }
-
         .grid-container {
             display: grid;
-            grid-template-columns: auto auto auto auto;
-            grid-template-rows: auto auto auto auto;
-            column-gap: 50px;
-            row-gap: 40px;
-            padding: 70px;
+            grid-template-columns: repeat(auto-fill, 300px);
+            grid-template-rows: repeat(auto-fill, auto);
+            margin: auto;
+            column-gap: 2rem;
+            row-gap: 2rem;
+            padding: 5rem;
         }
 
         .grid-item {
             background-color: rgba(97, 97, 97, 1);
             border: 1px solid rgba(0, 0, 0, 1);
-            font-size: 30px;
+            border-radius: 10px;
+            font-size: 2rem;
             color: white;
             text-align: center;
-            padding: 5px;
+            padding: 7px 7px 5px;
+            text-decoration: none;
+            box-shadow: 5px 5px 10px black;
+        }
+
+        .grid-item:hover {
+            border: 3px solid white;
+            margin: -2px;
+            transition: transform .1s;
+            transform: scale(0.95);
+        }
+
+        .image-content {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .text-content {
-            margin: 5px;
+            font-size: 24px;
+            margin: 5px auto auto;
+            padding: 3px;
         }
 
-        button {
+        .header-button {
             float: right;
             margin-top: 35px;
             margin-left: 20px;
-            padding: 5px;
+            padding: 0.5rem;
         }
 
     </style>
 </head>
+<header><img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+<button class="header-button">EXIT</button>
+<button class="header-button">MESSAGES</button>
+</header>
 <body>
-    <header>
-        <img src="./images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
-        <button>EXIT</button>
-        <button>MESSAGES</button>
-    </header>
-    <section class="grid-container">
-        <div class="grid-item">
-            <img src="https://placekitten.com/300/150" alt="Product Image" width="300" height="150"/>
-            <h3 class="text-content">TestProduct</h3>
-        </div>
-
-    </section>
+    <div class="grid-container">
+        <a href="product.html" class="grid-item">
+            <img class="image-content" src="https://placekitten.com/300/150" alt="Product Image"/>
+            <p class="text-content">TestProduct</p>
+        </a>
+    </div>
 </body>
 </html>

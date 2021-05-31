@@ -2,101 +2,121 @@
   {
     "accountName": "John Doe",
     "accountID": 1,
-    "password": "johndoepassword"
+    "accountPassword": "johndoePassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Ponnappa Priya",
     "accountID": 2,
-    "password": "ponnappapriyapassword"
+    "accountPassword": "ponnappapriyaPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Hayman Andrews",
     "accountID": 3,
-    "password": "haymanandrewspassword"
+    "accountPassword": "haymanandrewsPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Verona Blair",
     "accountID": 4,
-    "password": "veronablairpassword"
+    "accountPassword": "veronablairPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Jane Meldrum",
     "accountID": 5,
-    "password": "janemeldrumpassword"
+    "accountPassword": "janemeldrumPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Peter Stanbridge",
     "accountID": 6,
-    "password": "peterstanbridgepassword"
+    "accountPassword": "peterstanbridgePassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Mia Wong",
     "accountID": 7,
-    "password": "miawongpassword"
+    "accountPassword": "miawongPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Maureen M. Smith",
     "accountID": 8,
-    "password": "maureenmsmithpassword"
+    "accountPassword": "maureenmsmithPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Tarryn Campbell-Gillies",
     "accountID": 9,
-    "password": "tarryncampbellgilliespassword"
+    "accountPassword": "tarryncampbellgilliesPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Daly Harry",
     "accountID": 10,
-    "password": "dalyharrypassword"
+    "accountPassword": "dalyharryPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Evan Pearson",
     "accountID": 11,
-    "password": "evanpearsonpassword"
+    "accountPassword": "evanpearsonPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Teresa Vasquez",
     "accountID": 12,
-    "password": "teresavasquezpassword"
+    "accountPassword": "teresavasquezPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Diamond Jordan",
     "accountID": 13,
-    "password": "diamondjordanpassword"
+    "accountPassword": "diamondjordanPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Kaitlynn Foster",
     "accountID": 14,
-    "password": "kaitlynnfosterpassword"
+    "accountPassword": "kaitlynnfosterPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Jordon Marshall",
     "accountID": 15,
-    "password": "jordonmarshallpassword"
+    "accountPassword": "jordonmarshallPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Nicholas Garner",
     "accountID": 16,
-    "password": "teresavasquezpassword"
+    "accountPassword": "teresavasquezPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Ariel Little",
     "accountID": 17,
-    "password": "ariellittlepassword"
+    "accountPassword": "ariellittlePassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Makenzie Crawford",
     "accountID": 18,
-    "password": "makenziecrawfordpassword"
+    "accountPassword": "makenziecrawfordPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Adrianna Rogers",
     "accountID": 19,
-    "password": "adriannarogerspassword"
+    "accountPassword": "adriannarogersPassword",
+    "accountRole": "user"
   },
   {
     "accountName": "Alexander Pierce",
     "accountID": 20,
-    "password": "alexanderpiercepassword"
+    "accountPassword": "alexanderpiercePassword",
+    "accountRole": "user"
   }
 ]

@@ -10,23 +10,26 @@ import helixsystemupgrade.utils.JsonUtils;
 import helixsystemupgrade.utils.NumberUtils;
 
 import javax.json.JsonArray;
+import java.security.Principal;
 import java.util.List;
 import java.util.ArrayList;
 
 @JsonDeserialize(as = Account.class)
-public class Account {
+public class Account implements Principal {
     private final String accountName;
     private final int accountID;
-    private final String password;
+    private final String accountPassword;
+    private final String accountRole;
     private final List<String> helixAccessList = new ArrayList<>();
     private final List<Product> productHistoryList = new ArrayList<>();
 
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty("password") String password) {
+                   @JsonProperty("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole) {
         this.accountName = accountName;
         this.accountID = accountID;
-        this.password = password;
+        this.accountPassword = accountPassword;
+        this.accountRole = accountRole;
         generateRandomProductHistory();
     }
 
@@ -39,7 +42,11 @@ public class Account {
     }
 
     public String getPassword() {
-        return password;
+        return accountPassword;
+    }
+
+    public String getAccountRole() {
+        return accountRole;
     }
 
     public List<String> getHelixAccessList() {
@@ -49,7 +56,6 @@ public class Account {
     public List<Product> getProductHistoryList() {
         return productHistoryList;
     }
-
 
     public void addProduct(Product product) {
         productHistoryList.add(product);
@@ -82,5 +88,14 @@ public class Account {
             return object.getAccountID() == getAccountID();
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return getAccountName();
+    }
+
+    public boolean checkPassword(String password) {
+        return accountPassword.equals(password);
     }
 }
