@@ -39,6 +39,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
                 String account = claims.getSubject();
                 securityContext = new MySecurityContext(theSystemApp.getAccountByName(account), scheme);
+
                 System.out.println("Valid JWT, processing as " + theSystemApp.getAccountByName(account).getAccountRole() + "!");
             }
             catch (JwtException | IllegalArgumentException e) {
