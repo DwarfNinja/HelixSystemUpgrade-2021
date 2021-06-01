@@ -38,8 +38,8 @@ public class Product {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Product object) {
-            return object.getProductID() == getProductID();
+        if (obj instanceof Product) {
+            return ((Product) obj).getProductID() == getProductID();
         }
         return false;
     }

@@ -84,8 +84,8 @@ public class Account implements Principal {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Account object) {
-            return object.getAccountID() == getAccountID();
+        if (obj instanceof Account) {
+            return ((Account) obj).getAccountID() == getAccountID();
         }
         return false;
     }

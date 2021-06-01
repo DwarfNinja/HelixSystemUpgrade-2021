@@ -8,7 +8,6 @@ function login() {
     fetch("/api/authentication", {method: "POST", body: encData})
         .then(function (response) {
             if (response.ok) {
-                console.log(response.json())
                 return response.json(); //body will be json
             }
             else {

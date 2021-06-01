@@ -1,12 +1,9 @@
-let fetchOptions = { method: "GET",
+fetch("/api/helixsystem/LUMC/inventory", { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-    }}
-
-fetch("/api/helixsystem/LUMC/inventory", fetchOptions)
+    }})
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             let productAmount = data[i].amount;
             let productName = data[i].product.productName;
