@@ -1,6 +1,7 @@
 package helixsystemupgrade.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,9 +24,11 @@ public class Account implements Principal {
     private final List<String> helixAccessList = new ArrayList<>();
     private final List<Product> productHistoryList = new ArrayList<>();
 
+
+    //TODO: JsonIgnore
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole) {
+                   @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole) {
         this.accountName = accountName;
         this.accountID = accountID;
         this.accountPassword = accountPassword;
@@ -41,6 +44,7 @@ public class Account implements Principal {
         return accountID;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return accountPassword;
     }
@@ -84,8 +88,8 @@ public class Account implements Principal {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Account object) {
-            return object.getAccountID() == getAccountID();
+        if (obj instanceof Account) {
+            return ((Account) obj).getAccountID() == getAccountID();
         }
         return false;
     }

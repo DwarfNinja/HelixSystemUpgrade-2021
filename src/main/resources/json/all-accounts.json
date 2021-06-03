@@ -1,5 +1,11 @@
 [
   {
+    "accountName": "admin",
+    "accountID": 0,
+    "accountPassword": "admin",
+    "accountRole": "admin"
+  },
+  {
     "accountName": "John Doe",
     "accountID": 1,
     "accountPassword": "johndoePassword",

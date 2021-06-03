@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
-    private static final Account testAccount = new Account("Test Account", 1, "testaccountpassword");
+    private static final Account testAccount = new Account("Test Account", 1, "testaccountpassword", "user");
 
     @Test
     void testIsGeneratedRandomProductHistoryUnique() {
@@ -21,8 +21,8 @@ class AccountTest {
 
     @Test
     void testEquals() {
-        Product testProduct = new Product("test Product", 1, 10.00, "testSource.png");
-        Account testAccount2 = new Account("Test Account2", 2, "testaccount2password");
+        Product testProduct = new Product("test Product", 1, "10.00", "testSource.png");
+        Account testAccount2 = new Account("Test Account2", 2, "testaccount2password", "user");
 
         assertFalse(testAccount.equals(testProduct));
         assertFalse(testAccount.equals(testAccount2));

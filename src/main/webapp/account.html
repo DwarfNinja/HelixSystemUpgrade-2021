@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
+        #account-id {
+            color: white;
+        }
 
-        .input-container {
-            display: flex;
-            width: 100%;
-            margin-bottom: 15px;
+        #account-name {
+            color: white;
+        }
+
+        #helixsystem-list {
+            color: white;
+        }
+
+        .helixsystem-name {
+            color: white;
         }
 
     </style>
 </head>
 <body>
-<form id="loginForm">
-    <h2>Login Form</h2>
-    <div class="input-container">
-        <label>
-            <input class="input-field" type="text" placeholder="Username" name="username">
-        </label>
+    <div>
+        <p id="account-id">Account ID</p>
+        <p id="account-name">Account Name</p>
+    </div>
+    <div id="helixsystem-list">
+        <h3>HelixSystemList</h3>
+        <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">
+            <p>HelixSystem Name</p>
+        </a>
     </div>
 
-    <div class="input-container">
-        <label>
-            <input class="input-field" type="password" placeholder="Password" name="password">
-        </label>
-    </div>
-
-    <button id="loginformsubmit" type="button" class="btn">Login</button>
-</form>
-
-<script src="account.js"></script>
-
+    <script src="account.js"></script>
 </body>
 </html>

@@ -2,12 +2,11 @@ const urlParams = new URLSearchParams(window.location.search);
 
 const product_id = urlParams.get('product_id')
 
-let fetchOptions = { method: "GET",
+fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-    }}
+    }})
 
-fetch("/api/helixsystem/LUMC/inventory/" + product_id, fetchOptions)
 .then(response => response.json())
 .then(data => {
     let productAmount = data.amount;

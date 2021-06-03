@@ -1,16 +1,18 @@
 package helixsystemupgrade.security;
 
 import helixsystemupgrade.model.SystemApp;
+
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
-import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.security.Key;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Calendar;
 
@@ -51,8 +53,10 @@ public class AuthenticationResource {
         Calendar expiration = Calendar.getInstance();
         expiration.add(Calendar.MINUTE, 30);
 
+        int accountID = theSystemApp.getAccountByName(username).getAccountID();
+
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(Integer.toString(accountID))
                 .setExpiration(expiration.getTime())
                 .claim("role", role)
                 .signWith(SignatureAlgorithm.HS512, key)

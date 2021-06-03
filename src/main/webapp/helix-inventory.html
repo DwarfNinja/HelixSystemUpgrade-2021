@@ -5,10 +5,25 @@
     <title>Helix Inventory</title>
     <link rel="stylesheet" href="styles.css">
     <script src="helix-inventory.js"></script>
-    <script src="product.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <style>
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #helix-name {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .header-button {
+            margin-left: 20px;
+            padding: 0.5rem;
+        }
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, 300px);
@@ -16,7 +31,7 @@
             margin: auto;
             column-gap: 2rem;
             row-gap: 2rem;
-            padding: 5rem;
+            padding: 1rem 5rem 5rem;
         }
 
         .grid-item {
@@ -50,18 +65,16 @@
             padding: 3px;
         }
 
-        .header-button {
-            float: right;
-            margin-top: 35px;
-            margin-left: 20px;
-            padding: 0.5rem;
-        }
-
     </style>
 </head>
-<header><img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
-<button class="header-button">EXIT</button>
-<button class="header-button">MESSAGES</button>
+<header>
+    <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <h1 id="helix-name">HELIX NAME</h1>
+    <div>
+        <button class="header-button">MESSAGES</button>
+        <button class="header-button">EXIT</button>
+    </div>
+
 </header>
 <body>
     <div class="grid-container">
