@@ -1,12 +1,15 @@
 package helixsystemupgrade.security;
 
+import helixsystemupgrade.model.Account;
 import helixsystemupgrade.model.SystemApp;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 
 import javax.annotation.Priority;
+
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -37,10 +40,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 JwtParser jwtParser = Jwts.parser().setSigningKey(AuthenticationResource.key);
                 Claims claims = jwtParser.parseClaimsJws(token).getBody();
 
-                String account = claims.getSubject();
-                securityContext = new MySecurityContext(theSystemApp.getAccountByName(account), scheme);
+                String accountID = claims.getSubject();
 
-                System.out.println("Valid JWT, processing as " + theSystemApp.getAccountByName(account).getAccountRole() + "!");
+                Account account = theSystemApp.getAccountByID(Integer.parseInt(accountID));
+
+                securityContext = new MySecurityContext(account, scheme);
+
+                System.out.println("Valid JWT, processing as " + account.getAccountRole() + "!");
             }
             catch (JwtException | IllegalArgumentException e) {
                 System.out.println("Invalid JWT, processing as guest!");
@@ -50,4 +56,5 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         requestContext.setSecurityContext(securityContext);
 
     }
+
 }

@@ -3,12 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #img-div {
+            margin-bottom: 3rem;
+        }
+
+        #center-container {
+            display:flex;
+            justify-content: center;
+            background-color: rgba(97, 97, 97, 1);
+            border: 1px solid rgba(0, 0, 0, 1);
+            padding: 3rem;
+            margin: auto;
+            width: 20rem;
+            border-radius: 10px;
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+            padding: 0.5rem;
+        }
+
+        #loginformsubmit {
+            padding: 5px;
+        }
+
+    </style>
 </head>
 <body>
-    <a href="account.html">VISIT THE ACCOUNT PAGE!</a>
-    <a href="helix-inventory.html">VISIT THE HELIX-INVENTORY PAGE!</a>
-<!--    <a href="account.html">VISIT THE ACCOUNT PAGE!</a>-->
-<!--    <a href="account.html">VISIT THE ACCOUNT PAGE!</a>-->
-<!--    <a href="account.html">VISIT THE ACCOUNT PAGE!</a>-->
+    <div id="img-div" style="display: flex; justify-content: center">
+        <img src="/images/HelixLogo.png" alt="Helix Logo" width="150" height="150"/>
+    </div>
+
+    <div id="center-container">
+        <div>
+            <form id="loginForm" onsubmit="return login()">
+
+                <div>
+                    <label>
+                        <input class="input-field" type="text" placeholder="Username" name="username" required>
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <input class="input-field" type="password" placeholder="Password" name="password" required>
+                    </label>
+                </div>
+                <button id="loginformsubmit" type="submit">Log-in</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>

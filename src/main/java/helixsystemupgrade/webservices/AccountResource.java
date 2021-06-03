@@ -9,12 +9,33 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 
 //USER FUNCTIONS, ONLY ACCESS TO DATA TIED TO ACCOUNT
 @Path("/account")
 public class AccountResource {
 
+    @GET
+    @Produces("application/json")
+    public String getAccountHelixAccess(@Context SecurityContext securityContext) {
+
+        try {
+            if (securityContext.getUserPrincipal() instanceof Account account) {
+                return JsonUtils.convertObjectToJson(account);
+            }
+            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
+        }
+        //FIXME: Return response object with error message
+        catch (Exception e) {
+            return e.getMessage();
+        }
+
+    }
+
+    //TODO: Depricated for base "/account" function
     @GET
     @Path("{id}")
     @Produces("application/json")

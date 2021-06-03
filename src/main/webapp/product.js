@@ -6,6 +6,7 @@ fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
+
 .then(response => response.json())
 .then(data => {
     let productAmount = data.amount;

@@ -1,9 +1,17 @@
-fetch("/api/helixsystem/LUMC/inventory", { method: "GET",
+const urlParams = new URLSearchParams(window.location.search);
+
+const helix_name = urlParams.get('helix_name')
+
+fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
+
     .then(response => response.json())
     .then(data => {
+        let helixName = document.getElementById("helix-name");
+        helixName.innerText = helix_name;
+
         for (let i = 0; i < data.length; i++) {
             let productAmount = data[i].amount;
             let productName = data[i].product.productName;
