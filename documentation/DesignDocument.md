@@ -48,20 +48,74 @@ Below you can see the Use Cases of this project, with all the actions and events
 
 ## Use Case Templates
 
+### - Log into account
+|  **ID**              |  0                                                             |
+|----------------------|----------------------------------------------------------------|
+|  **Name**            |  Log into account                                              |
+|  **Actors**          |  Users                                                         |
+|  **Description**     |  Logging into the account tied to the user.                    |
+|  **Pre-condition**   |  The actor has an account registered to their name.            |
+|  **Scenario**        |  1. The actor navigates to the log in page. <br> 2. The actor enters their user name and password in the specified fields. <br> 3.The system validates and authenticates the actor. <br> 4.The system brings the actor to their account page.  |
+|  **Post-condition**  |  The actor has logged into their account.                      |
+
+### - View account
+|  **ID**              |  1                                                                    |
+|----------------------|-----------------------------------------------------------------------|
+|  **Name**            |  View Account                                                         |
+|  **Actors**          |  Users                                                                |
+|  **Description**     |  Viewing the account tied to the user .                               |
+|  **Pre-condition**   |  The actor is logged in.                                              |
+|  **Scenario**        |  1. The actor navigates to the account page. <br> 2. The actor can view their account.  |
+|  **Post-condition**  |  The actor has viewed their account.                                  |
+
+### - View inventory of HelixSystem
+|  **ID**              |  2                                                             |
+|----------------------|----------------------------------------------------------------|
+|  **Name**            |  View inventory of HelixSystem                                 |
+|  **Actors**          |  Users                                                         |
+|  **Description**     |  Viewing the products and contents of a  HelixSystem.          |
+|  **Pre-condition**   |  The actor has logged in, and has the rights to view the inventory of the chosen HelixSystem.
+|  **Scenario**        |  1.The actor clicks on the HelixSystem inventory they want to view. <br> 2. The system brings the actor to the chosen inventory page. <br> 2. The actor can view the products in the chosen HelixSystem. |
+|  **Post-condition**  |  The actor has viewed the products in the chosen HelixSystem.  |
+
+### - View product
+|  **ID**              |  3                                                                    |
+|----------------------|-----------------------------------------------------------------------|
+|  **Name**            |  View product page                                                    |
+|  **Actors**          |  Users                                                                |
+|  **Description**     |  Viewing a specific product page in the inventory of the HelixSystem. |
+|  **Pre-condition**   |  The actor is on the chosen HelixSystem inventory page.               |
+|  **Scenario**        |  1. The actor clicks on the specific product they want to view. <br> 2. The system brings the actor to the chosen product page <br> 3. The actor can view the chosen product.
+|  **Post-condition**  |  The actor has viewed the product page the want to view.              |
+
+
 ## Wireframes
+### - Log-in Page
+![Domain Model](resources/Wireframes/Log-inPage.png)
+### - Account Page
+![Domain Model](resources/Wireframes/AccountPage.png)
+### - Inventory Page
+![Domain Model](resources/Wireframes/InventoryPage.png)
+### - Product Page
+![Domain Model](resources/Wireframes/ProductPage.png)
+### - Notifications Page
+![Domain Model](resources/Wireframes/NotificationsPage.png)
 
 ## Domain-model
-![Use Case Diagram](resources/DomainModel.png)
+![Domain Model](resources/DomainModel.png)
 
-### Entity Description
+| **Entiteit**  | **Beschrijving** |
+|---------------|------------------|
+|  Hello World  |    Hello World   |
+|  Hello World  |    Hello World   |
 
-| **Entity**     | **Discription**                                                     |
+|  **Entity**     |  **Discription**                                                     |
 |------------------|---------------------------------------------------------------------|
 |  System          |  The main system, which has all the HelixSystems and Accounts.      |
 |  HelixSystem     |  The HelixSystem class which holds all the data of a HelixSystem.   |
 |  Account         |  The Account class which holds all the data of an account.          |
 |  Product         |  The Product class, that holds all the data of an certain product.  |
-|  InventoryEntry  |  The InventoryItem class, this class represents an InventoryEntry that can be added to a HelixSystem
+|  InventoryEntry  |  The InventoryItem class, this class represents an InventoryEntry that can be added to a HelixSystem |
 
 ### Business Rules:
 #### System:
