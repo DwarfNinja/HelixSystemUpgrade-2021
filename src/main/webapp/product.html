@@ -6,21 +6,13 @@
     <link rel="stylesheet" href="styles.css">
     <script src="product.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
-
-        .header-button {
-            float: right;
-            margin-top: 35px;
-            margin-left: 20px;
-            padding: 0.5rem;
-        }
 
         #product-image-section {
             display:flex;
-            justify-content: space-between;
-            align-items:center;
-            /*margin-left: 13rem;*/
+            justify-content: center;
+            align-items: center;
         }
 
         #product-image {
@@ -30,12 +22,19 @@
             border-radius: 10px;
         }
 
-        #request-button {
-            /*margin-left: 8rem;*/
+        #product-amount {
+            margin-top: 2rem;
+            font-size: 18px;
+            color: white;
+        }
+
+        #product-id {
+            margin-bottom: 2rem;
+            font-size: 18px;
+            color: white;
         }
 
         #product-price {
-            /*margin-left: 8rem;*/
             margin-top: 2rem;
             font-size: 18px;
             color: white;
@@ -43,7 +42,7 @@
 
         #product-name {
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 3rem;
             font-size: 24px;
             color: white;
         }
@@ -52,24 +51,34 @@
 </head>
 <header>
     <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
-    <button class="header-button">EXIT</button>
-    <button class="header-button">MESSAGES</button>
+    <div>
+        <button class="header-button">MESSAGES</button>
+        <button class="header-button">EXIT</button>
+    </div>
 </header>
 <body>
-<div>
-    <div id="product-image-section">
-        <div>
-            <!--- Left arrow icon here --->
+    <div>
+        <div id="product-image-section">
+            <div>
+                <button id="back-button">REQUEST</button>
+                <p id="product-amount">Stock: Amount</p>
+            </div>
+            <div style="display: flex;">
+                <div style="display: flex; flex-direction: column; align-items: center; margin: 0 50px;">
+                    <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <div>
+                        <p id="product-id">ID: 000</p>
+                        <button id="request-button">REQUEST</button>
+                        <p id="product-price">Price: 00,00</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
+        <div style="display: flex; justify-content: center;">
             <p id="product-name">Product Name</p>
         </div>
-        <div>
-            <button id="request-button">REQUEST</button>
-            <p id="product-price">Product Price</p>
-        </div>
     </div>
-</div>
 </body>
 </html>

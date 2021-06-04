@@ -20,7 +20,7 @@ fetch("/api/account", { method: "GET",
             aElement.href = "helix-inventory.html" + "?helix_name=" + accountHelixAccessList[i];
 
             let pElement = document.createElement("p");
-            pElement.innerText = accountHelixAccessList[i];
+            pElement.innerText = " - " + accountHelixAccessList[i];
 
 
             aElement.appendChild(pElement);
