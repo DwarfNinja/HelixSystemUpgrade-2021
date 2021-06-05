@@ -1,5 +1,13 @@
 header {
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-button {
+    margin-left: 20px;
+    padding: 0.5rem;
 }
 
 body {
