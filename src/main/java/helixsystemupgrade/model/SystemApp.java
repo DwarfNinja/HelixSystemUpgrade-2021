@@ -93,13 +93,15 @@ public class SystemApp {
 
     private void assignRandomHelixAccess() {
         for (Account account : accountList) {
-            int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
-            List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
+            if (account.getHelixAccessList() == null) {
+                int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
+                List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
 
-            for (int i = 0; i < randomAmountOfHelixAccess; i++) {
-                HelixSystem helixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
-                account.addHelixAccess(helixSystem);
-                helixSystemListCopy.remove(helixSystem);
+                for (int i = 0; i < randomAmountOfHelixAccess; i++) {
+                    HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
+                    account.addHelixAccess(randomHelixSystem);
+                    helixSystemListCopy.remove(randomHelixSystem);
+                }
             }
         }
     }

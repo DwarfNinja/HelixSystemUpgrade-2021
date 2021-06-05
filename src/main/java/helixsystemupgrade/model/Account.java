@@ -21,18 +21,20 @@ public class Account implements Principal {
     private final int accountID;
     private final String accountPassword;
     private final String accountRole;
-    private final List<String> helixAccessList = new ArrayList<>();
+    private final List<String> helixAccessList;
     private final List<Product> productHistoryList = new ArrayList<>();
 
 
     //TODO: JsonIgnore
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole) {
+                   @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
+                   @JsonProperty("helixAccessList") ArrayList<String> helixAccessList) {
         this.accountName = accountName;
         this.accountID = accountID;
         this.accountPassword = accountPassword;
         this.accountRole = accountRole;
+        this.helixAccessList = helixAccessList;
         generateRandomProductHistory();
     }
 

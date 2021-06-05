@@ -3,126 +3,147 @@
     "accountName": "admin",
     "accountID": 0,
     "accountPassword": "admin",
-    "accountRole": "admin"
+    "accountRole": "admin",
+    "helixAccessList": ["LUMC", "UMCUtrecht", "ErasmusMC"]
   },
   {
     "accountName": "John Doe",
     "accountID": 1,
     "accountPassword": "johndoePassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Ponnappa Priya",
     "accountID": 2,
     "accountPassword": "ponnappapriyaPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Hayman Andrews",
     "accountID": 3,
     "accountPassword": "haymanandrewsPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Verona Blair",
     "accountID": 4,
     "accountPassword": "veronablairPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Jane Meldrum",
     "accountID": 5,
     "accountPassword": "janemeldrumPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Peter Stanbridge",
     "accountID": 6,
     "accountPassword": "peterstanbridgePassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Mia Wong",
     "accountID": 7,
     "accountPassword": "miawongPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Maureen M. Smith",
     "accountID": 8,
     "accountPassword": "maureenmsmithPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Tarryn Campbell-Gillies",
     "accountID": 9,
     "accountPassword": "tarryncampbellgilliesPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Daly Harry",
     "accountID": 10,
     "accountPassword": "dalyharryPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Evan Pearson",
     "accountID": 11,
     "accountPassword": "evanpearsonPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Teresa Vasquez",
     "accountID": 12,
     "accountPassword": "teresavasquezPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Diamond Jordan",
     "accountID": 13,
     "accountPassword": "diamondjordanPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Kaitlynn Foster",
     "accountID": 14,
     "accountPassword": "kaitlynnfosterPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Jordon Marshall",
     "accountID": 15,
     "accountPassword": "jordonmarshallPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Nicholas Garner",
     "accountID": 16,
     "accountPassword": "teresavasquezPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Ariel Little",
     "accountID": 17,
     "accountPassword": "ariellittlePassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Makenzie Crawford",
     "accountID": 18,
     "accountPassword": "makenziecrawfordPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Adrianna Rogers",
     "accountID": 19,
     "accountPassword": "adriannarogersPassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   },
   {
     "accountName": "Alexander Pierce",
     "accountID": 20,
     "accountPassword": "alexanderpiercePassword",
-    "accountRole": "user"
+    "accountRole": "user",
+    "helixAccessList": []
   }
 ]
