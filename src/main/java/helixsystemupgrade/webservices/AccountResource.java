@@ -76,7 +76,7 @@ public class AccountResource {
     public String getHelixSystemInventory(@PathParam("id") String id, @PathParam("helixname") String helixname) {
         SystemApp theSystemApp = SystemApp.getTheSystem();
         Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-        HelixSystem helixSystem = theSystemApp.getHelixSystem(helixname);
+        HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
 
         try {
             if (account.getHelixAccessList().contains(helixSystem.getName())) {

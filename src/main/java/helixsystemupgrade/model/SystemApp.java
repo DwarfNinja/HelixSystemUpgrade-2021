@@ -26,7 +26,12 @@ public class SystemApp {
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
 
         generateAccountList();
-        assignRandomHelixAccess();
+
+        for (Account account : accountList) {
+            if (account.getHelixAccessList() == null) {
+                assignRandomHelixAccess(account);
+            }
+        }
     }
 
     public static SystemApp getTheSystem() {
@@ -41,14 +46,20 @@ public class SystemApp {
         return accountList;
     }
 
-
-    public HelixSystem getHelixSystem(String helixname) {
+    public HelixSystem getHelixSystemByName(String helixname) {
         for (HelixSystem helixSystem : helixSystemList) {
             if (helixSystem.getName().equals(helixname)) {
                 return helixSystem;
             }
         }
         return null;
+    }
+
+    public void addHelixSystem(HelixSystem helixSystem) {
+        if (!helixSystemList.contains(helixSystem)) {
+            helixSystemList.add(helixSystem);
+        }
+
     }
 
     public void addAccount(Account account) {
@@ -91,18 +102,14 @@ public class SystemApp {
         }
     }
 
-    private void assignRandomHelixAccess() {
-        for (Account account : accountList) {
-            if (account.getHelixAccessList() == null) {
-                int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
-                List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
+    private void assignRandomHelixAccess(Account account) {
+        int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
+        List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
 
-                for (int i = 0; i < randomAmountOfHelixAccess; i++) {
-                    HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
-                    account.addHelixAccess(randomHelixSystem);
-                    helixSystemListCopy.remove(randomHelixSystem);
-                }
-            }
+        for (int i = 0; i < randomAmountOfHelixAccess; i++) {
+            HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
+            account.addHelixAccess(randomHelixSystem);
+            helixSystemListCopy.remove(randomHelixSystem);
         }
     }
 
@@ -117,7 +124,6 @@ public class SystemApp {
                 return myAccount.getAccountRole();
             }
         }
-
         return null;
     }
 }

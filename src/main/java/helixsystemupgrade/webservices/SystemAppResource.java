@@ -50,7 +50,7 @@ public class SystemAppResource {
     @Path("helixsystems/{helixname}")
     @Produces("application/json")
     public String getHelixSystemByName(@PathParam("helixname") String helixname) {
-        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystemByName(helixname);
 
         String helixSystemJsonObject = JsonUtils.convertObjectToJson(helixSystem);
         return helixSystemJsonObject;

@@ -22,7 +22,7 @@ public class HelixSystemResource {
     @Path("{helixname}/inventory")
     @Produces("application/json")
     public String getInventoryOfHelix(@PathParam("helixname") String helixname) {
-        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystemByName(helixname);
 
         String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
         return helixInventoryJsonArray;
@@ -32,7 +32,7 @@ public class HelixSystemResource {
     @Path("{helixname}/inventory/{id}")
     @Produces("application/json")
     public String getProductByID(@PathParam("helixname") String helixname, @PathParam("id") String id) {
-        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystem(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystemByName(helixname);
         InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
         return JsonUtils.convertObjectToJson(inventoryEntry);
@@ -43,7 +43,7 @@ public class HelixSystemResource {
     @Produces("application/json")
     public String getAllTiedAccounts(@PathParam("helixname") String helixname) {
         SystemApp theSystemApp = SystemApp.getTheSystem();
-        HelixSystem helixSystem = theSystemApp.getHelixSystem(helixname);
+        HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
         List<Account> tiedAccountsList = new ArrayList<>();
 
         for (Account account : theSystemApp.getAccountList()) {

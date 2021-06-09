@@ -47,6 +47,13 @@
             color: white;
         }
 
+        .side-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 6rem;
+        }
+
     </style>
 </head>
 <header>
@@ -59,21 +66,27 @@
 <body>
     <div>
         <div id="product-image-section">
-            <div>
-                <button id="back-button">REQUEST</button>
-                <p id="product-amount">Stock: Amount</p>
-            </div>
             <div style="display: flex;">
+
+                <div class="side-content" style="text-align: right;">
+                    <div>
+                        <button id="notify-button">Notify-Me!</button>
+                        <p id="product-amount">Stock: Amount</p>
+                    </div>
+                </div>
+
                 <div style="display: flex; flex-direction: column; align-items: center; margin: 0 50px;">
                     <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
                 </div>
-                <div style="display: flex; flex-direction: row; align-items: center;">
+
+                <div  class="side-content">
                     <div>
                         <p id="product-id">ID: 000</p>
-                        <button id="request-button">REQUEST</button>
+                        <button id="request-button">Request</button>
                         <p id="product-price">Price: 00,00</p>
                     </div>
                 </div>
+
             </div>
         </div>
         <div style="display: flex; justify-content: center;">
