@@ -9,7 +9,6 @@ fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
 
 .then(response => response.json())
 .then(data => {
-    console.log(data)
     let productAmount = data.amount;
     let productName = data.product.productName;
     let productID = data.product.productID;

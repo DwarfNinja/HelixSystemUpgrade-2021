@@ -28,7 +28,7 @@ public class SystemApp {
         generateAccountList();
 
         for (Account account : accountList) {
-            if (account.getHelixAccessList() == null) {
+            if (account.getHelixAccessList().isEmpty()) {
                 assignRandomHelixAccess(account);
             }
         }

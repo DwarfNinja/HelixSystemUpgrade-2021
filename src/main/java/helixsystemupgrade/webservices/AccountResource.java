@@ -20,7 +20,7 @@ public class AccountResource {
 
     @GET
     @Produces("application/json")
-    public String getAccountHelixAccess(@Context SecurityContext securityContext) {
+    public String getAccount(@Context SecurityContext securityContext) {
 
         try {
             if (securityContext.getUserPrincipal() instanceof Account account) {

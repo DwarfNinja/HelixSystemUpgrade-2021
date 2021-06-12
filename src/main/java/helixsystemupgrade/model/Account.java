@@ -22,19 +22,22 @@ public class Account implements Principal {
     private final String accountPassword;
     private final String accountRole;
     private final List<String> helixAccessList;
-    private final List<Product> productHistoryList = new ArrayList<>();
+    private final List<Product> productHistoryList;
+    private final List<Notification> notificationList;
 
-
-    //TODO: JsonIgnore
+    
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
                    @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
-                   @JsonProperty("helixAccessList") ArrayList<String> helixAccessList) {
+                   @JsonProperty("helixAccessList") List<String> helixAccessList, @JsonProperty("productHistoryList") List<Product> productHistoryList,
+                   @JsonProperty("notificationList") List<Notification> notificationList) {
         this.accountName = accountName;
         this.accountID = accountID;
         this.accountPassword = accountPassword;
         this.accountRole = accountRole;
         this.helixAccessList = helixAccessList;
+        this.productHistoryList = productHistoryList;
+        this.notificationList = notificationList;
         generateRandomProductHistory();
     }
 
@@ -63,6 +66,10 @@ public class Account implements Principal {
         return productHistoryList;
     }
 
+    public List<Notification> getNotificationList() {
+        return notificationList;
+    }
+
     public void addProduct(Product product) {
         productHistoryList.add(product);
     }
@@ -88,6 +95,15 @@ public class Account implements Principal {
         }
     }
 
+    public boolean checkPassword(String password) {
+        return accountPassword.equals(password);
+    }
+
+    @Override
+    public String getName() {
+        return getAccountName();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Account) {
@@ -97,11 +113,15 @@ public class Account implements Principal {
     }
 
     @Override
-    public String getName() {
-        return getAccountName();
-    }
-
-    public boolean checkPassword(String password) {
-        return accountPassword.equals(password);
+    public String toString() {
+        return "Account{" +
+                "accountName='" + accountName + '\'' +
+                ", accountID=" + accountID +
+                ", accountPassword='" + accountPassword + '\'' +
+                ", accountRole='" + accountRole + '\'' +
+                ", helixAccessList=" + helixAccessList +
+                ", productHistoryList=" + productHistoryList +
+                ", notificationList=" + notificationList +
+                '}';
     }
 }
