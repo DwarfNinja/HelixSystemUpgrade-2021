@@ -16,7 +16,7 @@ fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
     let productImg = data.product.imgSource;
 
     let productImageElement = document.getElementById("product-image");
-    productImageElement.src = "/images/products/" + productImg;
+    productImageElement.src = "/resources/images/products/" + productImg;
 
     let productAmountElement = document.getElementById("product-amount");
     productAmountElement.innerText = "Stock: " + productAmount;

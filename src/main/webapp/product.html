@@ -7,7 +7,22 @@
     <script src="product.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resources/fontawesome/all.css">
     <style>
+
+        .button {
+            padding: 0.7rem;
+            border-radius: 50%;
+            background-color: rgba(97, 97, 97, 1);
+            color: white;
+            border: 3px solid white;
+        }
+
+        .button:hover {
+            border: 3px solid white;
+            transition: transform .1s;
+            transform: scale(0.90);
+        }
 
         #product-image-section {
             display:flex;
@@ -57,10 +72,10 @@
     </style>
 </head>
 <header>
-    <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
     <div>
-        <button class="header-button">MESSAGES</button>
-        <button class="header-button">EXIT</button>
+        <button class="header-button" onclick="window.location.href='notifications.html';"> <i class="fa fa-inbox fa-2x"></i> </button>
+        <button class="header-button"> <i class="fa fa-sign-out-alt fa-2x"></i> </button>
     </div>
 </header>
 <body>
@@ -70,7 +85,7 @@
 
                 <div class="side-content" style="text-align: right;">
                     <div>
-                        <button id="notify-button">Notify-Me!</button>
+                        <button id="notify-button" class="button"> <i class="fa fa-bell fa-2x"></i> </button>
                         <p id="product-amount">Stock: Amount</p>
                     </div>
                 </div>
@@ -79,10 +94,10 @@
                     <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
                 </div>
 
-                <div  class="side-content">
+                <div class="side-content">
                     <div>
                         <p id="product-id">ID: 000</p>
-                        <button id="request-button">Request</button>
+                        <button id="request-button" class="button"> <i class="fa fa-shopping-basket fa-2x"></i> </button>
                         <p id="product-price">Price: 00,00</p>
                     </div>
                 </div>

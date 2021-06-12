@@ -7,6 +7,7 @@
     <script src="helix-inventory.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resources/fontawesome/all.css">
     <style>
 
         #helix-name {
@@ -59,11 +60,11 @@
     </style>
 </head>
 <header>
-    <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
     <h1 id="helix-name">HELIX NAME</h1>
     <div>
-        <button class="header-button">MESSAGES</button>
-        <button class="header-button">EXIT</button>
+        <button class="header-button" onclick="window.location.href='notifications.html';"> <i class="fa fa-inbox fa-2x"></i> </button>
+        <button class="header-button"> <i class="fa fa-sign-out-alt fa-2x"></i> </button>
     </div>
 </header>
 <body>

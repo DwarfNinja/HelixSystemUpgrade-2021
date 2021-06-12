@@ -6,7 +6,12 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resources/fontawesome/all.css">
     <style>
+        h3 {
+            color: white;
+        }
+
         #padding-container {
             margin: auto;
             padding: 1rem 5rem 5rem;
@@ -32,10 +37,10 @@
     </style>
 </head>
 <header>
-    <img src="/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
     <div>
-        <button class="header-button">MESSAGES</button>
-        <button class="header-button">EXIT</button>
+        <button class="header-button" onclick="window.location.href='notifications.html';"> <i class="fa fa-inbox fa-2x"></i> </button>
+        <button class="header-button"> <i class="fa fa-sign-out-alt fa-2x"></i> </button>
     </div>
 </header>
 <body>
@@ -44,11 +49,11 @@
             <p id="account-id">Account ID</p>
             <p id="account-name">Account Name</p>
         </div>
-        <div id="helixsystem-list">
+        <div>
             <h3>HelixSystemList</h3>
-            <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">
-                <p> - HelixSystem Name</p>
-            </a>
+            <ul id="helixsystem-list">
+                <li> <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">HelixSystem Name</a> </li>
+            </ul>
         </div>
     </div>
     <script src="account.js"></script>

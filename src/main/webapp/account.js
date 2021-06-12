@@ -15,16 +15,17 @@ fetch("/api/account", { method: "GET",
 
         for (let i = 0; i < accountHelixAccessList.length; i++) {
 
+            let liElement = document.createElement("li");
+
             let aElement = document.createElement("a");
             aElement.className = "helixsystem-name"
             aElement.href = "helix-inventory.html" + "?helix_name=" + accountHelixAccessList[i];
-
-            let pElement = document.createElement("p");
-            pElement.innerText = " - " + accountHelixAccessList[i];
+            aElement.innerText = accountHelixAccessList[i];
 
 
-            aElement.appendChild(pElement);
-            listContainer.appendChild(aElement)
+
+            liElement.appendChild(aElement);
+            listContainer.appendChild(liElement)
         }
 
         let accountIDElement = document.getElementById("account-id");

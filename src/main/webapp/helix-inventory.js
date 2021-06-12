@@ -28,7 +28,7 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
 
             let productImageElement = document.createElement("img");
             productImageElement.className = "image-content"
-            productImageElement.src = "/images/products/" + productImg;
+            productImageElement.src = "/resources/images/products/" + productImg;
             productImageElement.alt = "Product Image";
             productImageElement.width = 300;
             productImageElement.height = 150;

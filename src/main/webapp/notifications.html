@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resources/fontawesome/all.css">
 </head>
+<header>
+    <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
+    <div>
+        <button class="header-button" onclick="window.location.href='notifications.html';"> <i class="fa fa-inbox fa-2x"></i> </button>
+        <button class="header-button" onclick="window.location.href='index.html'; window.sessionStorage.removeItem('myJWT');"> <i class="fa fa-sign-out-alt fa-2x"></i> </button>
+    </div>
+</header>
 <body>
-
+    <div id="notification-list">
+        <h3>NotificationList</h3>
+        <ul>
+            <li class="notification">
+                <img class="image-content" src="https://placekitten.com/50/50" alt="Product Image"/>
+                <a href="helix-inventory.html?helix_name=LUMC">TestProduct</a>
+            </li>
+        </ul>
+    </div>
+    <script src="notifications.js"></script>
 </body>
 </html>

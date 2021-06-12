@@ -35,16 +35,16 @@ public class AccountResource {
 
     }
 
-    //TODO: Depricated for base "/account" function
-    @GET
-    @Path("{id}")
-    @Produces("application/json")
-    public String getAccount(@PathParam("id") String id) {
-        SystemApp theSystemApp = SystemApp.getTheSystem();
-        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-
-        return JsonUtils.convertObjectToJson(account);
-    }
+//    //TODO: Depricated for base "/account" function
+//    @GET
+//    @Path("{id}")
+//    @Produces("application/json")
+//    public String getAccount(@PathParam("id") String id) {
+//        SystemApp theSystemApp = SystemApp.getTheSystem();
+//        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
+//
+//        return JsonUtils.convertObjectToJson(account);
+//    }
 
     @GET
     @Path("{id}/producthistory")
@@ -71,23 +71,43 @@ public class AccountResource {
     }
 
     @GET
-    @Path("{id}/{helixname}")
+    @Path("notifications")
     @Produces("application/json")
-    public String getHelixSystemInventory(@PathParam("id") String id, @PathParam("helixname") String helixname) {
-        SystemApp theSystemApp = SystemApp.getTheSystem();
-        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-        HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
+    public String getNotificationList(@Context SecurityContext securityContext) {
 
         try {
-            if (account.getHelixAccessList().contains(helixSystem.getName())) {
-                String inventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
-                return inventoryJsonArray;
+            if (securityContext.getUserPrincipal() instanceof Account account) {
+                return JsonUtils.convertObjectToJson(account.getNotificationList());
             }
-            throw new Exception("ERROR: Account " + id + " does not have access to this HelixSystem!");
-
+            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
         }
+        //FIXME: Return response object with error message
         catch (Exception e) {
             return e.getMessage();
         }
+
     }
+
+
+    //TODO: Depricated for function in "HelixSystemResource"
+//    @GET
+//    @Path("{id}/{helixname}")
+//    @Produces("application/json")
+//    public String getHelixSystemInventory(@PathParam("id") String id, @PathParam("helixname") String helixname) {
+//        SystemApp theSystemApp = SystemApp.getTheSystem();
+//        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
+//        HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
+//
+//        try {
+//            if (account.getHelixAccessList().contains(helixSystem.getName())) {
+//                String inventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
+//                return inventoryJsonArray;
+//            }
+//            throw new Exception("ERROR: Account " + id + " does not have access to this HelixSystem!");
+//
+//        }
+//        catch (Exception e) {
+//            return e.getMessage();
+//        }
+//    }
 }
