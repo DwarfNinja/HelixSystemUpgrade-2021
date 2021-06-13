@@ -1,3 +1,4 @@
+
 function login() {
     let formData = new FormData(document.querySelector("#loginForm"));
     let encData = new URLSearchParams(formData.entries());
@@ -13,20 +14,10 @@ function login() {
         })
         .then(myJson => {
             window.sessionStorage.setItem("myJWT", myJson.JWT)
-            window.location.href = "account.html";
+            window.location.href = "/pages/account.html";
         }) //present in the JsonBody
         .catch(error => console.log(error)) //will log Wrong username/password if !response.ok
 
     return false;
 }
 
-
-// document.querySelector("#showMeAllCountries").addEventListener("click", function (){
-//     var fetchOptions = { method: "GET",
-//         headers : {
-//             'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-//         }}
-//     fetch("/restservices/countries", fetchOptions).then(function(response){
-//         if (response.ok) return response.json();
-//     }).then(myJson => console.log(myJson)).catch(error => console.log(error))
-// })

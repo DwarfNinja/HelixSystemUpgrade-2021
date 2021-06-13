@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Helix Inventory</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="helix-inventory.js"></script>
+    <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources/fontawesome/all.css">
+    <link rel="stylesheet" href="/resources/fontawesome/all.css">
     <style>
+
+        h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         #helix-name {
             font-size: 3rem;
@@ -60,19 +65,17 @@
     </style>
 </head>
 <header>
-    <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="100" height="100"/>
-    <h1 id="helix-name">HELIX NAME</h1>
-    <div>
-        <button class="header-button" onclick="window.location.href='notifications.html';"> <i class="fa fa-inbox fa-2x"></i> </button>
-        <button class="header-button"> <i class="fa fa-sign-out-alt fa-2x"></i> </button>
-    </div>
+    <!-- Header (header.html) added by general.js-->
 </header>
 <body>
+    <h1 id="helix-name">HELIX NAME</h1>
     <div class="grid-container">
         <a href="product.html" class="grid-item">
             <img class="image-content" src="https://placekitten.com/300/150" alt="Product Image"/>
             <p class="text-content">TestProduct</p>
         </a>
     </div>
+    <script src="/scripts/general.js"></script>
+    <script src="/scripts/helix-inventory.js"></script>
 </body>
 </html>

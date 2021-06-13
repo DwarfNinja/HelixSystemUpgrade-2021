@@ -6,7 +6,18 @@
     "accountRole": "admin",
     "helixAccessList": ["LUMC", "UMCUtrecht", "ErasmusMC"],
     "productHistoryList": [],
-    "notificationList": []
+    "notificationList": [
+      {
+        "notificationMessage": "New product in stock!",
+        "notificationDateTime":"05-02-2020 10:31:42",
+        "notificationProduct": {
+          "productName": "CellTiter-Glo 2.0 Cell Viability Assay",
+          "productID": 3,
+          "productPrice": 59.00,
+          "imgSource": "celltiter-glo-2.0-cell-viability-assay.jpg"
+        }
+      }
+    ]
   },
   {
     "accountName": "John Doe",
