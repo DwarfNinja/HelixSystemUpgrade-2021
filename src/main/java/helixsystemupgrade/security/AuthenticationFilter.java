@@ -20,7 +20,7 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
 
-    SystemApp theSystemApp = SystemApp.getTheSystem();
+    SystemApp theSystemApp = SystemApp.getTheSystemApp();
 
     @Override
     public void filter(ContainerRequestContext requestContext)  {

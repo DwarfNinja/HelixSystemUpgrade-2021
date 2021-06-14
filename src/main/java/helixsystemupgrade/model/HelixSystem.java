@@ -21,7 +21,7 @@ public class HelixSystem {
         generateRandomInventory();
     }
 
-    public String getName() {
+    public String getHelixSystemName() {
         return helixSystemName;
     }
 
@@ -73,7 +73,7 @@ public class HelixSystem {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof HelixSystem) {
-            return ((HelixSystem) obj).getName().equals(getName());
+            return ((HelixSystem) obj).getHelixSystemName().equals(getHelixSystemName());
         }
         return false;
     }

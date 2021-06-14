@@ -12,8 +12,10 @@ import helixsystemupgrade.utils.NumberUtils;
 
 import javax.json.JsonArray;
 import java.security.Principal;
+
 import java.util.List;
 import java.util.ArrayList;
+
 
 @JsonDeserialize(as = Account.class)
 public class Account implements Principal {
@@ -25,10 +27,10 @@ public class Account implements Principal {
     private final List<Product> productHistoryList;
     private final List<Notification> notificationList;
 
-    
+    // Jackson annotations used to create converts objects from JSON file to Java Objects
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
+                   @JsonProperty("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
                    @JsonProperty("helixAccessList") List<String> helixAccessList, @JsonProperty("productHistoryList") List<Product> productHistoryList,
                    @JsonProperty("notificationList") List<Notification> notificationList) {
         this.accountName = accountName;
@@ -99,7 +101,20 @@ public class Account implements Principal {
         return accountPassword.equals(password);
     }
 
+    public void addRandomNotification() {
+        SystemApp theSystemApp = SystemApp.getTheSystemApp();
+
+        List<String> messagesList = List.of("New Product!", "Product Restocked!", "Interested?");
+        String randomMessage = messagesList.get(NumberUtils.getRandomNumberInRange(0, messagesList.size()));
+
+        List<Product> copyOfProductList = new ArrayList<>(theSystemApp.getProductList());
+        Product randomProduct = copyOfProductList.get(NumberUtils.getRandomNumberInRange(0, copyOfProductList.size()));
+
+        Notification randomNotification = new Notification(randomMessage, randomProduct);
+    }
+
     @Override
+    @JsonIgnore
     public String getName() {
         return getAccountName();
     }
@@ -112,16 +127,4 @@ public class Account implements Principal {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountName='" + accountName + '\'' +
-                ", accountID=" + accountID +
-                ", accountPassword='" + accountPassword + '\'' +
-                ", accountRole='" + accountRole + '\'' +
-                ", helixAccessList=" + helixAccessList +
-                ", productHistoryList=" + productHistoryList +
-                ", notificationList=" + notificationList +
-                '}';
-    }
 }

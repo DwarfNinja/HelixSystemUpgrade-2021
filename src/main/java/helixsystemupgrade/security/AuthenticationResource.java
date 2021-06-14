@@ -20,7 +20,7 @@ import java.util.Calendar;
 @Path("/authentication")
 public class AuthenticationResource {
 
-    SystemApp theSystemApp = SystemApp.getTheSystem();
+    SystemApp theSystemApp = SystemApp.getTheSystemApp();
     final static public Key key = MacProvider.generateKey();
 
     @POST

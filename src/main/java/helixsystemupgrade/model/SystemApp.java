@@ -20,12 +20,15 @@ public class SystemApp {
 
     private List<Account> accountList = new ArrayList<>();
 
+    private List<Product> productList = new ArrayList<>();
+
     public SystemApp() {
         helixSystemList.add(new HelixSystem("LUMC"));
         helixSystemList.add(new HelixSystem("ErasmusMC"));
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
 
         generateAccountList();
+        generateProductList();
 
         for (Account account : accountList) {
             if (account.getHelixAccessList().isEmpty()) {
@@ -34,7 +37,7 @@ public class SystemApp {
         }
     }
 
-    public static SystemApp getTheSystem() {
+    public static SystemApp getTheSystemApp() {
         return theSystemApp;
     }
 
@@ -44,6 +47,10 @@ public class SystemApp {
 
     public List<Account> getAccountList() {
         return accountList;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
     }
 
     public HelixSystem getHelixSystemByName(String helixname) {
@@ -96,6 +103,21 @@ public class SystemApp {
             try {
                 Account account = mapper.readValue(JsonUtils.getObjectFromJsonArray(jsonArray, jsonValue), Account.class);
                 accountList.add(account);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void generateProductList() {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
+        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
+
+        for (JsonValue jsonValue : jsonArray) {
+            try {
+                Product product = mapper.readValue(JsonUtils.getObjectFromJsonArray(jsonArray, jsonValue), Product.class);
+                productList.add(product);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }

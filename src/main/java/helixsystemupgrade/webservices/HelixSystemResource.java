@@ -10,29 +10,44 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-//ADMINISTRATOR FUNCTIONS, ACCESS TO ALL DATA OF ALL HELIXSYSTEMS
+
 @Path("helixsystem")
 public class HelixSystemResource {
 
     @GET
     @Path("{helixname}/inventory")
     @Produces("application/json")
-    public String getInventoryOfHelix(@PathParam("helixname") String helixname) {
-        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystemByName(helixname);
+    public String getInventoryOfHelix(@Context SecurityContext securityContext, @PathParam("helixname") String helixname) {
+        try {
+            if (securityContext.getUserPrincipal() instanceof Account account) {
+                if (account.getHelixAccessList().contains(helixname)) {
 
-        String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
-        return helixInventoryJsonArray;
+                    HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+                    String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
+                    return helixInventoryJsonArray;
+                }
+                throw new Exception("User does not have access to this HelixSystem");
+            }
+            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
+        }
+        //FIXME: Return response object with error message
+        catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     @GET
     @Path("{helixname}/inventory/{id}")
     @Produces("application/json")
     public String getProductByID(@PathParam("helixname") String helixname, @PathParam("id") String id) {
-        HelixSystem helixSystem = SystemApp.getTheSystem().getHelixSystemByName(helixname);
+        HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
         InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
         return JsonUtils.convertObjectToJson(inventoryEntry);
@@ -42,7 +57,7 @@ public class HelixSystemResource {
     @Path("{helixname}/accounts")
     @Produces("application/json")
     public String getAllTiedAccounts(@PathParam("helixname") String helixname) {
-        SystemApp theSystemApp = SystemApp.getTheSystem();
+        SystemApp theSystemApp = SystemApp.getTheSystemApp();
         HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
         List<Account> tiedAccountsList = new ArrayList<>();
 

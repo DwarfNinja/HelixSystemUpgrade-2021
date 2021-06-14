@@ -30,6 +30,7 @@ public class Notification {
     public String getNotificationMessage() {
         return notificationMessage;
     }
+
     @JsonProperty("notificationProduct")
     public Product getNotificationProduct() {
         return notificationProduct;
