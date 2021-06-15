@@ -1,8 +1,5 @@
 package helixsystemupgrade.model;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -12,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 @JsonDeserialize(as = Notification.class)
 public class Notification {
+    private int notificationID;
     private String notificationMessage;
     private String notificationDateTime;
     private Product notificationProduct;
@@ -20,7 +18,8 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(String notificationMessage, Product notificationProduct) {
+    public Notification(int notificationID,String notificationMessage, Product notificationProduct) {
+        this.notificationID = notificationID;
         this.notificationMessage = notificationMessage;
         this.notificationDateTime = getCurrentDateTime();
         this.notificationProduct = notificationProduct;

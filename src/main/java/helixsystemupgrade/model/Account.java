@@ -40,6 +40,7 @@ public class Account implements Principal {
         this.helixAccessList = helixAccessList;
         this.productHistoryList = productHistoryList;
         this.notificationList = notificationList;
+
         generateRandomProductHistory();
     }
 
@@ -77,7 +78,7 @@ public class Account implements Principal {
     }
 
     public void addHelixAccess(HelixSystem helixSystem) {
-        helixAccessList.add(helixSystem.getName());
+        helixAccessList.add(helixSystem.getHelixSystemName());
     }
 
     private void generateRandomProductHistory() {
@@ -110,7 +111,9 @@ public class Account implements Principal {
         List<Product> copyOfProductList = new ArrayList<>(theSystemApp.getProductList());
         Product randomProduct = copyOfProductList.get(NumberUtils.getRandomNumberInRange(0, copyOfProductList.size()));
 
-        Notification randomNotification = new Notification(randomMessage, randomProduct);
+        int notificationID = notificationList.size() + 1;
+
+        Notification randomNotification = new Notification(notificationID, randomMessage, randomProduct);
     }
 
     @Override

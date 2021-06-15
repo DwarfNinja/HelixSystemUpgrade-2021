@@ -24,7 +24,7 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
 
             let gridItemElement = document.createElement("a");
             gridItemElement.className = "grid-item";
-            gridItemElement.href = "/pages/product.html" + "?product_id=" + productID;
+            gridItemElement.href = "/pages/product.html" + "?helix_name=" + helix_name + "&product_id=" + productID;
 
             let productImageElement = document.createElement("img");
             productImageElement.className = "image-content"

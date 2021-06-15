@@ -5,7 +5,6 @@ fetch("/api/account", { method: "GET",
     }})
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         let accountID = data.accountID;
         let accountName = data.accountName;
         let accountRole = data.accountRole;

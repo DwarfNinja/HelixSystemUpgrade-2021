@@ -1,8 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 
+const helix_name = urlParams.get('helix_name')
 const product_id = urlParams.get('product_id')
 
-fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
+fetch("/api/helixsystem/" + helix_name + "/inventory/" + product_id, { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
@@ -29,5 +30,4 @@ fetch("/api/helixsystem/LUMC/inventory/" + product_id, { method: "GET",
 
     let productNameElement = document.getElementById("product-name");
     productNameElement.innerText = productName;
-
 })

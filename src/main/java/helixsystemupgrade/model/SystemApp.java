@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SystemApp {
 
-    private static SystemApp theSystemApp = new SystemApp();
+    private static SystemApp theSystemApp;
 
     private List<HelixSystem> helixSystemList = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class SystemApp {
 
     private List<Product> productList = new ArrayList<>();
 
-    public SystemApp() {
+    private SystemApp() {
         helixSystemList.add(new HelixSystem("LUMC"));
         helixSystemList.add(new HelixSystem("ErasmusMC"));
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
@@ -38,6 +38,9 @@ public class SystemApp {
     }
 
     public static SystemApp getTheSystemApp() {
+        if (theSystemApp == null) {
+            theSystemApp = new SystemApp();
+        }
         return theSystemApp;
     }
 
@@ -55,7 +58,7 @@ public class SystemApp {
 
     public HelixSystem getHelixSystemByName(String helixname) {
         for (HelixSystem helixSystem : helixSystemList) {
-            if (helixSystem.getName().equals(helixname)) {
+            if (helixSystem.getHelixSystemName().equals(helixname)) {
                 return helixSystem;
             }
         }

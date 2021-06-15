@@ -8,7 +8,8 @@
     "productHistoryList": [],
     "notificationList": [
       {
-        "notificationMessage": "New product in stock!",
+        "notificationID": 0,
+        "notificationMessage": "New product!",
         "notificationDateTime":"05-02-2020 10:31:42",
         "notificationProduct": {
           "productName": "CellTiter-Glo 2.0 Cell Viability Assay",

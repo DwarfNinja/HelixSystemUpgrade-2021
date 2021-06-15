@@ -8,25 +8,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/fontawesome/all.css">
     <style>
-        h3 {
-            color: white;
-        }
-
         #padding-container {
             margin: auto;
-            padding: 1rem 5rem 5rem;
-
+            padding: 2rem 5rem 5rem;
         }
 
-        #account-id {
-            color: white;
+        #left-column {
+            background-color: rgba(97, 97, 97, 1);
+            position: relative;
+            width: 600px;
+            float: left;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
         }
 
-        #account-name {
-            color: white;
+        #right-column {
+            background-color: rgba(97, 97, 97, 1);
+            position: relative;
+            width: 600px;
+            float: right;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
         }
 
-        #helixsystem-list {
+        .text {
             color: white;
         }
 
@@ -41,16 +48,31 @@
 </header>
 <body>
     <div id="padding-container">
-        <div>
-            <p id="account-id">Account ID</p>
-            <p id="account-name">Account Name</p>
+
+        <div id="left-column">
+            <div>
+                <h2 class="text">Profile</h2>
+                    <p class="text" id="account-id">Account ID: 0</p>
+                    <p class="text" id="account-name">Name: John Doe</p>
+                <h2 class="text">Contact Information</h2>
+                    <p class="text">Dr. John Doe</p>
+                    <p class="text">Email: johndoe@email.com</p>
+                    <p class="text">Phone Number: 123456789</p>
+                <h2 class="text">Professional Information</h2>
+                    <p class="text">Organization: LUMC</p>
+                    <p class="text">Job Function: Researcher</p>
+            </div>
         </div>
-        <div>
-            <h3>HelixSystemList</h3>
-            <ul id="helixsystem-list">
-                <li> <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">HelixSystem Name</a> </li>
-            </ul>
+
+        <div id="right-column">
+            <div>
+                <h3 class="text">HelixSystemList</h3>
+                <ul class="text" id="helixsystem-list">
+                    <li> <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">HelixSystem Name</a> </li>
+                </ul>
+            </div>
         </div>
+
     </div>
     <script src="/scripts/general.js"></script>
     <script src="/scripts/account.js"></script>

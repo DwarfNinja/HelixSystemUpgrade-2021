@@ -12,6 +12,7 @@ header {
     background-color: rgba(97, 97, 97, 1);
     color: white;
     border: 3px solid white;
+    box-shadow: 4px 4px 10px black;
 }
 
 .header-button:hover {

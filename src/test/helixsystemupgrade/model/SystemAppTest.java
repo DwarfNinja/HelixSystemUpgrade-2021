@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SystemAppTest {
 
-    private static final SystemApp TEST_SYSTEMAPP = new SystemApp();
+    private static final SystemApp TEST_SYSTEMAPP = SystemApp.getTheSystemApp();
 
     @Test
     void testIsGeneratedAccountListUnique() {
