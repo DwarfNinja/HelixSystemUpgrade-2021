@@ -46,11 +46,13 @@ fetch("/api/account/notifications", { method: "GET",
 
             let buttonElementInterested = document.createElement("button");
             buttonElementInterested.className = "button";
+            buttonElementInterested.setAttribute("aria-label", "interested-button")
             let iElementBell = document.createElement("i");
             iElementBell.className = "fa fa-bell fa-2x";
 
             let buttonElementDeleted = document.createElement("button");
             buttonElementDeleted.className = "button";
+            buttonElementDeleted.setAttribute("aria-label", "delete-button")
             let iElementTrash = document.createElement("i");
             iElementTrash.className = "fa fa-trash fa-2x";
 

@@ -64,18 +64,18 @@
         <div>
             <form id="loginForm" onsubmit="return login()">
                 <div>
-                    <label>
+                    <label aria-label="username-input">
                         <input class="input-field" type="text" placeholder="Username" name="username" required>
                     </label>
                 </div>
 
                 <div>
-                    <label>
+                    <label aria-label="password-input">
                         <input class="input-field" type="password" placeholder="Password" name="password" required>
                     </label>
                 </div>
                 <div id="button-container">
-                    <button  id="loginformsubmit" type="submit"> <i class="fa fa-sign-in-alt fa-2x"></i> </button>
+                    <button  id="loginformsubmit" type="submit" aria-label="login-button"> <i class="fa fa-sign-in-alt fa-2x"></i> </button>
                 </div>
 
             </form>
