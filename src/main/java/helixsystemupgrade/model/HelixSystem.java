@@ -30,9 +30,9 @@ public class HelixSystem {
     }
 
 
-    public InventoryEntry getInventoryEntrybyID(int id) {
+    public InventoryEntry getInventoryEntrybyID(int productID) {
         for (InventoryEntry inventoryEntry : inventoryList) {
-            if (inventoryEntry.getProduct().getProductID() == id) {
+            if (inventoryEntry.getProduct().getProductID() == productID) {
                 return inventoryEntry;
             }
         }

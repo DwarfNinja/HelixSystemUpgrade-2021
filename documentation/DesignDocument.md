@@ -15,28 +15,33 @@ Auteur : CendurOyib
 
 | **Datum**  | **Versie** | **Omschrijving** |
 |------------|------------|------------------|
-| 16-05-2021 |    0.2     |                  |
+| 16-05-2021 |    0.1     |                  |
+| 03-06-2021 |    0.2     |                  |
+| 16-06-2021 |    0.3     |                  |
 
 ## Introduction
 [ TO BE TRANSLATED TO ENGLISH ]\
-Mijn vader is sales manager bij Promega, een laboratorium apparatuur leverancier voor biochemie en
-microbiologie. Nu beschikt Promega beschikt over een systeem genaamd Helix, hiermee kunnen
-doctoren, laboratorium ingenieurs, laboranten etc. in de life-science online zien wat voor producten op
-voorraad zijn en eventueel als een product niet in het systeem zit, kan deze ge-request worden.
+The client (my father) is a sales manager at Promega, a laboratory equipment supplier for biochemistry and
+microbiology. Promega has developed a system named Helix, which is a 
+specially equipped storage unit (freezer, fridge or cabinet) that can be installed on location. 
+The software of a HelixSystem allows doctors, laboratory engineers, laboratory technicians 
+and other workers in the life-science industry to be able to view the inventory of a HelixSystem.
+A user can also request a product if that is needed.
 
-Momenteel beschikt het Helix Systeem nog niet over een notificatie systeem die een notificatie stuurt naar de
-gebruiker nadat een product dat hij/zij heeft ge-request in het systeem is en zou Promega daarnaast ook
-nog een “recommendation systeem” willen, dat op basis van het geselecteerd product andere producten
-aanraad die bij dezelfde workflow horen.
+However currently the HelixSystem does not possess over any kind of notification system. 
+This is part of my assignment, a notification system which will notify a user if a product they 
+have requested is back in stock or notify them over other products they might be interested in.
+The second part of my assignment is a recommendation system. Promega wants a system which recommends
+products to a user that are related to the same workflow to the product they are currently viewing.
 
-Om dit te kunnen maken moet er ook een simpele versie van het huidig Helix systeem worden
-nagebouwd, dit houdt in dat de gebruiker kan inloggen op zijn/haar account, kan zien wat hij/zij eerder
-uit het Helix Systeem heeft gehaald, producten die niet in het systeem zitten kan requesten en de
-huidige voorraad van het Helix systeem zien.
-Nu is er al een tijdje gepraat over de implementatie van deze features, maar is Promega er nog niet uit of
-ze dit willen implementeren. Het idee is dat na het developen van dit project mijn vader mijn project zal
-voorleggen (en eventueel mij het laten presenteren/demonstreren) bij de CEO van de Benelux als
-voorbeeld van wat de officiële implementatie zou kunnen zijn.
+To be able to realise this, a basic/simple version of the current production HelixSystem must be developed. 
+This entails that a user must be able to log-in and log-out of their account, must be able to view their account,
+see past products they have used, view the the current inventory of a HelixSystem and request products for 
+that HelixSystem. Promega has already had some discussion in the past around the implementation 
+of these features, but have not yet made a decision due to believing this might be too hard to implement. 
+The idea of this project is that when development has completed, my client (my father) will present this 
+project to the CEO and directors of Promega Benelux als an example of what the official implementation of 
+these features could look like.
 
 ##  Overview/Rundown/Summary
 
@@ -87,6 +92,26 @@ Below you can see the Use Cases of this project, with all the actions and events
 |  **Pre-condition**   |  The actor is on the chosen HelixSystem inventory page.               |
 |  **Scenario**        |  1. The actor clicks on the specific product they want to view. <br> 2. The system brings the actor to the chosen product page <br> 3. The actor can view the chosen product.
 |  **Post-condition**  |  The actor has viewed the product page the want to view.              |
+
+### - View notifications
+|  **ID**              |  4                                                                    |
+|----------------------|-----------------------------------------------------------------------|
+|  **Name**            |  View notifications page                                              |
+|  **Actors**          |  Users                                                                |
+|  **Description**     |  Viewing the notifications page.                                      |
+|  **Pre-condition**   |  The actor is logged in.                                              |
+|  **Scenario**        |  1. The actor navigates to the notification page. <br> 2. The system brings the actor to their notification page. <br> 3. The actor can view their notifications.
+|  **Post-condition**  |  The actor has viewed their notifications.                            |
+
+### - Delete notifications
+|  **ID**              |  5                                                                    |
+|----------------------|-----------------------------------------------------------------------|
+|  **Name**            |  Delete notification                                                  |
+|  **Actors**          |  Users                                                                |
+|  **Description**     |  Deleting a certain notification.                                     |
+|  **Pre-condition**   |  The actor is logged in and has navigated to the notifications page.  |
+|  **Scenario**        |  1. The clicks on the delete button on the notification they want to delete. <br> 2. The system deletes the notification from their account. <br> 3. The actor sees the notification has deleted.
+|  **Post-condition**  |  The actor has deleted a notification.                                |
 
 
 ## Wireframes

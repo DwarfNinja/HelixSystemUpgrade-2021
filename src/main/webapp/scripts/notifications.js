@@ -2,13 +2,21 @@ fetch("/api/account/notifications", { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        else {
+            window.location.href = "/pages/error/" + response.status + ".html"
+        }
+    })
     .then(data => {
         let listContainer = document.getElementById("notification-list");
 
         for (let i = 0; i < data.length; i++) {
             let liElement = document.createElement("li");
             liElement.className = "notification";
+            liElement.id = "notification-id-" + data[i].notificationID;
 
             let aElement = document.createElement("a");
             aElement.href = "/pages/product.html" + "?product_id=" + data[i].notificationProduct.productID;
@@ -25,7 +33,12 @@ fetch("/api/account/notifications", { method: "GET",
             h3ElementProductName.innerText = data[i].notificationProduct.productName;
 
             let iElementNotification = document.createElement("i");
-            iElementNotification.className = "icon-content fa fa-exclamation-circle fa-2x";
+            let iconDict = {
+                "New Product!": "fa fa-exclamation-circle fa-2x",
+                "Product Restocked!": "fa fa-box-open fa-2x",
+                "Interested?":  "fa fa-question-circle fa-2x",
+            }
+            iElementNotification.className = "icon-content" + " " + iconDict[data[i].notificationMessage];
 
             let h3ElementNotificationMessage = document.createElement("h3");
             h3ElementNotificationMessage.className = "text";
@@ -43,7 +56,7 @@ fetch("/api/account/notifications", { method: "GET",
 
             buttonElementInterested.appendChild(iElementBell);
             buttonElementDeleted.appendChild(iElementTrash);
-            buttonElementDeleted.onclick = delete_notification(data[i].notificationID);
+            buttonElementDeleted.setAttribute("onclick", "deleteNotification(" + data[i].notificationID + ")");
 
             aElement.appendChild(imgElement);
             aElement.appendChild(h3ElementProductName);
@@ -59,7 +72,22 @@ fetch("/api/account/notifications", { method: "GET",
         }
     })
 
-function delete_notification(notificationID) {
+function deleteNotification(notificationID) {
+    fetch("/api/account/notifications/delete/" + notificationID, { method: "POST",
+        headers : {
+            'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
+        }})
+        .then(response => {
+            if (response.ok) {
+                let notification = document.getElementById("notification-id-" + notificationID);
+                notification.className = "notification animate-remove";
+                notification.addEventListener("transitionend", () => {
+                    notification.remove();
+                })
+            }
+            else {
+                throw "Error: Notification could not be deleted"
+            }
+        })
 
-    fetch()
 }

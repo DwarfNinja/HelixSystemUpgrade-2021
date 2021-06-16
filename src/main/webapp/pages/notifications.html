@@ -31,6 +31,7 @@
 
         #notification-list {
             margin: 1rem 3rem;
+            padding: 2rem;
         }
 
         li {
@@ -75,6 +76,11 @@
             transform: scale(0.90);
         }
 
+        .animate-remove {
+            transition: all 0.5s ease-out;
+            opacity: 0;
+        }
+
     </style>
 </head>
 <header>
@@ -86,15 +92,15 @@
     </div>
     <div>
         <ul id="notification-list">
-            <li class="notification">
+            <li class="notification" id="notification-id-123">
                 <a href="helix-inventory.html?helix_name=LUMC">
                     <img class="image-content" src="https://placekitten.com/175/90" alt="Product Image"/>
-                    <h3 class="text">Streptavidin MagneSphere Paramagnetic Particles</h3>
+                    <h3 class="text">Test Product</h3>
                     <i class="icon-content fa fa-exclamation-circle fa-2x"></i>
                     <h3 class="text">New Test Product!</h3>
                 </a>
                 <button class="button" id="interested-button" onclick=""> <i class="fa fa-bell fa-2x"></i> </button>
-                <button class="button" id="delete-button" onclick="delete_notification()"> <i class="fa fa-trash fa-2x"></i> </button>
+                <button class="button" id="delete-button" onclick="deleteNotification(123)"> <i class="fa fa-trash fa-2x"></i> </button>
             </li>
         </ul>
     </div>

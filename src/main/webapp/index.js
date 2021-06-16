@@ -9,7 +9,7 @@ function login() {
                 return response.json(); //body will be json
             }
             else {
-                throw "Wrong username / password"; //there is no body, just throw the error
+                throw "Error: Wrong username / password"; //there is no body, just throw the error
             }
         })
         .then(myJson => {

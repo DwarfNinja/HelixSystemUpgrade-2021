@@ -18,11 +18,16 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(int notificationID,String notificationMessage, Product notificationProduct) {
+    public Notification(int notificationID, String notificationMessage, Product notificationProduct) {
         this.notificationID = notificationID;
         this.notificationMessage = notificationMessage;
         this.notificationDateTime = getCurrentDateTime();
         this.notificationProduct = notificationProduct;
+    }
+
+    @JsonProperty("notificationID")
+    public int getNotificationID() {
+        return notificationID;
     }
 
     @JsonProperty("notificationMessage")

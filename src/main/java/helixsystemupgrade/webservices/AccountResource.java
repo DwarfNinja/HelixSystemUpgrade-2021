@@ -4,13 +4,14 @@ import helixsystemupgrade.model.Account;
 import helixsystemupgrade.model.SystemApp;
 import helixsystemupgrade.utils.JsonUtils;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.json.Json;
+import javax.json.JsonObjectBuilder;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.AbstractMap;
 
 
 @Path("account")
@@ -18,17 +19,13 @@ public class AccountResource {
 
     @GET
     @Produces("application/json")
-    public String getAccount(@Context SecurityContext securityContext) {
-        try {
-            if (securityContext.getUserPrincipal() instanceof Account account) {
-                return JsonUtils.convertObjectToJson(account);
-            }
-            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
+    public Response getAccount(@Context SecurityContext securityContext) {
+        if (securityContext.getUserPrincipal() instanceof Account account) {
+            return Response.ok(JsonUtils.convertObjectToJson(account)).build();
         }
-        //FIXME: Return response object with error message
-        catch (Exception e) {
-            return e.getMessage();
-        }
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+                .build();
     }
 
     @GET
@@ -40,35 +37,37 @@ public class AccountResource {
 
         String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
         return productHistoryListJsonArray;
-
     }
 
-    @GET
-    @Path("{id}/helixaccess")
-    @Produces("application/json")
-    public String getHelixAccessList(@PathParam("id") String id) {
-        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-
-        String helixAccessListJsonArray = JsonUtils.convertListToJsonArray(account.getHelixAccessList());
-        return helixAccessListJsonArray;
-    }
 
     @GET
     @Path("notifications")
     @Produces("application/json")
-    public String getNotificationList(@Context SecurityContext securityContext) {
-
-        try {
-            if (securityContext.getUserPrincipal() instanceof Account account) {
-                return JsonUtils.convertObjectToJson(account.getNotificationList());
-            }
-            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
+    public Response getNotificationList(@Context SecurityContext securityContext) {
+        if (securityContext.getUserPrincipal() instanceof Account account) {
+            return Response.ok(JsonUtils.convertObjectToJson(account.getNotificationList())).build();
         }
-        //FIXME: Return response object with error message
-        catch (Exception e) {
-            return e.getMessage();
-        }
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+                .build();
     }
 
+    @POST
+    @Path("notifications/delete/{id}")
+    @Produces("application/json")
+    public Response deleteNotification(@Context SecurityContext securityContext, @PathParam("id") String id) {
+        if (securityContext.getUserPrincipal() instanceof Account account) {
+            if (account.getNotificationByID(Integer.parseInt(id)) != null) {
+
+                account.getNotificationList().remove(account.getNotificationByID(Integer.parseInt(id)));
+                return Response.ok().entity(new AbstractMap.SimpleEntry<>("success", "Notification removed!")).build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new AbstractMap.SimpleEntry<>("error", "Notification with ID: " + id + " not found!"))
+                    .build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+                .build();
+    }
 }

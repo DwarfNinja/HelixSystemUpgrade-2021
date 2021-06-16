@@ -11,12 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-
-import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.AbstractMap;
 
 @Path("helixsystem")
 public class HelixSystemResource {
@@ -24,49 +21,59 @@ public class HelixSystemResource {
     @GET
     @Path("{helixname}/inventory")
     @Produces("application/json")
-    public String getInventoryOfHelix(@Context SecurityContext securityContext, @PathParam("helixname") String helixname) {
-        try {
-            if (securityContext.getUserPrincipal() instanceof Account account) {
-                if (account.getHelixAccessList().contains(helixname)) {
+    public Response getInventoryOfHelix(@Context SecurityContext securityContext, @PathParam("helixname") String helixname) {
+        if (securityContext.getUserPrincipal() instanceof Account account) {
 
-                    HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+            if (account.getHelixAccessList().contains(helixname)) {
+                HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+
+                if (helixSystem != null) {
                     String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
-                    return helixInventoryJsonArray;
+                    return Response.ok(helixInventoryJsonArray).build();
                 }
-                throw new Exception("User does not have access to this HelixSystem");
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
+                        .build();
             }
-            throw new UserPrincipalNotFoundException("No UserPrincipal found for account");
+            return Response.status(Response.Status.FORBIDDEN)
+                    .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
+                    .build();
         }
-        //FIXME: Return response object with error message
-        catch (Exception e) {
-            return e.getMessage();
-        }
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+                .build();
     }
 
     @GET
     @Path("{helixname}/inventory/{id}")
     @Produces("application/json")
-    public String getProductByID(@PathParam("helixname") String helixname, @PathParam("id") String id) {
-        HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+    public Response getProductByID(@Context SecurityContext securityContext, @PathParam("helixname") String helixname, @PathParam("id") String id) {
+        if (securityContext.getUserPrincipal() instanceof Account account) {
+            if (account.getHelixAccessList().contains(helixname)) {
+                HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
 
-        InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
-        return JsonUtils.convertObjectToJson(inventoryEntry);
-    }
+                if (helixSystem != null) {
+                    InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
-    @GET
-    @Path("{helixname}/accounts")
-    @Produces("application/json")
-    public String getAllTiedAccounts(@PathParam("helixname") String helixname) {
-        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-        HelixSystem helixSystem = theSystemApp.getHelixSystemByName(helixname);
-        List<Account> tiedAccountsList = new ArrayList<>();
-
-        for (Account account : theSystemApp.getAccountList()) {
-            if (account.getHelixAccessList().contains(helixSystem.getHelixSystemName())) {
-                tiedAccountsList.add(account);
+                    if (inventoryEntry != null) {
+                        return Response.ok(JsonUtils.convertObjectToJson(inventoryEntry)).build();
+                    }
+                    return Response.status(Response.Status.BAD_REQUEST)
+                            .entity(new AbstractMap.SimpleEntry<>(
+                                    "error", "InventoryEntry with ID: " + id + " does not exist in HelixSystem: " + helixname + "!"))
+                            .build();
+                }
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
+                        .build();
             }
+            return Response.status(Response.Status.FORBIDDEN)
+                    .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
+                    .build();
+
         }
-        String tiedAccountsListJsonArray = JsonUtils.convertListToJsonArray(tiedAccountsList);
-        return tiedAccountsListJsonArray;
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+                .build();
     }
 }

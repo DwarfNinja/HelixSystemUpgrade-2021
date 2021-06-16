@@ -40,8 +40,6 @@ public class Account implements Principal {
         this.helixAccessList = helixAccessList;
         this.productHistoryList = productHistoryList;
         this.notificationList = notificationList;
-
-        generateRandomProductHistory();
     }
 
     public String getAccountName() {
@@ -73,6 +71,15 @@ public class Account implements Principal {
         return notificationList;
     }
 
+    public Notification getNotificationByID(int notificationID) {
+        for (Notification notification : notificationList) {
+            if (notification.getNotificationID() == notificationID) {
+                return notification;
+            }
+        }
+        return null;
+    }
+
     public void addProduct(Product product) {
         productHistoryList.add(product);
     }
@@ -81,39 +88,41 @@ public class Account implements Principal {
         helixAccessList.add(helixSystem.getHelixSystemName());
     }
 
-    private void generateRandomProductHistory() {
-        ObjectMapper mapper = new ObjectMapper();
+    public void addNotification(Notification notification) {
+        notificationList.add(notification);
+    }
+
+    public void generateRandomProductHistory(List<Product> productList) {
         int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
-        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
-        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
-
         for (int i = 0; i < randomAmountOfProducts; i++) {
-            try {
-                Product product = mapper.readValue(JsonUtils.getRandomObjectFromJsonArray(jsonArray), Product.class);
-                addProduct(product);
+            addProduct(productList.get(NumberUtils.getRandomNumberInRange(0, productList.size())));
+        }
 
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+    }
+
+    public void generateRandomNotifications(List<Product> productList) {
+        int randomAmountOfNotifications = NumberUtils.getRandomNumberInRange(5, 12);
+
+        for(int i = 0; i < randomAmountOfNotifications; i++) {
+            addRandomNotification(productList);
         }
     }
 
-    public boolean checkPassword(String password) {
-        return accountPassword.equals(password);
-    }
-
-    public void addRandomNotification() {
-        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-
+    private void addRandomNotification(List<Product> productList) {
         List<String> messagesList = List.of("New Product!", "Product Restocked!", "Interested?");
         String randomMessage = messagesList.get(NumberUtils.getRandomNumberInRange(0, messagesList.size()));
 
-        List<Product> copyOfProductList = new ArrayList<>(theSystemApp.getProductList());
+        List<Product> copyOfProductList = new ArrayList<>(productList);
         Product randomProduct = copyOfProductList.get(NumberUtils.getRandomNumberInRange(0, copyOfProductList.size()));
 
         int notificationID = notificationList.size() + 1;
 
         Notification randomNotification = new Notification(notificationID, randomMessage, randomProduct);
+        addNotification(randomNotification);
+    }
+
+    public boolean checkPassword(String password) {
+        return accountPassword.equals(password);
     }
 
     @Override
@@ -129,5 +138,4 @@ public class Account implements Principal {
         }
         return false;
     }
-
 }

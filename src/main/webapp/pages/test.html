@@ -3,20 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Test</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      body {
+        color: white;
+      }
+      a {
+        color: black;
+        line-height: 26px;
+        font-size: 20px;
+      }
+    </style>
 </head>
 <body>
-  <a href="/api/test/account">Show all accounts : PASS</a> <br>
-  <a href="/api/test/all-account">Show all accounts : FAIL</a> <br>
+  <h1>Account Tests</h1>
+  <a href="/api/test/account">Show all accounts :  <b>PASS</b> </a> <br>
+  <a href="/api/test/all-account">Show all accounts : <b>FAIL 404</b> > Not a valid API path</a> <br>
   <hr>
-  <a href="/api/test/account/0">Show the account of a user by ID : PASS</a> <br>
-  <a href="/api/test/account/-1">Show the account of a user by ID : FAIL</a> <br>
+  <a href="/api/test/account/0">Show the account of a user by ID : <b>PASS</b> </a> <br>
+  <a href="/api/test/account/ERROR">Show the account of a user by ID : <b>FAIL 400</b> > Account with this ID does not exist</a> <br>
   <hr>
-  <a href="/api/test/helixsystem">Show all the HelixSystems : PASS</a> <br>
-  <a href="/api/test/helixsyste">Show all the HelixSystems : FAIL</a> <br>
-  <hr>
-  <a href="/api/test/helixsystem/LUMC">Show a HelixSystem by name : PASS</a> <br>
-  <a href="/api/test/helixsystem/HU">Show a HelixSystem by name : FAIL</a> <br>
-  <hr>
+  <a href="/api/test/account/0/notifications">Show all notifications of a user by ID : <b>PASS</b> </a> <br>
+  <a href="/api/test/account/999/notifications">Show all notifications of a user by ID : <b>FAIL 400</b> > Account with this ID does not exist</a> <br>
+  <a href="/api/test/account/TEST/notifications">Show all notifications of a user by ID : <b>FAIL 400</b> > Account ID is not an integer</a> <br>
 
+  <h1>HelixSystem Tests</h1>
+  <a href="/api/test/helixsystem">Show all the HelixSystems : <b>PASS</b> </a> <br>
+  <a href="/api/test/TEST">Show all the HelixSystems : <b>FAIL 404</b> > Not a valid API path</a> <br>
+  <hr>
+  <a href="/api/test/helixsystem/LUMC">Show a HelixSystem by name : <b>PASS</b> </a> <br>
+  <a href="/api/test/helixsystem/TEST">Show a HelixSystem by name : <b>FAIL 400</b> > HelixSystem with this name does not exist</a> <br>
+  <hr>
+  <a href="/api/test/helixsystem/LUMC/inventory">Show HelixSystem inventory by name : <b>PASS</b> </a> <br>
+  <a href="/api/test/helixsystem/TEST/inventory">Show HelixSystem inventory by name : <b>FAIL 404</b> > HelixSystem with this name does not exist</a> <br>
+  <hr>
+  <a href="/api/test/helixsystem/LUMC/inventory/0">Show a product in a HelixSystem by ID : <b>PASS</b> </a> <br>
+  <a href="/api/test/helixsystem/LUMC/inventory/999">Show a product in a HelixSystem by ID : <b>FAIL 400</b> > Product with this ID does not exist</a> <br>
+  <a href="/api/test/helixsystem/LUMC/inventory/TEST">Show a product in a HelixSystem by ID : <b>FAIL 400</b> > Product with this ID does not exist in the HelixSystem</a> <br>
 </body>
 </html>

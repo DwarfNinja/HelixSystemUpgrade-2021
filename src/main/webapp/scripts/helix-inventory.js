@@ -7,7 +7,14 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
 
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        else {
+            window.location.href = "/pages/error/" + response.status + ".html"
+        }
+    })
     .then(data => {
         let helixName = document.getElementById("helix-name");
         helixName.innerText = helix_name;

@@ -1,9 +1,16 @@
-
 fetch("/api/account", { method: "GET",
     headers : {
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        else {
+            window.location.href = "/pages/error/" + response.status + ".html"
+        }
+
+    })
     .then(data => {
         let accountID = data.accountID;
         let accountName = data.accountName;
@@ -20,8 +27,6 @@ fetch("/api/account", { method: "GET",
             aElement.className = "helixsystem-name"
             aElement.href = "/pages/helix-inventory.html" + "?helix_name=" + accountHelixAccessList[i];
             aElement.innerText = accountHelixAccessList[i];
-
-
 
             liElement.appendChild(aElement);
             listContainer.appendChild(liElement)

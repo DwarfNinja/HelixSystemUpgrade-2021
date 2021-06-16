@@ -34,6 +34,8 @@ public class SystemApp {
             if (account.getHelixAccessList().isEmpty()) {
                 assignRandomHelixAccess(account);
             }
+            account.generateRandomProductHistory(productList);
+            account.generateRandomNotifications(productList);
         }
     }
 
@@ -65,20 +67,6 @@ public class SystemApp {
         return null;
     }
 
-    public void addHelixSystem(HelixSystem helixSystem) {
-        if (!helixSystemList.contains(helixSystem)) {
-            helixSystemList.add(helixSystem);
-        }
-
-    }
-
-    public void addAccount(Account account) {
-        if (accountList.contains(account)) {
-            return;
-        }
-        accountList.add(account);
-    }
-
     public Account getAccountByID(int id) {
         for (Account account : accountList) {
             if (account.getAccountID() == id) {
@@ -95,6 +83,20 @@ public class SystemApp {
             }
         }
         return null;
+    }
+
+    public void addHelixSystem(HelixSystem helixSystem) {
+        if (!helixSystemList.contains(helixSystem)) {
+            helixSystemList.add(helixSystem);
+        }
+
+    }
+
+    public void addAccount(Account account) {
+        if (accountList.contains(account)) {
+            return;
+        }
+        accountList.add(account);
     }
 
     private void generateAccountList() {
