@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/fontawesome/all.css">
+    <style>
+        .text {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            color: white;
+            margin: 0 0 4rem;
+        }
+
+        .icon-content {
+            color: white;
+            text-align: right;
+            margin-right: 1rem;
+        }
+
+        #center-container {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        #notification-list {
+            margin: 1rem 3rem;
+            padding: 2rem;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: auto 200px 200px;
+            align-items: center;
+            list-style-type: none;
+            margin-bottom: 2rem;
+            padding: 0.6rem;
+            /*height: auto;*/
+            width: auto;
+            background-color: rgba(97, 97, 97, 1);
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
+        }
+
+        a {
+            display: grid;
+            grid-template-columns: 225px 700px 50px 250px;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .image-content {
+            border-radius: 10px;
+        }
+
+        .button {
+            justify-self: center;
+            margin-left: 20px;
+            padding: 0.7rem;
+            border-radius: 50%;
+            background-color: rgba(97, 97, 97, 1);
+            color: white;
+            border: 3px solid white;
+            box-shadow: 4px 4px 10px black;
+        }
+
+        .button:hover {
+            border: 3px solid white;
+            transition: transform .1s;
+            transform: scale(0.90);
+        }
+
+        .animate-remove {
+            transition: all 0.5s ease-out;
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<header>
+    <!-- Header (header.html) added by general.js-->
+</header>
+<body>
+    <div id="center-container">
+        <h2>Notifications</h2>
+    </div>
+    <div>
+        <ul id="notification-list">
+            <li class="notification" id="notification-id-123">
+                <a href="helix-inventory.html?helix_name=LUMC">
+                    <img class="image-content" src="https://placekitten.com/175/90" alt="Product Image"/>
+                    <h3 class="text">Test Product</h3>
+                    <i class="icon-content fa fa-exclamation-circle fa-2x"></i>
+                    <h3 class="text">New Test Product!</h3>
+                </a>
+                <button class="button" id="interested-button" onclick=""> <i class="fa fa-bell fa-2x"></i> </button>
+                <button class="button" id="delete-button" onclick="deleteNotification(123)"> <i class="fa fa-trash fa-2x"></i> </button>
+            </li>
+        </ul>
+    </div>
+    <script src=/scripts/general.js></script>
+    <script src=/scripts/notifications.js></script>
+</body>
+</html>

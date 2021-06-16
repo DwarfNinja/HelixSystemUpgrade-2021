@@ -16,4 +16,12 @@ public class InventoryEntry {
     public Product getProduct() {
         return product;
     }
+
+    @Override
+    public String toString() {
+        return "InventoryEntry{" +
+                "amount=" + amount +
+                ", product=" + product +
+                '}';
+    }
 }

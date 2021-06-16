@@ -43,4 +43,14 @@ public class Product {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productName='" + productName + '\'' +
+                ", productID=" + productID +
+                ", productPrice='" + productPrice + '\'' +
+                ", imgSource='" + imgSource + '\'' +
+                '}';
+    }
 }

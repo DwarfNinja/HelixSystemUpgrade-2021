@@ -12,8 +12,10 @@ import helixsystemupgrade.utils.NumberUtils;
 
 import javax.json.JsonArray;
 import java.security.Principal;
+
 import java.util.List;
 import java.util.ArrayList;
+
 
 @JsonDeserialize(as = Account.class)
 public class Account implements Principal {
@@ -22,20 +24,22 @@ public class Account implements Principal {
     private final String accountPassword;
     private final String accountRole;
     private final List<String> helixAccessList;
-    private final List<Product> productHistoryList = new ArrayList<>();
+    private final List<Product> productHistoryList;
+    private final List<Notification> notificationList;
 
-
-    //TODO: JsonIgnore
+    // Jackson annotations used to create converts objects from JSON file to Java Objects
     @JsonCreator
     public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty ("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
-                   @JsonProperty("helixAccessList") ArrayList<String> helixAccessList) {
+                   @JsonProperty("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
+                   @JsonProperty("helixAccessList") List<String> helixAccessList, @JsonProperty("productHistoryList") List<Product> productHistoryList,
+                   @JsonProperty("notificationList") List<Notification> notificationList) {
         this.accountName = accountName;
         this.accountID = accountID;
         this.accountPassword = accountPassword;
         this.accountRole = accountRole;
         this.helixAccessList = helixAccessList;
-        generateRandomProductHistory();
+        this.productHistoryList = productHistoryList;
+        this.notificationList = notificationList;
     }
 
     public String getAccountName() {
@@ -63,29 +67,68 @@ public class Account implements Principal {
         return productHistoryList;
     }
 
+    public List<Notification> getNotificationList() {
+        return notificationList;
+    }
+
+    public Notification getNotificationByID(int notificationID) {
+        for (Notification notification : notificationList) {
+            if (notification.getNotificationID() == notificationID) {
+                return notification;
+            }
+        }
+        return null;
+    }
+
     public void addProduct(Product product) {
         productHistoryList.add(product);
     }
 
     public void addHelixAccess(HelixSystem helixSystem) {
-        helixAccessList.add(helixSystem.getName());
+        helixAccessList.add(helixSystem.getHelixSystemName());
     }
 
-    private void generateRandomProductHistory() {
-        ObjectMapper mapper = new ObjectMapper();
+    public void addNotification(Notification notification) {
+        notificationList.add(notification);
+    }
+
+    public void generateRandomProductHistory(List<Product> productList) {
         int randomAmountOfProducts = NumberUtils.getRandomNumberInRange(1, 8);
-        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
-        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
-
         for (int i = 0; i < randomAmountOfProducts; i++) {
-            try {
-                Product product = mapper.readValue(JsonUtils.getRandomObjectFromJsonArray(jsonArray), Product.class);
-                addProduct(product);
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            addProduct(productList.get(NumberUtils.getRandomNumberInRange(0, productList.size())));
         }
+
+    }
+
+    public void generateRandomNotifications(List<Product> productList) {
+        int randomAmountOfNotifications = NumberUtils.getRandomNumberInRange(5, 12);
+
+        for(int i = 0; i < randomAmountOfNotifications; i++) {
+            addRandomNotification(productList);
+        }
+    }
+
+    private void addRandomNotification(List<Product> productList) {
+        List<String> messagesList = List.of("New Product!", "Product Restocked!", "Interested?");
+        String randomMessage = messagesList.get(NumberUtils.getRandomNumberInRange(0, messagesList.size()));
+
+        List<Product> copyOfProductList = new ArrayList<>(productList);
+        Product randomProduct = copyOfProductList.get(NumberUtils.getRandomNumberInRange(0, copyOfProductList.size()));
+
+        int notificationID = notificationList.size() + 1;
+
+        Notification randomNotification = new Notification(notificationID, randomMessage, randomProduct);
+        addNotification(randomNotification);
+    }
+
+    public boolean checkPassword(String password) {
+        return accountPassword.equals(password);
+    }
+
+    @Override
+    @JsonIgnore
+    public String getName() {
+        return getAccountName();
     }
 
     @Override
@@ -94,14 +137,5 @@ public class Account implements Principal {
             return ((Account) obj).getAccountID() == getAccountID();
         }
         return false;
-    }
-
-    @Override
-    public String getName() {
-        return getAccountName();
-    }
-
-    public boolean checkPassword(String password) {
-        return accountPassword.equals(password);
     }
 }

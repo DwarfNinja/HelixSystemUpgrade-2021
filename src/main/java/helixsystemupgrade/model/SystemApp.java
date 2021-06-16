@@ -14,22 +14,35 @@ import java.util.List;
 
 public class SystemApp {
 
-    private static SystemApp theSystemApp = new SystemApp();
+    private static SystemApp theSystemApp;
 
     private List<HelixSystem> helixSystemList = new ArrayList<>();
 
     private List<Account> accountList = new ArrayList<>();
 
-    public SystemApp() {
+    private List<Product> productList = new ArrayList<>();
+
+    private SystemApp() {
         helixSystemList.add(new HelixSystem("LUMC"));
         helixSystemList.add(new HelixSystem("ErasmusMC"));
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
 
         generateAccountList();
-        assignRandomHelixAccess();
+        generateProductList();
+
+        for (Account account : accountList) {
+            if (account.getHelixAccessList().isEmpty()) {
+                assignRandomHelixAccess(account);
+            }
+            account.generateRandomProductHistory(productList);
+            account.generateRandomNotifications(productList);
+        }
     }
 
-    public static SystemApp getTheSystem() {
+    public static SystemApp getTheSystemApp() {
+        if (theSystemApp == null) {
+            theSystemApp = new SystemApp();
+        }
         return theSystemApp;
     }
 
@@ -41,21 +54,17 @@ public class SystemApp {
         return accountList;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
 
-    public HelixSystem getHelixSystem(String helixname) {
+    public HelixSystem getHelixSystemByName(String helixname) {
         for (HelixSystem helixSystem : helixSystemList) {
-            if (helixSystem.getName().equals(helixname)) {
+            if (helixSystem.getHelixSystemName().equals(helixname)) {
                 return helixSystem;
             }
         }
         return null;
-    }
-
-    public void addAccount(Account account) {
-        if (accountList.contains(account)) {
-            return;
-        }
-        accountList.add(account);
     }
 
     public Account getAccountByID(int id) {
@@ -76,6 +85,20 @@ public class SystemApp {
         return null;
     }
 
+    public void addHelixSystem(HelixSystem helixSystem) {
+        if (!helixSystemList.contains(helixSystem)) {
+            helixSystemList.add(helixSystem);
+        }
+
+    }
+
+    public void addAccount(Account account) {
+        if (accountList.contains(account)) {
+            return;
+        }
+        accountList.add(account);
+    }
+
     private void generateAccountList() {
         ObjectMapper mapper = new ObjectMapper();
         JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-accounts.json"));
@@ -91,18 +114,29 @@ public class SystemApp {
         }
     }
 
-    private void assignRandomHelixAccess() {
-        for (Account account : accountList) {
-            if (account.getHelixAccessList() == null) {
-                int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
-                List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
+    private void generateProductList() {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonArray jsonArray = JsonUtils.getJsonArray(JsonUtils.readJsonValueFromFile("json/all-products.json"));
+        assert jsonArray != null : "returned jsonArray of JsonUtils.getJsonArray is null!";
 
-                for (int i = 0; i < randomAmountOfHelixAccess; i++) {
-                    HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
-                    account.addHelixAccess(randomHelixSystem);
-                    helixSystemListCopy.remove(randomHelixSystem);
-                }
+        for (JsonValue jsonValue : jsonArray) {
+            try {
+                Product product = mapper.readValue(JsonUtils.getObjectFromJsonArray(jsonArray, jsonValue), Product.class);
+                productList.add(product);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
             }
+        }
+    }
+
+    private void assignRandomHelixAccess(Account account) {
+        int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
+        List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
+
+        for (int i = 0; i < randomAmountOfHelixAccess; i++) {
+            HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
+            account.addHelixAccess(randomHelixSystem);
+            helixSystemListCopy.remove(randomHelixSystem);
         }
     }
 
@@ -117,7 +151,6 @@ public class SystemApp {
                 return myAccount.getAccountRole();
             }
         }
-
         return null;
     }
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/fontawesome/all.css">
+    <style>
+        h2 {
+            color: white;
+        }
+
+        li {
+            text-align: center;
+            list-style-type: none;
+            margin-bottom: 1rem;
+            padding: 0.6rem;
+            background-color: rgba(97, 97, 97, 1);
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
+        }
+
+        a {
+            display: grid;
+            text-decoration: none;
+            font-size: 22px;
+        }
+
+        #padding-container {
+            margin: auto;
+            padding: 2rem 5rem 5rem;
+        }
+
+        #left-column {
+            background-color: rgba(97, 97, 97, 1);
+            position: relative;
+            width: 600px;
+            float: left;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
+        }
+
+        #right-column {
+            width: 600px;
+            float: right;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        #helixsystem-list {
+            padding: 0;
+        }
+
+        .text {
+            color: white;
+        }
+
+        .helixsystem-name {
+            color: white;
+        }
+
+    </style>
+</head>
+<header>
+<!-- Header (header.html) added by general.js-->
+</header>
+<body>
+    <div id="padding-container">
+
+        <div id="left-column">
+            <div>
+                <h2 class="text">Profile</h2>
+                    <p class="text" id="account-id">Account ID: 0</p>
+                    <p class="text" id="account-name">Name: John Doe</p>
+                <h2 class="text">Contact Information</h2>
+                    <p class="text">Dr. John Doe</p>
+                    <p class="text">Email: johndoe@email.com</p>
+                    <p class="text">Phone Number: 123456789</p>
+                <h2 class="text">Professional Information</h2>
+                    <p class="text">Organization: LUMC</p>
+                    <p class="text">Job Function: Researcher</p>
+            </div>
+        </div>
+
+        <div id="right-column">
+            <div>
+                <h2>Associated Helix Systems</h2>
+                <ul id="helixsystem-list">
+                    <li> <a class="helixsystem-name" href="helix-inventory.html?helix_name=LUMC">HelixSystem Name</a> </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <script src="/scripts/general.js"></script>
+    <script src="/scripts/account.js"></script>
+</body>
+</html>

@@ -7,7 +7,14 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
         'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
     }})
 
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        else {
+            window.location.href = "/pages/error/" + response.status + ".html"
+        }
+    })
     .then(data => {
         let helixName = document.getElementById("helix-name");
         helixName.innerText = helix_name;
@@ -24,11 +31,11 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
 
             let gridItemElement = document.createElement("a");
             gridItemElement.className = "grid-item";
-            gridItemElement.href = "product.html" + "?product_id=" + productID;
+            gridItemElement.href = "/pages/product.html" + "?helix_name=" + helix_name + "&product_id=" + productID;
 
             let productImageElement = document.createElement("img");
             productImageElement.className = "image-content"
-            productImageElement.src = "/images/products/" + productImg;
+            productImageElement.src = "/resources/images/products/" + productImg;
             productImageElement.alt = "Product Image";
             productImageElement.width = 300;
             productImageElement.height = 150;

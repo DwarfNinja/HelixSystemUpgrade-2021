@@ -4,146 +4,188 @@
     "accountID": 0,
     "accountPassword": "admin",
     "accountRole": "admin",
-    "helixAccessList": ["LUMC", "UMCUtrecht", "ErasmusMC"]
+    "helixAccessList": ["LUMC", "UMCUtrecht", "ErasmusMC"],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "John Doe",
     "accountID": 1,
     "accountPassword": "johndoePassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Ponnappa Priya",
     "accountID": 2,
     "accountPassword": "ponnappapriyaPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Hayman Andrews",
     "accountID": 3,
     "accountPassword": "haymanandrewsPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Verona Blair",
     "accountID": 4,
     "accountPassword": "veronablairPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Jane Meldrum",
     "accountID": 5,
     "accountPassword": "janemeldrumPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Peter Stanbridge",
     "accountID": 6,
     "accountPassword": "peterstanbridgePassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Mia Wong",
     "accountID": 7,
     "accountPassword": "miawongPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Maureen M. Smith",
     "accountID": 8,
     "accountPassword": "maureenmsmithPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Tarryn Campbell-Gillies",
     "accountID": 9,
     "accountPassword": "tarryncampbellgilliesPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Daly Harry",
     "accountID": 10,
     "accountPassword": "dalyharryPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Evan Pearson",
     "accountID": 11,
     "accountPassword": "evanpearsonPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Teresa Vasquez",
     "accountID": 12,
     "accountPassword": "teresavasquezPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Diamond Jordan",
     "accountID": 13,
     "accountPassword": "diamondjordanPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Kaitlynn Foster",
     "accountID": 14,
     "accountPassword": "kaitlynnfosterPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Jordon Marshall",
     "accountID": 15,
     "accountPassword": "jordonmarshallPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Nicholas Garner",
     "accountID": 16,
     "accountPassword": "teresavasquezPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Ariel Little",
     "accountID": 17,
     "accountPassword": "ariellittlePassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Makenzie Crawford",
     "accountID": 18,
     "accountPassword": "makenziecrawfordPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Adrianna Rogers",
     "accountID": 19,
     "accountPassword": "adriannarogersPassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   },
   {
     "accountName": "Alexander Pierce",
     "accountID": 20,
     "accountPassword": "alexanderpiercePassword",
     "accountRole": "user",
-    "helixAccessList": []
+    "helixAccessList": [],
+    "productHistoryList": [],
+    "notificationList": []
   }
 ]

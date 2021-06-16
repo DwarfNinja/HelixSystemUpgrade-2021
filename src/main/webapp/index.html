@@ -4,42 +4,65 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resources/fontawesome/all.css">
     <style>
         #img-div {
+            display: flex;
+            justify-content: center;
             margin-bottom: 3rem;
         }
 
         #center-container {
             display:flex;
             justify-content: center;
-            background-color: rgba(97, 97, 97, 1);
-            border: 1px solid rgba(0, 0, 0, 1);
-            padding: 3rem;
+            padding: 2.5rem 3rem;
             margin: auto;
             width: 20rem;
+            background-color: rgba(97, 97, 97, 1);
+            border: 2px solid rgba(0, 0, 0, 1);
             border-radius: 10px;
+
         }
 
         .input-field {
             margin-bottom: 15px;
-            padding: 0.5rem;
+            padding: 0.6rem;
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 5px;
+        }
+
+        #button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
         #loginformsubmit {
-            padding: 5px;
+            /*padding: 5px;*/
+            padding: 0.7rem;
+            border-radius: 50%;
+            background-color: rgba(97, 97, 97, 1);
+            color: white;
+            border: 3px solid white;
+            box-shadow: 4px 4px 10px black;
+        }
+
+        #loginformsubmit:hover {
+            border: 3px solid white;
+            transition: transform .1s;
+            transform: scale(0.90);
         }
 
     </style>
 </head>
 <body>
-    <div id="img-div" style="display: flex; justify-content: center">
-        <img src="/images/HelixLogo.png" alt="Helix Logo" width="150" height="150"/>
+    <div id="img-div">
+        <img src="/resources/images/HelixLogo.png" alt="Helix Logo" width="150" height="150"/>
     </div>
 
     <div id="center-container">
         <div>
             <form id="loginForm" onsubmit="return login()">
-
                 <div>
                     <label>
                         <input class="input-field" type="text" placeholder="Username" name="username" required>
@@ -51,7 +74,10 @@
                         <input class="input-field" type="password" placeholder="Password" name="password" required>
                     </label>
                 </div>
-                <button id="loginformsubmit" type="submit">Log-in</button>
+                <div id="button-container">
+                    <button  id="loginformsubmit" type="submit"> <i class="fa fa-sign-in-alt fa-2x"></i> </button>
+                </div>
+
             </form>
         </div>
     </div>

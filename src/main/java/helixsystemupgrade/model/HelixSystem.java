@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelixSystem {
-    private final String name;
+    private final String helixSystemName;
 
     private final List<InventoryEntry> inventoryList = new ArrayList<>();
 
-    public HelixSystem(String name) {
-        this.name = name;
+    public HelixSystem(String helixSystemName) {
+        this.helixSystemName = helixSystemName;
         generateRandomInventory();
     }
 
-    public String getName() {
-        return name;
+    public String getHelixSystemName() {
+        return helixSystemName;
     }
 
     public List<InventoryEntry> getInventoryList() {
@@ -30,9 +30,9 @@ public class HelixSystem {
     }
 
 
-    public InventoryEntry getInventoryEntrybyID(int id) {
+    public InventoryEntry getInventoryEntrybyID(int productID) {
         for (InventoryEntry inventoryEntry : inventoryList) {
-            if (inventoryEntry.getProduct().getProductID() == id) {
+            if (inventoryEntry.getProduct().getProductID() == productID) {
                 return inventoryEntry;
             }
         }
@@ -68,5 +68,13 @@ public class HelixSystem {
         int randomAmount = NumberUtils.getRandomNumberInRange(1, 8);
         InventoryEntry inventoryEntry = new InventoryEntry(randomAmount, product);
         return inventoryEntry;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof HelixSystem) {
+            return ((HelixSystem) obj).getHelixSystemName().equals(getHelixSystemName());
+        }
+        return false;
     }
 }
