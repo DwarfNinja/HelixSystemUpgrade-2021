@@ -28,16 +28,16 @@ public class AccountResource {
                 .build();
     }
 
-    @GET
-    @Path("{id}/producthistory")
-    @Produces("application/json")
-    public String getProductHistoryList(@PathParam("id") String id) {
-        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-
-        String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
-        return productHistoryListJsonArray;
-    }
+//    @GET
+//    @Path("{id}/producthistory")
+//    @Produces("application/json")
+//    public String getProductHistoryList(@PathParam("id") String id) {
+//        SystemApp theSystemApp = SystemApp.getTheSystemApp();
+//        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
+//
+//        String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
+//        return productHistoryListJsonArray;
+//    }
 
 
     @GET

@@ -19,7 +19,8 @@ fetch("/api/account/notifications", { method: "GET",
             liElement.id = "notification-id-" + data[i].notificationID;
 
             let aElement = document.createElement("a");
-            aElement.href = "/pages/product.html" + "?product_id=" + data[i].notificationProduct.productID;
+            aElement.href = "/pages/product.html" + "?helix_name=" + data[i].helixSystemName
+                + "&product_id=" + data[i].notificationProduct.productID;
 
             let imgElement = document.createElement("img");
             imgElement.className = "image-content";
@@ -42,7 +43,7 @@ fetch("/api/account/notifications", { method: "GET",
 
             let h3ElementNotificationMessage = document.createElement("h3");
             h3ElementNotificationMessage.className = "text";
-            h3ElementNotificationMessage.innerText = data[i].notificationMessage;
+            h3ElementNotificationMessage.innerText = data[i].helixSystemName + " :\n " +  data[i].notificationMessage;
 
             let buttonElementInterested = document.createElement("button");
             buttonElementInterested.className = "button";

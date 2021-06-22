@@ -100,15 +100,15 @@ public class Account implements Principal {
 
     }
 
-    public void generateRandomNotifications(List<Product> productList) {
+    public void generateRandomNotifications(List<Product> productList, List<HelixSystem> helixSystemList) {
         int randomAmountOfNotifications = NumberUtils.getRandomNumberInRange(5, 12);
 
         for(int i = 0; i < randomAmountOfNotifications; i++) {
-            addRandomNotification(productList);
+            addRandomNotification(productList, helixSystemList);
         }
     }
 
-    private void addRandomNotification(List<Product> productList) {
+    private void addRandomNotification(List<Product> productList, List<HelixSystem> helixSystemList) {
         List<String> messagesList = List.of("New Product!", "Product Restocked!", "Interested?");
         String randomMessage = messagesList.get(NumberUtils.getRandomNumberInRange(0, messagesList.size()));
 
@@ -117,7 +117,11 @@ public class Account implements Principal {
 
         int notificationID = notificationList.size() + 1;
 
-        Notification randomNotification = new Notification(notificationID, randomMessage, randomProduct);
+        List<HelixSystem> copyOfHelixSystemList= new ArrayList<>(helixSystemList);
+        String randomHelixName = copyOfHelixSystemList
+                .get(NumberUtils.getRandomNumberInRange(0, copyOfHelixSystemList.size())).getHelixSystemName();
+
+        Notification randomNotification = new Notification(notificationID, randomMessage, randomHelixName, randomProduct);
         addNotification(randomNotification);
     }
 
