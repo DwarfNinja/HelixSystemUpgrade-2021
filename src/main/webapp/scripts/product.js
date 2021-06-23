@@ -26,6 +26,9 @@ fetch("/api/helixsystem/" + helix_name + "/inventory/" + product_id, { method: "
         let productImageElement = document.getElementById("product-image");
         productImageElement.src = "/resources/images/products/" + productImg;
 
+        let helixNameElement = document.getElementById("helix-name");
+        helixNameElement.innerText = "Location: " + helix_name;
+
         let productAmountElement = document.getElementById("product-amount");
         productAmountElement.innerText = "Stock: " + productAmount;
 
