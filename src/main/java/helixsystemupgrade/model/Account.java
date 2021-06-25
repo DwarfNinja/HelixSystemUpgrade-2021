@@ -100,28 +100,28 @@ public class Account implements Principal {
 
     }
 
-    public void generateRandomNotifications(List<Product> productList, List<HelixSystem> helixSystemList) {
+    public void generateRandomNotifications(List<HelixSystem> helixSystemList) {
         int randomAmountOfNotifications = NumberUtils.getRandomNumberInRange(5, 12);
 
         for(int i = 0; i < randomAmountOfNotifications; i++) {
-            addRandomNotification(productList, helixSystemList);
+            addRandomNotification(helixSystemList);
         }
     }
 
-    private void addRandomNotification(List<Product> productList, List<HelixSystem> helixSystemList) {
+    private void addRandomNotification(List<HelixSystem> helixSystemList) {
         List<String> messagesList = List.of("New Product!", "Product Restocked!", "Interested?");
         String randomMessage = messagesList.get(NumberUtils.getRandomNumberInRange(0, messagesList.size()));
-
-        List<Product> copyOfProductList = new ArrayList<>(productList);
-        Product randomProduct = copyOfProductList.get(NumberUtils.getRandomNumberInRange(0, copyOfProductList.size()));
 
         int notificationID = notificationList.size() + 1;
 
         List<HelixSystem> copyOfHelixSystemList= new ArrayList<>(helixSystemList);
-        String randomHelixName = copyOfHelixSystemList
-                .get(NumberUtils.getRandomNumberInRange(0, copyOfHelixSystemList.size())).getHelixSystemName();
+        HelixSystem randomHelixSystem = copyOfHelixSystemList.get(NumberUtils.getRandomNumberInRange(0, copyOfHelixSystemList.size()));
 
-        Notification randomNotification = new Notification(notificationID, randomMessage, randomHelixName, randomProduct);
+        InventoryEntry randomEntryFromHelixSystem = randomHelixSystem.getInventoryList()
+                .get(NumberUtils.getRandomNumberInRange(0, randomHelixSystem.getInventoryList().size()));
+        Product inventoryEntryProduct = randomEntryFromHelixSystem.getProduct();
+
+        Notification randomNotification = new Notification(notificationID, randomMessage, randomHelixSystem.getHelixSystemName(), inventoryEntryProduct);
         addNotification(randomNotification);
     }
 
