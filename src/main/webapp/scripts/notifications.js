@@ -11,7 +11,7 @@ fetch("/api/account/notifications", { method: "GET",
         }
     })
     .then(data => {
-        let listContainer = document.getElementById("notification-list");
+        let notificationList = document.getElementById("notification-list");
 
         for (let i = 0; i < data.length; i++) {
             let liElement = document.createElement("li");
@@ -70,7 +70,6 @@ fetch("/api/account/notifications", { method: "GET",
             liElement.appendChild(buttonElementInterested);
             liElement.appendChild(buttonElementDeleted);
 
-            let notificationList = document.getElementById("notification-list");
             notificationList.appendChild(liElement);
         }
     })

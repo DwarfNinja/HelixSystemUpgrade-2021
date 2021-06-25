@@ -19,6 +19,18 @@ fetch("/api/helixsystem/" + helix_name + "/inventory", { method: "GET",
         let helixName = document.getElementById("helix-name");
         helixName.innerText = helix_name;
 
+        data.sort((firstEl, secondEl) => {
+            if (firstEl.product.productID < secondEl.product.productID) {
+                return -1
+            }
+            else if (firstEl.product.productID > secondEl.product.productID) {
+                return 1
+            }
+            else {
+                return 0
+            }
+        } )
+
         for (let i = 0; i < data.length; i++) {
             let productAmount = data[i].amount;
             let productName = data[i].product.productName;
