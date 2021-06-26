@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Cendur Oyib/IdeaProjects/HelixSystemUpgrade-2021/src/main/java/helixsystemupgrade/model</OriginalElement>
+  <nodes>
+    <node x="88.08606362773031" y="389.2307692307693">helixsystemupgrade.model.System</node>
+    <node x="444.74679487179475" y="-59.2307692307692">helixsystemupgrade.model.InventoryEntry</node>
+    <node x="338.5160256410256" y="174.0">helixsystemupgrade.model.HelixSystem</node>
+    <node x="-90.15384615384615" y="-53.84615384615384">helixsystemupgrade.model.Product</node>
+    <node x="14.31172839506172" y="257.0">helixsystemupgrade.model.Account</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="helixsystemupgrade.model.System" target="helixsystemupgrade.model.HelixSystem" relationship="CREATE">
+      <point x="12.375" y="-15.5" />
+      <point x="149.9610636277303" y="307.61538461538464" />
+      <point x="371.7660256410256" y="307.61538461538464" />
+      <point x="-33.25" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.HelixSystem" target="helixsystemupgrade.model.InventoryEntry" relationship="TO_MANY">
+      <point x="0.0" y="-15.5" />
+      <point x="405.0160256410256" y="194.53846153846155" />
+      <point x="554.2467948717947" y="194.53846153846155" />
+      <point x="36.5" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.System" target="helixsystemupgrade.model.Account" relationship="TO_MANY">
+      <point x="-37.125" y="-15.5" />
+      <point x="100.46106362773031" y="404.7307692307693" />
+      <point x="40.81172839506172" y="404.7307692307693" />
+      <point x="-26.5" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.Account" target="helixsystemupgrade.model.Product" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.5" />
+      <point x="67.31172839506172" y="95.42307692307693" />
+      <point x="-38.653846153846146" y="95.42307692307693" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.InventoryEntry" target="helixsystemupgrade.model.Product" relationship="DEPENDENCY">
+      <point x="36.5" y="-15.5" />
+      <point x="554.2467948717947" y="-103.61538461538461" />
+      <point x="-12.903846153846146" y="-103.61538461538461" />
+      <point x="25.75" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.Account" target="helixsystemupgrade.model.HelixSystem" relationship="DEPENDENCY">
+      <point x="35.33333333333334" y="-15.5" />
+      <point x="102.64506172839506" y="189.5" />
+      <point x="371.7660256410256" y="189.5" />
+      <point x="-33.25" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.System" target="helixsystemupgrade.model.HelixSystem" relationship="TO_MANY">
+      <point x="37.125" y="-15.5" />
+      <point x="174.7110636277303" y="404.7307692307693" />
+      <point x="438.2660256410256" y="404.7307692307693" />
+      <point x="33.25" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.HelixSystem" target="helixsystemupgrade.model.InventoryEntry" relationship="CREATE">
+      <point x="47.23076923076917" y="-15.5" />
+      <point x="-65.49999999999994" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.HelixSystem" target="helixsystemupgrade.model.Product" relationship="DEPENDENCY">
+      <point x="-15.0" y="-15.5" />
+      <point x="390.0160256410256" y="5.423076923076934" />
+      <point x="-7.846153846153811" y="5.423076923076934" />
+      <point x="-7.846153846153811" y="-26.88461538461536" />
+      <point x="51.5" y="11.461538461538481" />
+    </edge>
+    <edge source="helixsystemupgrade.model.System" target="helixsystemupgrade.model.Account" relationship="DEPENDENCY">
+      <point x="-12.375" y="-15.5" />
+      <point x="125.21106362773031" y="324.3846153846154" />
+      <point x="93.81172839506172" y="324.3846153846154" />
+      <point x="26.5" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.Account" target="helixsystemupgrade.model.Product" relationship="TO_MANY">
+      <point x="-35.33333333333334" y="-15.5" />
+      <point x="31.978395061728378" y="272.5" />
+      <point x="-135.17307692307696" y="272.5" />
+      <point x="-135.17307692307696" y="-44.499999999999986" />
+      <point x="-64.40384615384615" y="-44.499999999999986" />
+      <point x="-25.75" y="15.5" />
+    </edge>
+    <edge source="helixsystemupgrade.model.InventoryEntry" target="helixsystemupgrade.model.Product" relationship="TO_ONE">
+      <point x="-72.99999999999994" y="0.0" />
+      <point x="51.5" y="-5.384615384615358" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.3" showDependencies="true" x="206.0" y="193.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
