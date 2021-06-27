@@ -5,9 +5,17 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/fontawesome/all.css">
     <style>
+
+        i {
+            color: white;
+        }
+
+        .text-workflow {
+            color: white;
+        }
 
         .button {
             padding: 0.7rem;
@@ -15,6 +23,13 @@
             background-color: rgba(97, 97, 97, 1);
             color: white;
             border: 3px solid white;
+            box-shadow: 4px 4px 10px black;
+        }
+
+        .button:hover {
+            border: 3px solid white;
+            transition: transform .1s;
+            transform: scale(0.90);
         }
 
         .button:hover {
@@ -57,7 +72,8 @@
         #product-name {
             text-align: center;
             margin-top: 3rem;
-            font-size: 24px;
+            margin-bottom: 3rem;
+            /*font-size: 24px;*/
             color: black;
         }
 
@@ -68,6 +84,34 @@
             width: 6rem;
         }
 
+        #center-container {
+            background-color: rgba(97, 97, 97, 1);
+            border: 2px solid rgba(0, 0, 0, 1);
+            border-radius: 10px;
+            height: 400px;
+            align-content: center;
+            text-align: center;
+        }
+
+        #grid-container {
+            display: grid;
+            grid-template-columns: 300px 50px 300px 50px 300px 50px 300px;
+            column-gap: 2rem;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .grid-item {
+            text-align: center;
+        }
+
+        .image-content {
+            width: 275px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <header>
@@ -76,31 +120,65 @@
 <body>
     <div>
         <div id="product-image-section">
-            <div style="display: flex;">
-
-                <div class="side-content" style="text-align: right;">
-                    <div>
-                        <button id="notify-button" class="button" aria-label="notify-button"> <i class="fa fa-bell fa-2x"></i> </button>
-                        <p id="product-amount">Stock: Amount</p>
-                    </div>
+            <div class="side-content" style="text-align: right;">
+                <div>
+                    <h3 id="helix-name">TestHelix</h3>
+                    <button id="notify-button" class="button" aria-label="notify-button"> <i class="fa fa-bell fa-2x"></i> </button>
+                    <h3 id="product-amount">Stock: Amount</h3>
                 </div>
+            </div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; margin: 0 50px;">
-                    <img id="product-image" src="https://placekitten.com/300/150" alt="Product Image">
+            <div style="display: flex; flex-direction: column; align-items: center; margin: 0 50px;">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+
+            <div class="side-content">
+                <div>
+                    <h3 id="product-id">ID: 000</h3>
+                    <button id="request-button" class="button" aria-label="request-button"> <i class="fa fa-shopping-basket fa-2x"></i> </button>
+                    <h3 id="product-price">Price: 00,00</h3>
                 </div>
-
-                <div class="side-content">
-                    <div>
-                        <p id="product-id">ID: 000</p>
-                        <button id="request-button" class="button" aria-label="request-button"> <i class="fa fa-shopping-basket fa-2x"></i> </button>
-                        <p id="product-price">Price: 00,00</p>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div style="display: flex; justify-content: center;">
-            <p id="product-name">Product Name</p>
+            <h2 id="product-name">Product Name</h2>
+        </div>
+        <div id="center-container">
+            <h2 class="text-workflow">Based on your workflow we recommend:</h2>
+            <div id="grid-container">
+                <div class="grid-item">
+                    <h3 class="text-workflow">Prepare</h3>
+                    <img class="image-content" src="/resources/images/Prepare.png" alt="Product Image">
+                </div>
+
+                <div class="grid-item">
+                    <i class="fa fa-long-arrow-alt-right fa-3x"></i>
+                </div>
+
+                <div class="grid-item">
+                    <h3 class="text-workflow">Fabrication</h3>
+                    <img class="image-content" src="/resources/images/Fabricate.png" alt="Product Image">
+                </div>
+
+                <div class="grid-item">
+                    <i class="fa fa-long-arrow-alt-right fa-3x"></i>
+                </div>
+
+                <div class="grid-item">
+                    <h3 class="text-workflow">Sequence</h3>
+                    <img class="image-content" src="/resources/images/Sequence.png" alt="Product Image">
+                </div>
+
+                <div class="grid-item">
+                    <i class="fa fa-long-arrow-alt-right fa-3x"></i>
+                </div>
+
+                <div class="grid-item">
+                    <h3 class="text-workflow">Analyze</h3>
+                    <img class="image-content" src="/resources/images/Analyze.png" alt="Product Image">
+                </div>
+
+            </div>
         </div>
     </div>
     <script src="/scripts/general.js"></script>

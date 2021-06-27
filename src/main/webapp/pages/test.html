@@ -4,41 +4,166 @@
     <meta charset="UTF-8">
     <title>Test</title>
     <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/fontawesome/all.css">
     <style>
-      body {
+      h1 {
         color: white;
       }
-      a {
-        color: black;
-        line-height: 26px;
+
+      p {
         font-size: 20px;
+          margin: 10px;
+      }
+
+      hr {
+        background-color: black;
+        border-color: black;
+        height: 3px;
+      }
+
+      button {
+          padding: 3px;
+      }
+
+      #container {
+        padding: 0.6rem;
+        background-color: rgba(97, 97, 97, 1);
+        border: 2px solid rgba(0, 0, 0, 1);
+        border-radius: 10px;
+      }
+
+      .test-div {
+          color: white;
+          display: grid;
+          grid-template-columns: 950px 50px 50px 600px;
+          grid-column-gap: 1.5rem;
+          align-items: center;
+
       }
     </style>
 </head>
 <body>
-  <h1>Account Tests</h1>
-  <a href="/api/test/account">Show all accounts :  <b>PASS</b> </a> <br>
-  <a href="/api/test/all-account">Show all accounts : <b>FAIL 404</b> > Not a valid API path</a> <br>
-  <hr>
-  <a href="/api/test/account/0">Show the account of a user by ID : <b>PASS</b> </a> <br>
-  <a href="/api/test/account/ERROR">Show the account of a user by ID : <b>FAIL 400</b> > Account with this ID does not exist</a> <br>
-  <hr>
-  <a href="/api/test/account/0/notifications">Show all notifications of a user by ID : <b>PASS</b> </a> <br>
-  <a href="/api/test/account/999/notifications">Show all notifications of a user by ID : <b>FAIL 400</b> > Account with this ID does not exist</a> <br>
-  <a href="/api/test/account/TEST/notifications">Show all notifications of a user by ID : <b>FAIL 400</b> > Account ID is not an integer</a> <br>
+<div id="container">
+    <h1>Account Tests</h1>
 
-  <h1>HelixSystem Tests</h1>
-  <a href="/api/test/helixsystem">Show all the HelixSystems : <b>PASS</b> </a> <br>
-  <a href="/api/test/TEST">Show all the HelixSystems : <b>FAIL 404</b> > Not a valid API path</a> <br>
-  <hr>
-  <a href="/api/test/helixsystem/LUMC">Show a HelixSystem by name : <b>PASS</b> </a> <br>
-  <a href="/api/test/helixsystem/TEST">Show a HelixSystem by name : <b>FAIL 400</b> > HelixSystem with this name does not exist</a> <br>
-  <hr>
-  <a href="/api/test/helixsystem/LUMC/inventory">Show HelixSystem inventory by name : <b>PASS</b> </a> <br>
-  <a href="/api/test/helixsystem/TEST/inventory">Show HelixSystem inventory by name : <b>FAIL 404</b> > HelixSystem with this name does not exist</a> <br>
-  <hr>
-  <a href="/api/test/helixsystem/LUMC/inventory/0">Show a product in a HelixSystem by ID : <b>PASS</b> </a> <br>
-  <a href="/api/test/helixsystem/LUMC/inventory/999">Show a product in a HelixSystem by ID : <b>FAIL 400</b> > Product with this ID does not exist</a> <br>
-  <a href="/api/test/helixsystem/LUMC/inventory/TEST">Show a product in a HelixSystem by ID : <b>FAIL 400</b> > Product with this ID does not exist in the HelixSystem</a> <br>
+    <div class="test-div">
+        <p>Get account data of a user : <b>PASS</b> </p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/account`, true, 0)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get account data of a user : <b>FAIL 401</b> > User could not be found </p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/account`, false, 1)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get account data of a user : <b>FAIL 404</b> > Not a valid API path</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/accoun`, true, 2)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <hr>
+
+    <div class="test-div">
+        <p>Get all notifications of a user : <b>PASS</b> </p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/account/notifications`, true, 3)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get all notifications of a user : <b>FAIL 401</b> > User could not be found</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/account/notifications`, false, 4)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get all notifications of a user : <b>FAIL 404</b> > Not a valid API path</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/account/notification`, true, 5)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <hr>
+
+    <div class="test-div">
+        <p>Delete notification with ID: 1 : <b>PASS</b></p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="postFetch(`/api/account/notifications/delete/1`, true, 6)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <div class="test-div">
+        <p>Delete notification with ID: 1 : <b>FAIL 401</b> > User could not be found</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="postFetch(`/api/account/notifications/delete/1`, false, 7)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <div class="test-div">
+        <p>Delete notification with ID: 999 : <b>FAIL 400</b> > Notification with this ID not found</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="postFetch(`/api/account/notifications/delete/999`, true, 8)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <h1>HelixSystem Tests</h1>
+
+    <div class="test-div">
+        <p>Get the inventory of the LUMC HelixSystem : <b>PASS</b> </p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventory`, true, 9)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the inventory of the LUMC HelixSystem : <b>FAIL 401</b> > User could not be found</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventory`, false, 10)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the inventory of the LUMC HelixSystem : <b>FAIL 404</b> > Not a valid API path</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventor`, true, 11)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the inventory of the TestSystem HelixSystem : <b>FAIL 400</b> > HelixSystem with this name does not exist</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/TestSystem/inventory`, true, 12)">TEST</button>
+        <p>Response :</p>
+    </div>
+
+    <hr>
+    <div class="test-div">
+        <p>Get the product with ID 1 HelixSystem in HelixSystem LUMC : <b>PASS</b> </p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventory/1`, true, 13)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the product with ID 1 HelixSystem in HelixSystem LUMC : <b>FAIL 401</b> > User could not be found</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventory/1`, false, 14)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the product with ID 1 in HelixSystem TestSystem : <b>FAIL 400</b> > HelixSystem with this name does not exist</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/TestSystem/inventory/1`, true, 15)">TEST</button>
+        <p>Response :</p>
+    </div>
+    <div class="test-div">
+        <p>Get the product with ID 999 in HelixSystem LUMC : <b>FAIL 400</b> > Product with this ID does not exist in this HelixSystem</p>
+        <i class="far fa-circle fa-2x"></i>
+        <button onclick="getFetch(`/api/helixsystem/LUMC/inventory/999`, true, 16)">TEST</button>
+        <p>Response :</p>
+    </div>
+</div>
+<script src="/scripts/test.js"></script>
 </body>
 </html>

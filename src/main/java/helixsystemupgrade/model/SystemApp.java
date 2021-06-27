@@ -35,7 +35,7 @@ public class SystemApp {
                 assignRandomHelixAccess(account);
             }
             account.generateRandomProductHistory(productList);
-            account.generateRandomNotifications(productList);
+            account.generateRandomNotifications(helixSystemList);
         }
     }
 

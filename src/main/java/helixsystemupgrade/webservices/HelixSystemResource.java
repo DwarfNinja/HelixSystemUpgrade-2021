@@ -18,25 +18,27 @@ import java.util.AbstractMap;
 @Path("helixsystem")
 public class HelixSystemResource {
 
+    SystemApp theSystemApp = SystemApp.getTheSystemApp();
+
     @GET
     @Path("{helixname}/inventory")
     @Produces("application/json")
     public Response getInventoryOfHelix(@Context SecurityContext securityContext, @PathParam("helixname") String helixname) {
         if (securityContext.getUserPrincipal() instanceof Account account) {
 
-            if (account.getHelixAccessList().contains(helixname)) {
-                HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+            if (theSystemApp.getHelixSystemByName(helixname) != null) {
+                if (account.getHelixAccessList().contains(helixname)) {
+                    HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
 
-                if (helixSystem != null) {
-                    String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
-                    return Response.ok(helixInventoryJsonArray).build();
+                        String helixInventoryJsonArray = JsonUtils.convertListToJsonArray(helixSystem.getInventoryList());
+                        return Response.ok(helixInventoryJsonArray).build();
                 }
-                return Response.status(Response.Status.BAD_REQUEST)
-                        .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
+                return Response.status(Response.Status.FORBIDDEN)
+                        .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
                         .build();
             }
-            return Response.status(Response.Status.FORBIDDEN)
-                    .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
                     .build();
         }
         return Response.status(Response.Status.UNAUTHORIZED)
@@ -49,28 +51,29 @@ public class HelixSystemResource {
     @Produces("application/json")
     public Response getProductByID(@Context SecurityContext securityContext, @PathParam("helixname") String helixname, @PathParam("id") String id) {
         if (securityContext.getUserPrincipal() instanceof Account account) {
-            if (account.getHelixAccessList().contains(helixname)) {
-                HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
 
-                if (helixSystem != null) {
-                    InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
+            if (theSystemApp.getHelixSystemByName(helixname) != null) {
+                if (account.getHelixAccessList().contains(helixname)) {
+                    HelixSystem helixSystem = SystemApp.getTheSystemApp().getHelixSystemByName(helixname);
+                        InventoryEntry inventoryEntry = helixSystem.getInventoryEntrybyID(Integer.parseInt(id));
 
-                    if (inventoryEntry != null) {
-                        return Response.ok(JsonUtils.convertObjectToJson(inventoryEntry)).build();
-                    }
-                    return Response.status(Response.Status.BAD_REQUEST)
-                            .entity(new AbstractMap.SimpleEntry<>(
-                                    "error", "InventoryEntry with ID: " + id + " does not exist in HelixSystem: " + helixname + "!"))
-                            .build();
+                        if (inventoryEntry != null) {
+                            return Response.ok(JsonUtils.convertObjectToJson(inventoryEntry)).build();
+                        }
+
+                        return Response.status(Response.Status.BAD_REQUEST)
+                                .entity(new AbstractMap.SimpleEntry<>(
+                                        "error", "InventoryEntry with ID: " + id + " does not exist in HelixSystem: " + helixname + "!"))
+                                .build();
                 }
-                return Response.status(Response.Status.BAD_REQUEST)
-                        .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
+                return Response.status(Response.Status.FORBIDDEN)
+                        .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
                         .build();
-            }
-            return Response.status(Response.Status.FORBIDDEN)
-                    .entity(new AbstractMap.SimpleEntry<>("error", "User does not have access to this page!"))
-                    .build();
 
+            }
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new AbstractMap.SimpleEntry<>("error", "HelixSystem with name: " + helixname + " does not exist!"))
+                    .build();
         }
         return Response.status(Response.Status.UNAUTHORIZED)
                 .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))

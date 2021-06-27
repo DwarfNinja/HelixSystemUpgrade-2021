@@ -1,16 +1,16 @@
 package helixsystemupgrade.webservices;
 
 import helixsystemupgrade.model.Account;
-import helixsystemupgrade.model.SystemApp;
 import helixsystemupgrade.utils.JsonUtils;
 
-import javax.json.Json;
-import javax.json.JsonObjectBuilder;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.AbstractMap;
 
 
@@ -28,17 +28,19 @@ public class AccountResource {
                 .build();
     }
 
-    @GET
-    @Path("{id}/producthistory")
-    @Produces("application/json")
-    public String getProductHistoryList(@PathParam("id") String id) {
-        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-
-        String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
-        return productHistoryListJsonArray;
-    }
-
+//    //TODO: To be used with product history feature
+//    @GET
+//    @Path("{id}/producthistory")
+//    @Produces("application/json")
+//    public Response getProductHistoryList(@Context SecurityContext securityContext) {
+//        if (securityContext.getUserPrincipal() instanceof Account account) {
+//            String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
+//            return Response.ok(productHistoryListJsonArray).build();
+//        }
+//        return Response.status(Response.Status.UNAUTHORIZED)
+//                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+//                .build();
+//    }
 
     @GET
     @Path("notifications")

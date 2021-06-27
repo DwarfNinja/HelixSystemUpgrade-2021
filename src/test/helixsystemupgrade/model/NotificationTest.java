@@ -14,7 +14,7 @@ public class NotificationTest {
 
     @Test
     void testIsNotifcationDateFormatCorrect() {
-        Notification notification = new Notification(123, "TestMessage", testProduct);
+        Notification notification = new Notification(123, "TestMessage", "TestHelix", testProduct);
 
         LocalDateTime dateTime = LocalDateTime.now(ZoneId.of("UTC"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
