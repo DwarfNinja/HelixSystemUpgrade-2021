@@ -13,12 +13,12 @@ Author : CendurOyib
 
 ### Revision history
 
-| **Date**  | **Version** | **Description** |
+| **Date**  | **Version** | **Description**  |
 |------------|------------|------------------|
-| 16-05-2021 |    0.1     |                  |
-| 03-06-2021 |    0.2     |                  |
-| 16-06-2021 |    0.3     |                  |
-| 25-06-2021 |    0.4     |                  |
+| 16-05-2021 |    0.25    |                  |
+| 03-06-2021 |    0.5     |                  |
+| 16-06-2021 |    0.75    |                  |
+| 25-06-2021 |    1.0     |                  |
 
 ## Introduction
 The client (my father) is a sales manager at Promega, a laboratory equipment supplier for biochemistry and

@@ -28,17 +28,19 @@ public class AccountResource {
                 .build();
     }
 
+//    //TODO: To be used with product history feature
 //    @GET
 //    @Path("{id}/producthistory")
 //    @Produces("application/json")
-//    public String getProductHistoryList(@PathParam("id") String id) {
-//        SystemApp theSystemApp = SystemApp.getTheSystemApp();
-//        Account account = theSystemApp.getAccountByID(Integer.parseInt(id));
-//
-//        String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
-//        return productHistoryListJsonArray;
+//    public Response getProductHistoryList(@Context SecurityContext securityContext) {
+//        if (securityContext.getUserPrincipal() instanceof Account account) {
+//            String productHistoryListJsonArray = JsonUtils.convertListToJsonArray(account.getProductHistoryList());
+//            return Response.ok(productHistoryListJsonArray).build();
+//        }
+//        return Response.status(Response.Status.UNAUTHORIZED)
+//                .entity(new AbstractMap.SimpleEntry<>("error", "User not found!"))
+//                .build();
 //    }
-
 
     @GET
     @Path("notifications")
