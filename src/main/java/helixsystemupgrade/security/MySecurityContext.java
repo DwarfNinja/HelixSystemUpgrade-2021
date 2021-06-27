@@ -7,8 +7,8 @@ import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 
 public class MySecurityContext implements SecurityContext {
-    private Account account;
-    private String scheme;
+    private final Account account;
+    private final String scheme;
 
     public MySecurityContext(Account account, String scheme) {
         this.account = account;

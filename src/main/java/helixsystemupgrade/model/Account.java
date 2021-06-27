@@ -3,14 +3,10 @@ package helixsystemupgrade.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import helixsystemupgrade.utils.JsonUtils;
 import helixsystemupgrade.utils.NumberUtils;
 
-import javax.json.JsonArray;
 import java.security.Principal;
 
 import java.util.List;

@@ -61,14 +61,25 @@ How to use the application
 All pages, except the log-in page have two buttons on the header of the page, the left button (inbox icon)
 can be clicked to be brought to the notifications page. Next to the notifications button there is a button that 
 can be used to log out of the logged-in account (arrow moving away from a door).
+
+<hr>
+
 ### - Log In page
 Log in with one of the accounts noted in [all-accounts.json](src/main/resources/json/all-accounts.json) and 
 click on the button to log in (arrow moving towards a door). \
-For ease of use I have provided some account details below. \
+For ease of use I have provided some account details below.
+
+**User account:** \
 Username: John Doe \
 Password: johndoePassword
 
+**Admin account:** \
+Username: admin \
+Password: admin
+
 ![Log-In Page](documentation/resources/ReadMe/Pages/Log-In.png)
+
+<hr>
 
 ### - Account page
 On the left side you can view a users profile and account details and on the right-hand side you can 
@@ -77,17 +88,23 @@ to view their inventory.
 
 ![Account Page](documentation/resources/ReadMe/Pages/Account.png)
 
+<hr>
+
 ### - HelixSystem Inventory page
 Here you can view the inventory of a HelixSystem with all the products that HelixSystem holds. Clicking on 
 one of the products allows you to view more details of that product on the product page.
 
 ![HelixSystem Inventory Page](documentation/resources/ReadMe/Pages/HelixSystem-Inventory.png)
 
+<hr>
+
 ### - Product page
 This is the product page, here you can view more details about the product in question. At the bottom half of the
 page you can also view recommendations of other products related to this product.
 
 ![Product Page](documentation/resources/ReadMe/Pages/Product.png)
+
+<hr>
 
 ### - Notifications page
 When you press on the "notifications" button you will arrive at the notifications page, 

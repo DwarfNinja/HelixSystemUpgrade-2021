@@ -15,7 +15,7 @@ public class Notification {
     private String helixSystemName;
     private Product notificationProduct;
 
-    //TODO: Remove default constructor in place for JsonProperty annotated constructor
+    //TODO: Perhaps possible to replace default constructor in place for JsonProperty annotated constructor
     public Notification() {
     }
 

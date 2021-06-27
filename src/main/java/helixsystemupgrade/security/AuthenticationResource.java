@@ -16,7 +16,6 @@ import java.security.Key;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Calendar;
 
-
 @Path("/authentication")
 public class AuthenticationResource {
 

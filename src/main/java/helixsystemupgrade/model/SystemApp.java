@@ -16,11 +16,9 @@ public class SystemApp {
 
     private static SystemApp theSystemApp;
 
-    private List<HelixSystem> helixSystemList = new ArrayList<>();
-
-    private List<Account> accountList = new ArrayList<>();
-
-    private List<Product> productList = new ArrayList<>();
+    private final List<HelixSystem> helixSystemList = new ArrayList<>();
+    private final List<Account> accountList = new ArrayList<>();
+    private final List<Product> productList = new ArrayList<>();
 
     private SystemApp() {
         helixSystemList.add(new HelixSystem("LUMC"));
