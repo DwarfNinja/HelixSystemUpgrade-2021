@@ -15,35 +15,51 @@ import java.util.ArrayList;
 
 @JsonDeserialize(as = Account.class)
 public class Account implements Principal {
-    private final String accountName;
     private final int accountID;
+    private final String accountName;
+    private final String accountUsername;
     private final String accountPassword;
     private final String accountRole;
+    private final String accountEmail;
+    private final String accountPhoneNumber;
+    private final String accountOrganizationType;
+    private final String accountJobFunction;
     private final List<String> helixAccessList;
     private final List<Product> productHistoryList;
     private final List<Notification> notificationList;
 
     // Jackson annotations used to create converts objects from JSON file to Java Objects
     @JsonCreator
-    public Account(@JsonProperty("accountName") String accountName, @JsonProperty("accountID") int accountID,
-                   @JsonProperty("accountPassword") String accountPassword, @JsonProperty("accountRole") String accountRole,
-                   @JsonProperty("helixAccessList") List<String> helixAccessList, @JsonProperty("productHistoryList") List<Product> productHistoryList,
-                   @JsonProperty("notificationList") List<Notification> notificationList) {
-        this.accountName = accountName;
+    public Account(@JsonProperty("accountID") int accountID, @JsonProperty("accountName") String accountName,
+                   @JsonProperty("accountUsername") String accountUsername, @JsonProperty("accountPassword") String accountPassword,
+                   @JsonProperty("accountRole") String accountRole, @JsonProperty("accountEmail") String accountEmail,
+                   @JsonProperty("accountPhoneNumber") String accountPhoneNumber, @JsonProperty("accountOrganizationType") String accountOrganizationType,
+                   @JsonProperty("accountJobFunction") String accountJobFunction, @JsonProperty("helixAccessList") List<String> helixAccessList,
+                   @JsonProperty("productHistoryList") List<Product> productHistoryList, @JsonProperty("notificationList") List<Notification> notificationList) {
         this.accountID = accountID;
+        this.accountName = accountName;
+        this.accountUsername = accountUsername;
         this.accountPassword = accountPassword;
         this.accountRole = accountRole;
+        this.accountEmail = accountEmail;
+        this.accountPhoneNumber = accountPhoneNumber;
+        this.accountOrganizationType =accountOrganizationType;
+        this.accountJobFunction = accountJobFunction;
         this.helixAccessList = helixAccessList;
         this.productHistoryList = productHistoryList;
         this.notificationList = notificationList;
+    }
+
+    public int getAccountID() {
+        return accountID;
     }
 
     public String getAccountName() {
         return accountName;
     }
 
-    public int getAccountID() {
-        return accountID;
+    public String getAccountUsername() {
+        return accountUsername;
     }
 
     @JsonIgnore
@@ -53,6 +69,22 @@ public class Account implements Principal {
 
     public String getAccountRole() {
         return accountRole;
+    }
+
+    public String getAccountEmail() {
+        return accountEmail;
+    }
+
+    public String getAccountPhoneNumber() {
+        return accountPhoneNumber;
+    }
+
+    public String getAccountOrganizationType() {
+        return accountOrganizationType;
+    }
+
+    public String getAccountJobFunction() {
+        return accountJobFunction;
     }
 
     public List<String> getHelixAccessList() {
@@ -93,11 +125,13 @@ public class Account implements Principal {
         for (int i = 0; i < randomAmountOfProducts; i++) {
             addProduct(productList.get(NumberUtils.getRandomNumberInRange(0, productList.size())));
         }
-
     }
 
     public void generateRandomNotifications(List<HelixSystem> helixSystemList) {
         int randomAmountOfNotifications = NumberUtils.getRandomNumberInRange(5, 12);
+        List<HelixSystem> copyOfHelixSystemList= new ArrayList<>(helixSystemList);
+
+        copyOfHelixSystemList.removeIf(helixSystem -> !helixAccessList.contains(helixSystem.getHelixSystemName()));
 
         for(int i = 0; i < randomAmountOfNotifications; i++) {
             addRandomNotification(helixSystemList);
@@ -128,7 +162,7 @@ public class Account implements Principal {
     @Override
     @JsonIgnore
     public String getName() {
-        return getAccountName();
+        return getAccountUsername();
     }
 
     @Override

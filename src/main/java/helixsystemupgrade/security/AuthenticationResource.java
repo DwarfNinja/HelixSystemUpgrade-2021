@@ -52,7 +52,7 @@ public class AuthenticationResource {
         Calendar expiration = Calendar.getInstance();
         expiration.add(Calendar.MINUTE, 30);
 
-        int accountID = theSystemApp.getAccountByName(username).getAccountID();
+        int accountID = theSystemApp.getAccountByUsername(username).getAccountID();
 
         return Jwts.builder()
                 .setSubject(Integer.toString(accountID))

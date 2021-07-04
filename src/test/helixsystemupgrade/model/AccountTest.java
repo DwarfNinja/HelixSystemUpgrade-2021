@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
-    private static final Account testAccount1 = new Account("Test Account 1", 1, "testaccountpassword",
-            "user", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    Account testAccount1 = new Account(1, "Test Account 1", "testaccount1", "testaccount1password",
+            "user","testaccount1@gmail.com", "+31612345678", "test",
+            "tester", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
     @Test
     void testIsGeneratedRandomProductHistoryUnique() {
@@ -25,8 +26,9 @@ class AccountTest {
     @Test
     void testEquals() {
         Product testProduct = new Product("Test Product", 1, "10.00", "testSource.png");
-        Account testAccount2 = new Account("Test Account 2", 2, "testaccount2password",
-                "user", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Account testAccount2 = new Account(2, "Test Account 2", "testaccount2", "testaccount2password",
+                "user","testaccount2@gmail.com", "+31612345678", "test",
+                "tester", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
         assertNotEquals(testAccount1, testProduct);
         assertNotEquals(testAccount1, testAccount2);

@@ -24,6 +24,9 @@ public class SystemApp {
         helixSystemList.add(new HelixSystem("LUMC"));
         helixSystemList.add(new HelixSystem("ErasmusMC"));
         helixSystemList.add(new HelixSystem("UMCUtrecht"));
+        helixSystemList.add(new HelixSystem("OLVG"));
+        helixSystemList.add(new HelixSystem("Rijnstate"));
+        helixSystemList.add(new HelixSystem("Amphia Ziekenhuis"));
 
         generateAccountList();
         generateProductList();
@@ -74,9 +77,9 @@ public class SystemApp {
         return null;
     }
 
-    public Account getAccountByName(String name) {
+    public Account getAccountByUsername(String username) {
         for (Account account : accountList) {
-            if (account.getAccountName().equals(name)) {
+            if (account.getAccountUsername().equals(username)) {
                 return account;
             }
         }
@@ -130,20 +133,20 @@ public class SystemApp {
     private void assignRandomHelixAccess(Account account) {
         int randomAmountOfHelixAccess = NumberUtils.getRandomNumberInRange(1, helixSystemList.size());
         List<HelixSystem> helixSystemListCopy = new ArrayList<>(helixSystemList);
-
         for (int i = 0; i < randomAmountOfHelixAccess; i++) {
             HelixSystem randomHelixSystem = helixSystemListCopy.get(NumberUtils.getRandomNumberInRange(0, helixSystemListCopy.size()));
             account.addHelixAccess(randomHelixSystem);
+            System.out.println(randomHelixSystem.getHelixSystemName());
             helixSystemListCopy.remove(randomHelixSystem);
         }
     }
 
-    public String validateCredentials(String name, String password){
-        if(name==null || name.isBlank() || password == null || password.isBlank()) {
+    public String validateCredentials(String username, String password){
+        if(username==null || username.isBlank() || password == null || password.isBlank()) {
             return null;
         }
 
-        Account myAccount = getAccountByName(name);
+        Account myAccount = getAccountByUsername(username);
         if (myAccount != null) {
             if (myAccount.checkPassword(password)) {
                 return myAccount.getAccountRole();

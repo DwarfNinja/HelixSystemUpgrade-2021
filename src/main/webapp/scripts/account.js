@@ -14,11 +14,15 @@ fetch("/api/account", { method: "GET",
     .then(data => {
         let accountID = data.accountID;
         let accountName = data.accountName;
-        let accountRole = data.accountRole;
+        let accountUsername = data.accountUsername;
+        let accountEmail = data.accountEmail;
+        let accountPhoneNumber = data.accountPhoneNumber;
+        let accountOrganizationType = data.accountOrganizationType;
+        let accountJobFunction = data.accountJobFunction;
         let accountHelixAccessList = data.helixAccessList
 
         let listContainer = document.getElementById("helixsystem-list");
-
+        console.log(accountHelixAccessList)
         for (let i = 0; i < accountHelixAccessList.length; i++) {
 
             let liElement = document.createElement("li");
@@ -34,7 +38,19 @@ fetch("/api/account", { method: "GET",
 
         let accountIDElement = document.getElementById("account-id");
         accountIDElement.innerText = "Account ID: " + accountID
+        let accountUsernameElement = document.getElementById("account-username");
+        accountUsernameElement.innerText = "Username: " + accountUsername;
+
         let accountNameElement = document.getElementById("account-name");
         accountNameElement.innerText = "Name: " + accountName;
+        let accountEmailElement = document.getElementById("account-email");
+        accountEmailElement.innerText = "Email: " + accountEmail;
+        let accountPhoneNumberElement = document.getElementById("account-phonenumber");
+        accountPhoneNumberElement.innerText = "Phone number: " + accountPhoneNumber;
+
+        let accountOrganizationTypeElement = document.getElementById("account-organizationtype");
+        accountOrganizationTypeElement.innerText = "Organization Type: " + accountOrganizationType;
+        let accountJobFunctionElement = document.getElementById("account-jobfuntion");
+        accountJobFunctionElement.innerText = "Job Function: " + accountJobFunction;
 
     })
